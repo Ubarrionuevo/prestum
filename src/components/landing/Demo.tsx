@@ -62,12 +62,12 @@ export function Demo({ n }: { n: number }) {
     <Section id="demo">
       <SectionHead
         n={n}
-        eyebrow="Demo en vivo · así funciona de verdad"
+        eyebrow="Probalo ahora · es el sistema real"
         title={
           <>
-            Reservá como tu {demo.cliente}.
+            Sacá un turno como tu {demo.cliente}.
             <br />
-            Mirá cómo te llega a vos.
+            Fijate qué te llega a vos.
           </>
         }
         subtitle="Elegí un servicio, un horario y reservá. Del otro lado vas a ver el mensaje que te llega al WhatsApp, listo para confirmar."

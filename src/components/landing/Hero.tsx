@@ -7,95 +7,103 @@ import { useLanding, useRegistroLink } from "./LandingState";
 import { PRUEBA_DIAS } from "@/config/planes";
 
 /**
- * 01 · HERO interactivo: el visitante escribe el nombre de su negocio y ve su página
- * de reservas armarse en vivo. El <h1> lleva la keyword (SEO); la pregunta grande es visual.
+ * 01 · HERO: primero se entiende qué es (título grande = <h1>), después se prueba.
+ * Orden: etiqueta → título → bajada → 2 botones → garantías → "Probalo con tu negocio"
+ * (el visitante escribe el nombre y ve su página armarse en el celular de al lado).
  */
-export function Hero({ h1, subtitle, showRubros }: { h1: string; subtitle: string; showRubros: boolean }) {
+export function Hero({ titulo, etiqueta, subtitle, showRubros }: { titulo: string; etiqueta: string; subtitle: string; showRubros: boolean }) {
   const { nombre, setNombre, demo, display, slug, rubro, setRubro, activos } = useLanding();
   const registro = useRegistroLink();
   const servicios = demo.servicios.filter((s) => activos.includes(s.nombre));
-  const pregunta = showRubros ? "tu negocio" : `tu ${demo.negocio}`;
+  const negocio = showRubros ? "tu negocio" : `tu ${demo.negocio}`;
 
   return (
     <header id="inicio" className="relative overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-16 pt-10 sm:pt-16 lg:grid-cols-[1.1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 pb-16 pt-8 sm:pt-16 lg:grid-cols-[1.1fr_1fr]">
         <div>
-          <h1 className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-semibold text-brand-700 shadow-sm ring-1 ring-brand-100">
+          <p className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-sm font-semibold text-brand-700 shadow-sm ring-1 ring-brand-100">
             <span className="h-2 w-2 rounded-full bg-brand-500" aria-hidden />
-            {h1}
-          </h1>
-          <p className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-6xl">
-            ¿Cómo se llama
-            <br />
-            <span className="text-brand-700">{pregunta}?</span>
+            {etiqueta}
           </p>
+          <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-6xl">{titulo}</h1>
           <p className="mt-5 max-w-lg text-lg text-slate-600">{subtitle}</p>
 
-          {showRubros && (
-            <div className="mt-6 flex flex-wrap gap-2" role="radiogroup" aria-label="Tu rubro">
-              {heroRubros.map((r) => (
-                <button
-                  key={r.slug}
-                  type="button"
-                  role="radio"
-                  aria-checked={r.slug === rubro}
-                  onClick={() => setRubro(r.slug)}
-                  className={`rounded-full border px-3 py-1.5 text-sm font-medium transition ${
-                    r.slug === rubro ? "border-brand-700 bg-brand-700 text-white" : "border-slate-200 bg-white text-slate-700 hover:border-brand-500"
-                  }`}
-                >
-                  {r.label}
-                </button>
-              ))}
-            </div>
-          )}
-
-          <form
-            className="mt-6 flex max-w-lg flex-col gap-2 sm:flex-row"
-            onSubmit={(e) => {
-              e.preventDefault();
-              document.getElementById("pagina")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            <label className="sr-only" htmlFor="hero-nombre">
-              Nombre de tu negocio
-            </label>
-            <input
-              id="hero-nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value.slice(0, 40))}
-              placeholder={`Ej: ${demo.ejemplos[0]}`}
-              className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-base outline-none focus:border-brand-700 focus:ring-4 focus:ring-brand-700/10"
-            />
-            <button type="submit" className="rounded-xl bg-slate-900 px-5 py-3.5 font-semibold text-white hover:bg-slate-700">
-              Ver cómo queda
-            </button>
-          </form>
-          <p className="mt-2 text-sm text-slate-500">
-            Tu link: <span className="font-mono text-brand-700">prestum.com.ar/{slug}</span>
-          </p>
-
-          <p className="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-500">
-            Probá con:
-            {demo.ejemplos.map((e) => (
-              <button key={e} type="button" onClick={() => setNombre(e)} className="rounded-md bg-slate-100 px-2 py-1 text-slate-700 hover:bg-brand-50 hover:text-brand-700">
-                {e}
-              </button>
-            ))}
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <Link
               href={registro}
-              className="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white shadow-lg shadow-brand-700/20 hover:bg-brand-900"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white shadow-lg shadow-brand-700/20 hover:bg-brand-900"
             >
-              Empezar gratis →
+              Empezar gratis · {PRUEBA_DIAS} días
             </Link>
-            <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600">
-              <li>✓ {PRUEBA_DIAS} días gratis</li>
-              <li>✓ Sin tarjeta</li>
-              <li>✓ Listo en 1 minuto</li>
-            </ul>
+            <a
+              href="#como-funciona"
+              className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700"
+            >
+              Ver cómo funciona
+            </a>
+          </div>
+          <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600">
+            <li>✓ {PRUEBA_DIAS} días gratis</li>
+            <li>✓ Sin tarjeta</li>
+            <li>✓ Listo en 1 minuto</li>
+            {showRubros && <li>✓ Para cualquier rubro</li>}
+          </ul>
+
+          <div className="mt-8 max-w-lg rounded-2xl bg-white p-4 ring-1 ring-slate-200">
+            <p className="font-semibold text-slate-900">Probalo con {negocio}</p>
+            <p className="mt-1 text-sm text-slate-600">Escribí el nombre y mirá cómo se arma tu página de reservas. Es lo que van a ver tus {demo.cliente}s cuando toquen tu link.</p>
+
+            {showRubros && (
+              <div className="mt-3 flex flex-wrap gap-2" role="radiogroup" aria-label="Tu rubro">
+                {heroRubros.map((r) => (
+                  <button
+                    key={r.slug}
+                    type="button"
+                    role="radio"
+                    aria-checked={r.slug === rubro}
+                    onClick={() => setRubro(r.slug)}
+                    className={`rounded-full border px-3 py-1 text-sm font-medium transition ${
+                      r.slug === rubro ? "border-brand-700 bg-brand-700 text-white" : "border-slate-200 bg-white text-slate-700 hover:border-brand-500"
+                    }`}
+                  >
+                    {r.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <form
+              className="mt-3 flex flex-col gap-2 sm:flex-row"
+              onSubmit={(e) => {
+                e.preventDefault();
+                document.getElementById("pagina")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              <label className="sr-only" htmlFor="hero-nombre">
+                Nombre de tu negocio
+              </label>
+              <input
+                id="hero-nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value.slice(0, 40))}
+                placeholder={`Ej: ${demo.ejemplos[0]}`}
+                className="flex-1 rounded-xl border border-slate-300 bg-white px-4 py-3 text-base outline-none focus:border-brand-700 focus:ring-4 focus:ring-brand-700/10"
+              />
+              <button type="submit" className="rounded-xl bg-slate-900 px-5 py-3 font-semibold text-white hover:bg-slate-700">
+                Ver cómo queda
+              </button>
+            </form>
+            <p className="mt-2 text-sm text-slate-500">
+              Tu link: <span className="font-mono text-brand-700">prestum.com.ar/{slug}</span>
+            </p>
+            <p className="mt-2 flex flex-wrap items-center gap-2 text-sm text-slate-500">
+              Probá con:
+              {demo.ejemplos.map((e) => (
+                <button key={e} type="button" onClick={() => setNombre(e)} className="rounded-md bg-slate-100 px-2 py-1 text-slate-700 hover:bg-brand-50 hover:text-brand-700">
+                  {e}
+                </button>
+              ))}
+            </p>
           </div>
         </div>
 

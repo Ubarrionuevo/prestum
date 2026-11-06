@@ -17,7 +17,7 @@ const DIAS_MES = 24;
 const MIN_POR_CONSULTA = 2;
 const TASA_PERDIDA = 0.1; // 1 de cada 10 consultas que no contestás a tiempo, reserva en otro lado
 
-/** 06 · "La cuenta que nadie hace": cuánto tiempo y plata se va en dar turnos por chat. */
+/** 06 · "Hagamos números": cuánto tiempo y plata se va en dar turnos por chat. */
 export function Calculadora({ n, planBase, planBaseNombre }: { n: number; planBase: number; planBaseNombre: string }) {
   const { precio, demo } = useLanding();
   const [op, setOp] = useState(1);
@@ -35,7 +35,7 @@ export function Calculadora({ n, planBase, planBaseNombre }: { n: number; planBa
         n={n}
         dark
         center
-        eyebrow="La cuenta que nadie hace"
+        eyebrow="Hagamos números"
         title={
           <>
             ¿Cuántas consultas por día

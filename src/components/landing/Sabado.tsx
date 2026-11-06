@@ -16,15 +16,15 @@ export function Sabado({ n }: { n: number }) {
         <div>
           <SectionHead
             n={n}
-            eyebrow={`Un sábado en tu ${demo.negocio}`}
+            eyebrow="Un día cualquiera"
             title={
               <>
-                Así suena tu celu
+                Vos, con las manos ocupadas.
                 <br />
-                un sábado.
+                El celular, sonando.
               </>
             }
-            subtitle={`“¿Tenés algo hoy?”, “¿cuánto sale?”, “¿me pasás el turno?”. Todo mientras estás atendiendo a un ${demo.cliente}.`}
+            subtitle={`“¿Tenés lugar hoy?”, “¿cuánto sale?”, “¿me pasás un horario?”. Y vos con un ${demo.cliente} adelante, sin poder contestar.`}
           />
           <div className="mt-8 inline-flex rounded-xl bg-slate-100 p-1" role="tablist">
             {[

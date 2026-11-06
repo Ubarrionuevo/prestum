@@ -5,7 +5,7 @@ import { Section, SectionHead } from "./ui";
 export function Faq({ n, faqs }: { n: number; faqs: FaqT[] }) {
   return (
     <Section id="preguntas">
-      <SectionHead n={n} center eyebrow="Preguntas frecuentes" title="Lo que todos preguntan" />
+      <SectionHead n={n} center eyebrow="Preguntas frecuentes" title="Las dudas de siempre" />
       <div className="mx-auto mt-10 max-w-3xl divide-y divide-slate-200 rounded-3xl border border-slate-200">
         {faqs.map((f, i) => (
           <details key={f.q} className="group p-6" open={i === 0}>

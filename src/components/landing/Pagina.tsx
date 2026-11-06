@@ -22,15 +22,15 @@ export function Pagina({ n }: { n: number }) {
     <Section id="pagina" className="bg-slate-50">
       <SectionHead
         n={n}
-        eyebrow="Armala a tu gusto"
+        eyebrow="Tu link, tu vidriera"
         title={
           <>
-            Tu página de reservas.
+            Tus clientes ven todo.
             <br />
-            Lista, en serio.
+            Vos no explicás nada.
           </>
         }
-        subtitle={`Tocá y cambiá. Esto es lo que ven tus ${demo.cliente}s cuando entran a tu link.`}
+        subtitle={`Servicios, precios y horarios libres a la vista. Tocá y cambiá: así lo ven tus ${demo.cliente}s cuando entran a tu link.`}
         center
       />
       <div className="mt-14 grid items-start gap-10 lg:grid-cols-2">

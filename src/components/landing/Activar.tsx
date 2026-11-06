@@ -7,22 +7,20 @@ import { PRUEBA_DIAS } from "@/config/planes";
 
 /** 10 · ÚLTIMO PASO: cierre con el nombre que escribió el visitante + 3 pasos + CTA. */
 export function Activar({ n }: { n: number }) {
-  const { display, demo, slug } = useLanding();
+  const { slug } = useLanding();
   const registro = useRegistroLink();
-  const lista = demo.genero === "f" ? "lista" : "listo";
-  const activarla = demo.genero === "f" ? "activarla" : "activarlo";
 
   return (
     <Section id="activar" className="bg-gradient-to-b from-white to-brand-50">
       <SectionHead
         n={n}
         center
-        eyebrow="Último paso"
+        eyebrow="Un minuto y listo"
         title={
           <>
-            {display} ya está {lista}.
+            Tu agenda ya está lista.
             <br />
-            <span className="text-brand-700">Solo falta {activarla}.</span>
+            <span className="text-brand-700">Vos atendé, los turnos se dan solos.</span>
           </>
         }
         subtitle={
@@ -32,7 +30,7 @@ export function Activar({ n }: { n: number }) {
         }
       />
       <ol className="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-3">
-        {["Creás tu cuenta", "Compartís tu link", "Se llena sola"].map((p, i) => (
+        {["Creás tu cuenta", "Pegás tu link en Instagram y WhatsApp", "Los turnos entran solos"].map((p, i) => (
           <li key={p} className="rounded-2xl bg-white p-5 text-center shadow-sm ring-1 ring-slate-100">
             <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-brand-700 text-lg font-bold text-white">{i + 1}</span>
             <p className="mt-3 font-semibold text-slate-900">{p}</p>

@@ -38,12 +38,12 @@ export function Funciones({
         eyebrow="Funciones"
         title={
           <>
-            Pensado para el que atiende,
+            Hecho para el que atiende
             <br />
-            no para el que hace planillas.
+            con las manos ocupadas.
           </>
         }
-        subtitle="Cada función te ahorra tiempo o te trae turnos. Todo desde el celular."
+        subtitle="Sirve igual para un consultorio, un taller o una peluquería. Cada función hace una cosa: menos explicaciones, más turnos. Todo desde el celular."
       />
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">

@@ -12,13 +12,13 @@ export function Resenas({ n }: { n: number }) {
       <SectionHead
         n={n}
         center
-        eyebrow={hayPrueba ? "No lo decimos nosotros" : "Sin letra chica"}
+        eyebrow={hayPrueba ? "Negocios que ya lo usan" : "Sin letra chica"}
         title={
           hayPrueba ? (
             <>
-              Negocios reales.
+              Lo cuentan los que
               <br />
-              Reseñas reales.
+              ya atienden tranquilos.
             </>
           ) : (
             <>

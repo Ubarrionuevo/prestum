@@ -27,7 +27,7 @@ export const turnero: Product = {
   ],
   heroTitle: "Tu agenda de turnos online, con reservas directo a tu WhatsApp",
   heroSubtitle:
-    "Compartís un link, tu cliente elige servicio, día, horario y cómo paga. Vos recibís el turno armado en WhatsApp. Sin apps, sin registros, sin llamadas.",
+    "Compartís tu link, tu cliente elige servicio, día y horario, y el turno te llega armado a WhatsApp. Sin apps, sin registros y sin comisiones.",
   applicationCategory: "BusinessApplication",
   benefits: [
     {

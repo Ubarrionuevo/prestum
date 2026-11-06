@@ -8,9 +8,10 @@ import { Pagina } from "./Pagina";
 import { Demo } from "./Demo";
 import { Funciones } from "./Funciones";
 import { Calculadora } from "./Calculadora";
-import { Resenas } from "./Resenas";
 import { Precios } from "./Precios";
 import { Faq } from "./Faq";
+import { PRUEBA_DIAS } from "@/config/planes";
+import { ComoFunciona } from "./ComoFunciona";
 import { Activar, MobileCta } from "./Activar";
 
 /**
@@ -18,10 +19,8 @@ import { Activar, MobileCta } from "./Activar";
  * Se usa en la home (sin `niche`, con selector de rubro) y en cada /turnero/<rubro>
  * (con `niche`: textos, servicios, mensajes y FAQs del rubro → contenido único para SEO).
  *
- *  01 Hero interactivo   02 Un sábado (antes/después)   03 Armá tu página
- *  04 Demo en vivo       05 Funciones (bento)            06 Calculadora
- *  07 Reseñas/garantías  08 Precios                      09 FAQ
- *  10 Último paso (CTA)  + barra CTA fija en celular
+ *  01 Hero (qué es + probalo)  02 Cómo funciona  03 Un día cualquiera  04 Tu página
+ *  05 Demo en vivo  06 Funciones  07 Calculadora  08 Precios  09 FAQ  10 Cierre (CTA)  + barra CTA fija en celular
  */
 export async function TurneroLanding({ product, niche }: { product: Product; niche?: Niche }) {
   const { planes } = await getPrecios();
@@ -31,13 +30,18 @@ export async function TurneroLanding({ product, niche }: { product: Product; nic
 
   return (
     <LandingState initialRubro={niche?.slug}>
-      <Hero h1={niche ? niche.seoTitle : product.seoTitle} subtitle={niche ? niche.heroSubtitle : product.heroSubtitle} showRubros={!niche} />
-      <Sabado n={2} />
-      <Pagina n={3} />
-      <Demo n={4} />
-      <Funciones n={5} rubros={rubros} extra={niche ? { title: `Pensado para ${niche.name.toLowerCase()}`, items: niche.benefits } : undefined} />
-      <Calculadora n={6} planBase={base.precio_mensual} planBaseNombre={base.nombre} />
-      <Resenas n={7} />
+      <Hero
+        titulo={niche ? niche.seoTitle : "Dejá de dar turnos por WhatsApp. Que tus clientes reserven solos."}
+        etiqueta={niche ? `Sistema de turnos online · ${niche.name}` : `Sistema de turnos online · ${PRUEBA_DIAS} días gratis`}
+        subtitle={niche ? niche.heroSubtitle : product.heroSubtitle}
+        showRubros={!niche}
+      />
+      <ComoFunciona n={2} />
+      <Sabado n={3} />
+      <Pagina n={4} />
+      <Demo n={5} />
+      <Funciones n={6} rubros={rubros} extra={niche ? { title: `Pensado para ${niche.name.toLowerCase()}`, items: niche.benefits } : undefined} />
+      <Calculadora n={7} planBase={base.precio_mensual} planBaseNombre={base.nombre} />
       <Precios n={8} />
       <Faq n={9} faqs={faqs} />
       <Activar n={10} />

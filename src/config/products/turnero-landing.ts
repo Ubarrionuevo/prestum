@@ -29,7 +29,7 @@ export interface RubroDemo {
   servicios: DemoServicio[];
   /** Servicios extra para prender/apagar en la sección "Armala a tu gusto". */
   extras: string[];
-  /** Mensajes típicos que le llegan un día cargado (sección "Así suena tu celu"). */
+  /** Mensajes típicos que le llegan un día cargado (sección "Un día cualquiera"). */
   chats: Array<{ de: string; msg: string }>;
 }
 
