@@ -6,6 +6,15 @@ import { useEffect, useState } from "react";
 import { errorAmigable, getSupabase, supabaseConfigured } from "@/lib/supabase";
 import { btnCls, inputCls, labelCls } from "./AuthShell";
 
+/** Adónde volver después de ingresar (solo rutas internas conocidas). */
+function destino() {
+  try {
+    return new URLSearchParams(window.location.search).get("volver") === "/admin" ? "/admin" : "/panel";
+  } catch {
+    return "/panel";
+  }
+}
+
 export function IngresarForm() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -18,7 +27,7 @@ export function IngresarForm() {
     if (!supabaseConfigured) return;
     getSupabase()
       .auth.getSession()
-      .then(({ data }) => data.session && router.replace("/panel"));
+      .then(({ data }) => data.session && router.replace(destino()));
   }, [router]);
 
   async function ingresar(e: React.FormEvent) {
@@ -29,7 +38,7 @@ export function IngresarForm() {
     const { error } = await getSupabase().auth.signInWithPassword({ email: email.trim().toLowerCase(), password: pass });
     setCargando(false);
     if (error) return setMsg({ tipo: "error", texto: errorAmigable(error.message) });
-    router.replace("/panel");
+    router.replace(destino());
   }
 
   async function recuperar() {

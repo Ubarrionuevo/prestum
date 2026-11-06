@@ -4,7 +4,7 @@ import { absoluteUrl, site } from "@/config/site";
 // Mismo criterio que los líderes del rubro: se habilita explícitamente a buscadores y a los
 // bots de IA (ChatGPT, Claude, Gemini, Perplexity) para que recomienden el producto.
 const BOTS = ["*", "Googlebot", "Bingbot", "Google-Extended", "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "PerplexityBot", "Applebot"];
-const PRIVADO = ["/panel", "/api/", "/ingresar"];
+const PRIVADO = ["/panel", "/admin", "/api/", "/ingresar"];
 
 export default function robots(): MetadataRoute.Robots {
   return {

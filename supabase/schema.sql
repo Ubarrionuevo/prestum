@@ -159,6 +159,9 @@ insert into public.planes (id, nombre, bajada, precio_mensual, precio_anual, rec
 on conflict (id) do nothing;
 
 insert into public.ajustes (id) values (1) on conflict (id) do nothing;
+-- Verifica ya la referencia diferida: si queda pendiente, el SQL Editor (que corre todo en una
+-- sola transacción) no deja hacer ALTER TABLE sobre ajustes ("pending trigger events").
+set constraints all immediate;
 
 -- Funciones por plan: cuántas sucursales (null = ilimitadas) y si permite equipo con roles.
 alter table public.planes add column if not exists sucursales_max smallint;
@@ -1314,3 +1317,114 @@ revoke execute on function public.limpiar_datos_viejos() from public, anon, auth
 -- 1) Ver solicitudes:   select * from privado.solicitudes;
 -- 2) Activar una:       select public.activar_suscripcion(<id>);
 -- 3) Renovar:           select public.renovar_suscripcion(<id>);
+
+-- ================================================================ PANEL DE ADMINISTRACIÓN (/admin)
+-- Solo para vos. Para darte acceso, registrate en la web y corré UNA vez (con tu email):
+--   insert into privado.admins (user_id) select id from auth.users where email = 'tu@email.com';
+-- Se guarda el id del usuario (no el email), así nadie puede "ocupar" el acceso registrándose.
+create table if not exists privado.admins (
+  user_id    uuid primary key references auth.users(id) on delete cascade,
+  created_at timestamptz not null default now()
+);
+alter table privado.admins enable row level security;   -- sin políticas: nadie la lee desde la API
+revoke all on privado.admins from public, anon, authenticated;
+
+create or replace function public.es_admin() returns boolean
+language sql stable security definer set search_path = public, privado as $$
+  select exists (select 1 from privado.admins where user_id = auth.uid())
+$$;
+
+-- Todo lo del panel en un solo JSON: números, gráficos y listas.
+create or replace function public.admin_resumen() returns jsonb
+language plpgsql stable security definer set search_path = public, privado as $$
+declare
+  hoy date := public.hoy_ar();
+  res jsonb;
+begin
+  if not public.es_admin() then raise exception 'sin_permiso'; end if;
+
+  with cuentas as (
+    select o.*, (o.created_at at time zone 'America/Argentina/Buenos_Aires')::date as dia,
+           (o.pago_hasta is not null and o.pago_hasta >= hoy) as paga,
+           (not (o.pago_hasta is not null and o.pago_hasta >= hoy) and o.prueba_hasta >= hoy) as en_prueba
+    from public.organizaciones o
+  ),
+  activas as (
+    select s.*, case when s.ciclo = 'anual' then round(s.precio / 12.0)::int else s.precio end as mensual
+    from public.suscripciones s where s.estado = 'activa'
+  ),
+  t30 as (select * from public.turnos where created_at > now() - interval '30 days' and not cancelado)
+  select jsonb_build_object(
+    'hoy', hoy,
+    'cuentas', (select count(*) from cuentas),
+    'nuevas_hoy', (select count(*) from cuentas where dia = hoy),
+    'nuevas_7', (select count(*) from cuentas where dia > hoy - 7),
+    'nuevas_30', (select count(*) from cuentas where dia > hoy - 30),
+    'en_prueba', (select count(*) from cuentas where en_prueba),
+    'pagas', (select count(*) from cuentas where paga),
+    'vencidas', (select count(*) from cuentas where not paga and not en_prueba),
+    'vencen_7', (select count(*) from cuentas where en_prueba and prueba_hasta <= hoy + 7),
+    'ingreso_mensual', (select coalesce(sum(mensual), 0) from activas),
+    'cobrado_30', (select coalesce(sum(precio), 0) from public.suscripciones
+                   where estado in ('activa','vencida') and inicio > hoy - 30),
+    'pendiente_cobro', (select coalesce(sum(precio), 0) from public.suscripciones where estado = 'pendiente'),
+    'fundador_cupo', public.cupo_fundador(),
+    'turnos_30', (select count(*) from t30),
+    'con_turnos_30', (select count(distinct n.organizacion_id) from t30 join public.negocios n on n.id = t30.negocio_id),
+    'por_dia', (select coalesce(jsonb_agg(jsonb_build_object('dia', d, 'n', coalesce(c.n, 0)) order by d), '[]'::jsonb)
+                from generate_series(hoy - 29, hoy, interval '1 day') g(d0)
+                cross join lateral (select g.d0::date as d) x
+                left join (select dia, count(*) n from cuentas group by dia) c on c.dia = x.d),
+    'por_origen', (select coalesce(jsonb_agg(jsonb_build_object('k', k, 'n', n) order by n desc), '[]'::jsonb)
+                   from (select coalesce(origen, 'directo') k, count(*) n from cuentas group by 1) x),
+    'por_rubro', (select coalesce(jsonb_agg(jsonb_build_object('k', k, 'n', n) order by n desc), '[]'::jsonb)
+                  from (select coalesce(n.rubro, 'sin rubro') k, count(distinct n.organizacion_id) n
+                        from public.negocios n group by 1) x),
+    'por_plan', (select coalesce(jsonb_agg(jsonb_build_object('k', k, 'n', n) order by n desc), '[]'::jsonb)
+                 from (select case when paga then plan when en_prueba then 'prueba' else 'vencida' end k, count(*) n
+                       from cuentas group by 1) x),
+    'registros', (select coalesce(jsonb_agg(r order by r.created_at desc), '[]'::jsonb) from (
+        select c.id, c.created_at, c.nombre as cuenta, u.email, n.whatsapp, n.rubro, c.origen, c.plan,
+               c.prueba_hasta, c.pago_hasta, c.paga, c.en_prueba, n.slug,
+               (select count(*) from public.negocios x where x.organizacion_id = c.id) as sucursales,
+               (select count(*) from public.turnos t join public.negocios x on x.id = t.negocio_id
+                where x.organizacion_id = c.id and not t.cancelado) as turnos,
+               (select max(t.created_at) from public.turnos t join public.negocios x on x.id = t.negocio_id
+                where x.organizacion_id = c.id) as ultimo_turno
+        from cuentas c
+        join lateral (select * from public.negocios x where x.organizacion_id = c.id order by x.created_at limit 1) n on true
+        left join public.miembros m on m.organizacion_id = c.id and m.rol = 'dueno'
+        left join auth.users u on u.id = m.user_id
+        order by c.created_at desc limit 1000) r),
+    'solicitudes', (select coalesce(jsonb_agg(s order by s.created_at), '[]'::jsonb) from (
+        select s.id, s.created_at, o.nombre as cuenta, s.plan, s.ciclo, s.precio, s.fundador,
+               (select x.whatsapp from public.negocios x where x.organizacion_id = o.id order by x.created_at limit 1) as whatsapp
+        from public.suscripciones s join public.organizaciones o on o.id = s.organizacion_id
+        where s.estado = 'pendiente') s),
+    'suscripciones', (select coalesce(jsonb_agg(s order by s.vence), '[]'::jsonb) from (
+        select s.id, o.nombre as cuenta, s.plan, s.ciclo, s.precio, s.mensual, s.fundador, s.inicio, s.vence,
+               (select x.whatsapp from public.negocios x where x.organizacion_id = o.id order by x.created_at limit 1) as whatsapp
+        from activas s join public.organizaciones o on o.id = s.organizacion_id) s)
+  ) into res;
+  return res;
+end $$;
+
+-- Acciones del panel: activar una solicitud ya cobrada y renovar un período.
+create or replace function public.admin_activar(p_id bigint) returns public.suscripciones
+language plpgsql security definer set search_path = public, privado as $$
+begin
+  if not public.es_admin() then raise exception 'sin_permiso'; end if;
+  return public.activar_suscripcion(p_id);
+end $$;
+
+create or replace function public.admin_renovar(p_id bigint) returns public.suscripciones
+language plpgsql security definer set search_path = public, privado as $$
+begin
+  if not public.es_admin() then raise exception 'sin_permiso'; end if;
+  return public.renovar_suscripcion(p_id);
+end $$;
+
+revoke execute on function public.es_admin(), public.admin_resumen(), public.admin_activar(bigint), public.admin_renovar(bigint)
+  from public, anon;
+grant execute on function public.es_admin(), public.admin_resumen(), public.admin_activar(bigint), public.admin_renovar(bigint)
+  to authenticated;
