@@ -150,3 +150,9 @@ npm run build
   - `/sitemap-pseo.xml`: páginas por ciudad y combinaciones rubro × ciudad.
 - Para sumar un rubro sin generar sus 21 páginas por ciudad todavía, agregalo a `NO_PSEO_RUBROS` en `seo-content.ts`.
 - URLs cortas (`/turnero/dentistas`, `/turnos-online/caba`) redirigen con 308 al slug canónico: se editan en `src/config/aliases.ts`.
+
+## Glosario
+
+- Los términos están en `src/config/glosario.ts`, cada uno con su categoría, una definición rápida (la caja de arriba, pensada para el fragmento destacado de Google), análisis, cómo lo resuelve Prestum (solo funciones reales), preguntas frecuentes y términos relacionados.
+- Si el término tiene `funcion`, la página muestra "Incluido desde el plan …" según los planes.
+- El índice `/glosario` tiene buscador y filtro por categoría, y lista todos los términos en el HTML para que Google los rastree.
