@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDefaultProduct, nichePath } from "@/config/products";
+import { getDefaultProduct } from "@/config/products";
+import { cityNichePath, rubrosConCiudades } from "@/lib/pseo";
 import { ciudades, getCiudad } from "@/config/seo-content";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
@@ -55,6 +56,12 @@ export default async function CiudadPage({ params }: Props) {
         <p className="mt-5 max-w-2xl text-lg text-slate-600">
           Si tenés un negocio con turnos en {c.nombre}, {c.provincia}, tus clientes pueden reservar solos desde tu link, a cualquier hora. Vos recibís cada turno armado en WhatsApp.
         </p>
+        {c.zonas.length > 1 && (
+          <p className="mt-3 max-w-2xl text-slate-600">
+            Lo usan negocios de {c.zonas.slice(0, -1).join(", ")} y {c.zonas[c.zonas.length - 1]}, y de cualquier otra zona de la ciudad.
+            {c.siesta && " Si trabajás con horario cortado, cargás la mañana y la tarde por separado y nadie reserva en la siesta."}
+          </p>
+        )}
         <Link href="/registro" className="mt-8 inline-block rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white hover:bg-brand-900">
           Empezar gratis · {PRUEBA_DIAS} días
         </Link>
@@ -63,14 +70,14 @@ export default async function CiudadPage({ params }: Props) {
       <section className="mx-auto max-w-6xl px-4 py-12">
         <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Rubros que usan turnos online en {c.nombre}</h2>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {product.niches.map((n) => (
+          {rubrosConCiudades(product).map((n) => (
             <li key={n.slug}>
-              <Link href={nichePath(product, n)} className="flex items-center gap-3 rounded-xl border border-slate-200 p-4 hover:border-brand-500">
+              <Link href={cityNichePath(product, n, c)} className="flex items-center gap-3 rounded-xl border border-slate-200 p-4 hover:border-brand-500">
                 <span className="text-2xl" aria-hidden>
                   {n.emoji}
                 </span>
                 <span className="font-medium text-slate-800">
-                  {n.name} en {c.nombre}
+                  {n.name} en {c.corto}
                 </span>
               </Link>
             </li>
@@ -84,7 +91,7 @@ export default async function CiudadPage({ params }: Props) {
           {otras.map((o) => (
             <li key={o.slug}>
               <Link href={`/turnos-online/${o.slug}`} className="inline-block rounded-full border border-slate-200 px-3 py-1.5 text-slate-700 hover:border-brand-500 hover:text-brand-700">
-                {o.nombre}
+                {o.corto}
               </Link>
             </li>
           ))}

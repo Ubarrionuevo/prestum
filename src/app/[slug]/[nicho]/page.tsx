@@ -7,6 +7,9 @@ import { Breadcrumbs } from "@/components/sections";
 import { TurneroLanding } from "@/components/landing/TurneroLanding";
 import { ProductShell } from "@/components/product/ProductShell";
 import { getPrecios } from "@/lib/planes";
+import Link from "next/link";
+import { ciudades } from "@/config/seo-content";
+import { cityNichePath, getCityNiche } from "@/lib/pseo";
 
 type Props = { params: Promise<{ slug: string; nicho: string }> };
 
@@ -63,6 +66,20 @@ export default async function NichePage({ params }: Props) {
         <Breadcrumbs items={crumbs} />
       </div>
       <TurneroLanding product={product} niche={niche} />
+      {getCityNiche(product.slug, niche.slug, ciudades[0].slug) && (
+        <section className="mx-auto max-w-6xl px-4 pb-12">
+          <h2 className="text-lg font-semibold text-slate-900">Turnero para {niche.name.toLowerCase()} por ciudad</h2>
+          <ul className="mt-4 flex flex-wrap gap-2 text-sm">
+            {ciudades.map((c) => (
+              <li key={c.slug}>
+                <Link href={cityNichePath(product, niche, c)} className="inline-block rounded-full border border-slate-200 px-3 py-1.5 text-slate-700 hover:border-brand-500 hover:text-brand-700">
+                  {niche.name} en {c.corto}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </ProductShell>
   );
 }

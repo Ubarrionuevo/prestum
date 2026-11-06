@@ -139,3 +139,14 @@ npm run build
 - Google Search Console: verificar dominio, pegar código en `verification` (layout.tsx) y enviar `/sitemap.xml`.
 - Cargar reseñas y números reales en `turnero-landing.ts` cuando existan.
 - Revisar los textos legales con un abogado.
+
+## SEO programático (rubro × ciudad)
+
+- Cada rubro del turnero tiene una página por ciudad: `/turnero/<rubro>/<ciudad>` (10 × 21 = 210 páginas estáticas).
+  El texto combina datos reales del rubro (`src/config/products/turnero.ts`) y de la ciudad (`src/config/seo-content.ts`:
+  zonas, horario cortado, temporada, región). Lógica en `src/lib/pseo.ts`.
+- Dos sitemaps, declarados en `robots.txt`:
+  - `/sitemap.xml`: lo principal (home, rubros, precios, glosario, negocios pagos).
+  - `/sitemap-pseo.xml`: páginas por ciudad y combinaciones rubro × ciudad.
+- Para sumar un rubro sin generar sus 21 páginas por ciudad todavía, agregalo a `NO_PSEO_RUBROS` en `seo-content.ts`.
+- URLs cortas (`/turnero/dentistas`, `/turnos-online/caba`) redirigen con 308 al slug canónico: se editan en `src/config/aliases.ts`.

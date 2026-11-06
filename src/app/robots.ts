@@ -9,7 +9,7 @@ const PRIVADO = ["/panel", "/api/", "/ingresar"];
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: BOTS.map((userAgent) => ({ userAgent, allow: "/", disallow: PRIVADO })),
-    sitemap: absoluteUrl("/sitemap.xml"),
+    sitemap: [absoluteUrl("/sitemap.xml"), absoluteUrl("/sitemap-pseo.xml")],
     host: site.url,
   };
 }

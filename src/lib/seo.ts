@@ -119,7 +119,7 @@ export function breadcrumbLd(items: Array<{ name: string; path: string }>): Json
  * Grafo principal (mismo patrón que usan los líderes del rubro): Organization + WebSite +
  * SoftwareApplication con funciones y precios (offers), todo enlazado por @id.
  */
-export function graphLd(product: Product, opts?: { path?: string; name?: string; description?: string; audience?: string; planes?: Plan[] }): JsonLd {
+export function graphLd(product: Product, opts?: { path?: string; name?: string; description?: string; audience?: string; planes?: Plan[]; area?: { nombre: string; provincia: string } }): JsonLd {
   const path = opts?.path ?? "/";
   const offers = opts?.planes ? planOffers(opts.planes) : undefined;
   return {
@@ -147,7 +147,9 @@ export function graphLd(product: Product, opts?: { path?: string; name?: string;
         featureList: product.benefits.map((b) => `${b.title}: ${b.text}`),
         offers,
         publisher: { "@id": absoluteUrl("/#organization") },
-        areaServed: { "@type": "Country", name: "Argentina" },
+        areaServed: opts?.area
+          ? { "@type": "City", name: opts.area.nombre, containedInPlace: { "@type": "AdministrativeArea", name: opts.area.provincia } }
+          : { "@type": "Country", name: "Argentina" },
         ...(opts?.audience ? { audience: { "@type": "BusinessAudience", audienceType: opts.audience } } : {}),
       },
     ],

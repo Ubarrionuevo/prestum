@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { aliasRedirects } from "./src/config/aliases";
 
 const nextConfig: NextConfig = {
   // Forzamos una única versión canónica de cada URL (sin barra final).
@@ -15,6 +16,8 @@ const nextConfig: NextConfig = {
       { source: "/turneros", destination: "/", permanent: true },
       // Links viejos de reserva → nuevo formato prestum.com.ar/<negocio>
       { source: "/reservar/:slug", destination: "/:slug", permanent: true },
+      // URLs cortas de rubros y ciudades → slug canónico (ver src/config/aliases.ts)
+      ...aliasRedirects(),
     ];
   },
 };
