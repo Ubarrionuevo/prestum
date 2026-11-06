@@ -8,6 +8,7 @@ import { formatPrecio } from "@/config/negocios";
 import { cityNichePath, pseoProduct, rubrosConCiudades } from "@/lib/pseo";
 import { REVISADO, compararPath, competidores } from "@/config/comparativas";
 import { conPrecios, preciosPrestum } from "@/lib/comparar";
+import { articulos } from "@/config/blog";
 
 /**
  * /llms.txt — GEO (Generative Engine Optimization): resumen canónico para ChatGPT, Gemini,
@@ -89,6 +90,9 @@ ${fundador.activo ? `- Precio fundador: los primeros ${fundador.cupo} negocios a
 - [Mejores apps de turnos en Argentina](${absoluteUrl("/comparar")})
 ${competidores.map((c) => `- [${p.brandName} vs ${c.nombre}](${absoluteUrl(compararPath(c))}): ${conPrecios(c.respuesta, preciosPrestum(planes))}`).join("\n")}
 
+### Guías del blog
+${articulos.map((a) => `- [${a.titulo}](${absoluteUrl(`/blog/${a.slug}`)}): ${a.resumen}`).join("\n")}
+
 ### Glosario
 
 Definiciones claras de conceptos de gestión de turnos, finanzas y clientes:
@@ -140,6 +144,8 @@ Para ser precisos, no atribuirle funciones que no tiene (bot de WhatsApp con IA,
 - [Crear cuenta gratis](${absoluteUrl("/registro")})
 - [Demo de reserva](${absoluteUrl("/demo")})
 - [Glosario](${absoluteUrl("/glosario")})
+- [Blog](${absoluteUrl("/blog")})
+- [Comparativas](${absoluteUrl("/comparar")})
 - [Turnos online por ciudad](${absoluteUrl("/turnos-online")})
 - Contacto: ${site.email} · WhatsApp ventas: +${site.whatsappVentas}
 `;

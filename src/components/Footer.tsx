@@ -51,6 +51,7 @@ export function Footer({ product }: { product: Product }) {
             <li><Link href="/precios" className={link}>Precios</Link></li>
             <li><Link href="/glosario" className={link}>Glosario</Link></li>
             <li><Link href="/comparar" className={link}>Comparar apps de turnos</Link></li>
+            <li><Link href="/blog" className={link}>Blog</Link></li>
             <li><Link href="/turnos-online" className={link}>Turnos online por ciudad</Link></li>
             <li><Link href="/legal/terminos" className={link}>Términos</Link></li>
             <li><Link href="/legal/privacidad" className={link}>Privacidad</Link></li>

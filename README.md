@@ -171,3 +171,8 @@ npm run build
 - Los datos de cada competidor están en `src/config/comparativas.ts`, con su fuente y la fecha de revisión (`REVISADO`). **Revisalos cada 2–3 meses**: si cambian los precios, actualizá los datos y la fecha.
 - Los precios de Prestum se toman solos de los planes, así nunca quedan viejos.
 - Regla: solo datos de la web oficial de cada empresa, y siempre decir cuándo conviene el otro.
+
+## Blog y enlazado interno
+
+- Artículos en `src/config/blog.ts`. Cada uno tiene portada 16:9 generada sola (`/blog/<slug>/opengraph-image`), resumen arriba, preguntas frecuentes (BlogPosting + FAQPage) y enlaces al glosario. Para sumar uno, agregá un objeto y pedí la indexación en Search Console.
+- `src/components/SeoLinks.tsx`: bloque de enlaces antes del pie (guías, glosario, comparativas y ciudades) en todas las páginas del producto. Los rubros ya están en el pie.

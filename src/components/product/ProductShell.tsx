@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFlotante, type ContextoWa } from "@/components/WhatsAppFlotante";
 import { site } from "@/config/site";
+import { SeoLinks } from "@/components/SeoLinks";
 import { ciudades, glosario } from "@/config/seo-content";
 
 /** Marco de cada producto: su header, su contenido, su footer y el botón flotante de WhatsApp. */
@@ -25,6 +26,7 @@ export function ProductShell({ product, children }: { product: Product; children
     <>
       <Header product={product} />
       <main className="flex-1">{children}</main>
+      <SeoLinks product={product} />
       <Footer product={product} />
       <WhatsAppFlotante contexto={contexto} />
     </>

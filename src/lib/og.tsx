@@ -3,7 +3,10 @@ import { ImageResponse } from "next/og";
 export const ogSize = { width: 1200, height: 630 };
 
 /** Imagen Open Graph generada al vuelo (lo que se ve al compartir el link en WhatsApp/redes). */
-export function renderOg({ brand, eyebrow, title, emoji }: { brand: string; eyebrow: string; title: string; emoji?: string }) {
+/** Portada 16:9 para el blog. */
+export const portadaSize = { width: 1200, height: 675 };
+
+export function renderOg({ brand, eyebrow, title, emoji, size = ogSize }: { brand: string; eyebrow: string; title: string; emoji?: string; size?: { width: number; height: number } }) {
   return new ImageResponse(
     (
       <div
@@ -47,6 +50,6 @@ export function renderOg({ brand, eyebrow, title, emoji }: { brand: string; eyeb
         <div style={{ fontSize: 26, opacity: 0.8 }}>prestum.com.ar</div>
       </div>
     ),
-    ogSize,
+    size,
   );
 }
