@@ -1,5 +1,6 @@
 "use client";
 
+import { leerOrigen } from "@/lib/origen";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
@@ -73,7 +74,7 @@ export function RegistroForm() {
       email: email.trim().toLowerCase(),
       password: pass,
       options: {
-        data: { nombre: nombre.trim(), whatsapp: waNorm, rubro, servicios, horarios: HORARIOS_DEFAULT },
+        data: { nombre: nombre.trim(), whatsapp: waNorm, rubro, servicios, horarios: HORARIOS_DEFAULT, origen: leerOrigen() },
         emailRedirectTo: `${window.location.origin}/panel?bienvenida=1`,
       },
     });

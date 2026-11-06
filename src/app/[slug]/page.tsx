@@ -94,11 +94,19 @@ function PaginaNegocio({ nombre, descripcion, direccion, children }: { nombre: s
           {children}
         </div>
       </main>
-      <footer className="bg-slate-50 py-6 text-center text-xs text-slate-500">
-        Turnos online con{" "}
-        <Link href="/" className="inline-flex items-center gap-1 font-semibold text-brand-700 hover:underline">
-          <img src="/icon.svg" alt="" width={14} height={14} />
-          {product.brandName}
+      {/* Sello viral: cada cliente que reserva ve de dónde sale la agenda (atribución con ?ref=agenda). */}
+      <footer className="bg-slate-50 px-4 py-6 text-center">
+        <Link
+          href="/?ref=agenda"
+          className="inline-flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 rounded-full bg-white px-4 py-2 text-xs text-slate-600 ring-1 ring-slate-200 hover:ring-brand-500"
+        >
+          <span aria-hidden>⚡</span>
+          Hecho con
+          <span className="inline-flex items-center gap-1 font-semibold text-brand-700">
+            <img src="/icon.svg" alt="" width={14} height={14} />
+            {product.brandName}
+          </span>
+          <span className="text-slate-400">· Creá tu agenda online gratis</span>
         </Link>
       </footer>
     </>

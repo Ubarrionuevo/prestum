@@ -156,3 +156,11 @@ npm run build
 - Los términos están en `src/config/glosario.ts`, cada uno con su categoría, una definición rápida (la caja de arriba, pensada para el fragmento destacado de Google), análisis, cómo lo resuelve Prestum (solo funciones reales), preguntas frecuentes y términos relacionados.
 - Si el término tiene `funcion`, la página muestra "Incluido desde el plan …" según los planes.
 - El índice `/glosario` tiene buscador y filtro por categoría, y lista todos los términos en el HTML para que Google los rastree.
+
+## WhatsApp flotante y atribución
+
+- Todas las páginas públicas del producto tienen un botón flotante de WhatsApp de ventas con un mensaje según la página (rubro, ciudad, término del glosario o precios). Está en `src/components/WhatsAppFlotante.tsx`.
+- Las páginas de reserva de cada negocio muestran el sello "⚡ Hecho con Prestum Turnos", que lleva a la home con `?ref=agenda`.
+- El primer `?ref=` de cada visitante se guarda en su navegador y se envía al registrarse. Queda en `organizaciones.origen` (si ya tenías la base creada, volvé a correr `schema.sql`). Para ver cuántas cuentas trajo cada canal:
+  `select origen, count(*) from privado.registros group by 1 order by 2 desc;`
+- Podés usar tus propios `ref` en links de Instagram, Google, etc.: `https://www.prestum.com.ar/?ref=instagram`.

@@ -53,6 +53,9 @@ create table if not exists public.organizaciones (
   pago_hasta   date,
   created_at   timestamptz not null default now()
 );
+-- De dónde vino la cuenta (ej: "agenda" = sello "Hecho con Prestum" en una página de reservas,
+-- "instagram", "google"). Se toma del parámetro ?ref= de la primera visita. Solo lectura para el usuario.
+alter table public.organizaciones add column if not exists origen text check (char_length(origen) <= 60);
 
 -- ---------------------------------------------------------------- negocios (= sucursales)
 create table if not exists public.negocios (
@@ -462,8 +465,9 @@ begin
   where email = lower(new.email) and estado = 'invitado';
   if found then return new; end if;
 
-  insert into public.organizaciones (nombre, prueba_hasta)
-  values (nombre_neg, public.hoy_ar() + coalesce((select prueba_dias from public.ajustes where id = 1), 30))
+  insert into public.organizaciones (nombre, prueba_hasta, origen)
+  values (nombre_neg, public.hoy_ar() + coalesce((select prueba_dias from public.ajustes where id = 1), 30),
+          nullif(left(regexp_replace(coalesce(m->>'origen', ''), '[^a-zA-Z0-9_-]', '', 'g'), 60), ''))
   returning id into oid;
 
   insert into public.negocios (owner, organizacion_id, slug, nombre, rubro, whatsapp, servicios, horarios, prueba_hasta)
@@ -1270,8 +1274,9 @@ revoke execute on function public.validar_limite_recursos() from public, anon, a
 create schema if not exists privado;
 revoke all on schema privado from anon, authenticated;
 drop view if exists privado.registros;
+-- Cuántas cuentas trajo cada origen: select origen, count(*) from privado.registros group by 1 order by 2 desc;
 create view privado.registros as
-  select o.created_at, o.nombre as cuenta, u.email, n.whatsapp, n.rubro, o.plan, o.prueba_hasta, o.pago_hasta,
+  select o.created_at, o.nombre as cuenta, u.email, n.whatsapp, n.rubro, o.origen, o.plan, o.prueba_hasta, o.pago_hasta,
          (select count(*) from public.negocios x where x.organizacion_id = o.id) as sucursales,
          n.slug as primer_link
   from public.organizaciones o
