@@ -28,7 +28,8 @@ language sql immutable as $$
     'turnero','sistema-de-gestion','registro','ingresar','panel','api','precios','glosario',
     'turnos-online','demo','reservar','turnos','turneros','admin','soporte','legal','blog',
     'login','app','www','prestum','ayuda','contacto','rubros','funcionalidades','como-funciona',
-    'opengraph-image','terminos','privacidad','cuenta','configuracion'
+    'opengraph-image','terminos','privacidad','cuenta','configuracion','comparar','vs','alternativas',
+    'llms','sitemap-pseo'
   ])
 $$;
 

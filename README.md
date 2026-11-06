@@ -164,3 +164,10 @@ npm run build
 - El primer `?ref=` de cada visitante se guarda en su navegador y se envía al registrarse. Queda en `organizaciones.origen` (si ya tenías la base creada, volvé a correr `schema.sql`). Para ver cuántas cuentas trajo cada canal:
   `select origen, count(*) from privado.registros group by 1 order by 2 desc;`
 - Podés usar tus propios `ref` en links de Instagram, Google, etc.: `https://www.prestum.com.ar/?ref=instagram`.
+
+## Comparativas
+
+- Guía `/comparar` ("Mejores apps de turnos en Argentina") y una página por competidor en `/comparar/prestum-vs-<app>`.
+- Los datos de cada competidor están en `src/config/comparativas.ts`, con su fuente y la fecha de revisión (`REVISADO`). **Revisalos cada 2–3 meses**: si cambian los precios, actualizá los datos y la fecha.
+- Los precios de Prestum se toman solos de los planes, así nunca quedan viejos.
+- Regla: solo datos de la web oficial de cada empresa, y siempre decir cuándo conviene el otro.

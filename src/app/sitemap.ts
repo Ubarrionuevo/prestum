@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { activeProducts, nichePath, productHomePath } from "@/config/products";
 import { glosario } from "@/config/seo-content";
+import { compararPath, competidores } from "@/config/comparativas";
 import { absoluteUrl } from "@/config/site";
 import { getServerSupabase, hoyAR } from "@/lib/supabase";
 
@@ -26,6 +27,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
   entries.push(url("/precios", 0.8), url("/registro", 0.7), url("/turnos-online", 0.7), url("/glosario", 0.8));
   for (const t of glosario) entries.push(url(`/glosario/${t.slug}`, 0.8));
+  entries.push(url("/comparar", 0.8));
+  for (const c of competidores) entries.push(url(compararPath(c), 0.8));
   entries.push(url("/legal/terminos", 0.1), url("/legal/privacidad", 0.1));
 
   // Negocios con plan pago (los de prueba no se indexan).
