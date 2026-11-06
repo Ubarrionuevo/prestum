@@ -19,8 +19,11 @@ import { Activar, MobileCta } from "./Activar";
  * Se usa en la home (sin `niche`, con selector de rubro) y en cada /turnero/<rubro>
  * (con `niche`: textos, servicios, mensajes y FAQs del rubro → contenido único para SEO).
  *
- *  01 Hero (qué es + probalo)  02 Cómo funciona  03 Un día cualquiera  04 Tu página
- *  05 Demo en vivo  06 Funciones  07 Calculadora  08 Precios  09 FAQ  10 Cierre (CTA)  + barra CTA fija en celular
+ *  01 Hero (qué es)  02 Cómo funciona  03 Un día cualquiera  04 Probalo con tu negocio
+ *  05 Demo en vivo  06 Funciones  07 Calculadora  08 Precios  09 FAQ  10 Cierre (CTA)
+ *  + barra CTA fija en celular (solo entre el hero y el cierre).
+ *  En celular la página se aliviana plegando lo secundario, no sacando contenido: el texto
+ *  sigue en el HTML para Google.
  */
 export async function TurneroLanding({ product, niche }: { product: Product; niche?: Niche }) {
   const { planes } = await getPrecios();
@@ -38,7 +41,7 @@ export async function TurneroLanding({ product, niche }: { product: Product; nic
       />
       <ComoFunciona n={2} />
       <Sabado n={3} />
-      <Pagina n={4} />
+      <Pagina n={4} showRubros={!niche} />
       <Demo n={5} />
       <Funciones n={6} rubros={rubros} extra={niche ? { title: `Pensado para ${niche.name.toLowerCase()}`, items: niche.benefits } : undefined} />
       <Calculadora n={7} planBase={base.precio_mensual} planBaseNombre={base.nombre} />

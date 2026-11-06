@@ -6,11 +6,29 @@ import { formatPrecio } from "@/config/negocios";
 import { Section, SectionHead, WaIcon } from "./ui";
 import { useLanding } from "./LandingState";
 
-function Card({ title, text, children, className = "", tag }: { title: string; text: string; children?: React.ReactNode; className?: string; tag?: string }) {
+/**
+ * En celular cada función es una fila corta (título + una línea) y la maqueta se oculta,
+ * salvo en la principal (`mockEnCelular`). En escritorio se ve la grilla completa.
+ */
+function Card({
+  title,
+  text,
+  children,
+  className = "",
+  tag,
+  mockEnCelular = false,
+}: {
+  title: string;
+  text: string;
+  children?: React.ReactNode;
+  className?: string;
+  tag?: string;
+  mockEnCelular?: boolean;
+}) {
   return (
-    <article className={`flex flex-col rounded-3xl border border-slate-200 bg-white p-6 ${className}`}>
+    <article className={`flex flex-col rounded-2xl border border-slate-200 bg-white p-5 md:rounded-3xl md:p-6 ${className}`}>
       {tag && <p className="mb-3 w-fit rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-bold text-amber-800">{tag}</p>}
-      <div className="mb-5 flex-1">{children}</div>
+      <div className={`mb-5 flex-1 ${mockEnCelular ? "" : "hidden md:block"}`}>{children}</div>
       <h3 className="text-lg font-bold text-slate-900">{title}</h3>
       <p className="mt-1 text-sm text-slate-600">{text}</p>
     </article>
@@ -46,9 +64,10 @@ export function Funciones({
         subtitle="Sirve igual para un consultorio, un taller o una peluquería. Cada función hace una cosa: menos explicaciones, más turnos. Todo desde el celular."
       />
 
-      <div className="mt-12 grid gap-5 md:grid-cols-3">
+      <div className="mt-10 grid gap-3 sm:mt-12 md:grid-cols-3 md:gap-5">
         <Card
           className="md:col-span-2 md:row-span-2 bg-gradient-to-br from-brand-50 to-white"
+          mockEnCelular
           tag="La que más tiempo te ahorra"
           title="Reservas que llegan armadas a tu WhatsApp"
           text={`Nombre, servicio, día, hora y medio de pago en un solo mensaje. No preguntás nada: confirmás y listo.`}
@@ -115,7 +134,7 @@ export function Funciones({
           </div>
         </Card>
 
-        <Card className="md:col-span-3" title="Adaptado a tu rubro" text="Textos, servicios y ejemplos pensados para cómo trabaja cada tipo de negocio.">
+        <Card className="md:col-span-3" mockEnCelular title="Adaptado a tu rubro" text="Textos, servicios y ejemplos pensados para cómo trabaja cada tipo de negocio.">
           <ul className="flex flex-wrap gap-2">
             {rubros.map((r) => (
               <li key={r.href}>

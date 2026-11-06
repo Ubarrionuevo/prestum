@@ -3,6 +3,7 @@ import type { Product } from "@/config/types";
 import { ciudades, glosario } from "@/config/seo-content";
 import { compararPath, competidores } from "@/config/comparativas";
 import { articulos } from "@/config/blog";
+import { PlegableCelular } from "@/components/PlegableCelular";
 
 /**
  * Enlazado interno (antes del footer): hace fluir la autoridad de cada página hacia
@@ -20,7 +21,10 @@ export function SeoLinks({ product }: { product: Product }) {
 
   return (
     <section aria-label="Más recursos" className="border-t border-slate-200 bg-white">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 text-sm sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-6xl px-4 py-4 text-sm md:py-10">
+      {/* En celular son tres pantallas de links: van plegados detrás de "Guías y recursos". */}
+      <PlegableCelular titulo="Guías y recursos" className="pb-4 md:pb-0">
+      <div className="grid gap-8 pt-4 sm:grid-cols-2 md:pt-0 lg:grid-cols-4">
         <nav aria-label="Guías del blog">
           <p className={titulo}>Guías para tu negocio</p>
           <ul className="grid gap-2">
@@ -74,6 +78,8 @@ export function SeoLinks({ product }: { product: Product }) {
             ))}
           </ul>
         </nav>
+      </div>
+      </PlegableCelular>
       </div>
     </section>
   );

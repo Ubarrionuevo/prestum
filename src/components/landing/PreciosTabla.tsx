@@ -65,14 +65,17 @@ export function PreciosTabla({
         </div>
       )}
 
-      <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-3">
+      {/* En celular: carrusel horizontal con el recomendado primero, en vez de tres planes
+          largos uno abajo del otro. En escritorio: las tres columnas en su orden. */}
+      <p className="mt-6 text-center text-xs text-slate-500 lg:hidden">Deslizá para ver los {planes.length} planes →</p>
+      <div className="-mx-4 mt-3 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 pt-4 lg:mx-auto lg:mt-8 lg:grid lg:max-w-6xl lg:grid-cols-3 lg:gap-6 lg:overflow-visible lg:px-0 lg:pb-0">
         {planes.map((p) => {
           const precio = ciclo === "mensual" ? p.precio_mensual : p.precio_anual;
           const esFundador = fundador.activo && p.id === fundador.plan;
           const precioFundador = ciclo === "mensual" ? fundador.precio_mensual : fundador.precio_anual;
           const d = p.destacado;
           return (
-            <article key={p.id} className={`relative flex flex-col rounded-3xl p-7 ${d ? "bg-brand-900 text-white shadow-2xl shadow-brand-900/30" : "bg-white ring-1 ring-slate-200"}`}>
+            <article key={p.id} className={`relative flex w-[85%] flex-none snap-center flex-col rounded-3xl p-6 sm:w-[60%] lg:w-auto lg:p-7 ${d ? "order-first lg:order-none " : ""}${d ?"bg-brand-900 text-white shadow-2xl shadow-brand-900/30" : "bg-white ring-1 ring-slate-200"}`}>
               {d && <span className="absolute -top-3 left-7 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-amber-950">RECOMENDADO</span>}
               <h3 className="text-xl font-bold">{p.nombre}</h3>
               <p className={`mt-1 min-h-[2.5rem] text-sm ${d ? "text-brand-100" : "text-slate-600"}`}>{p.bajada}</p>
