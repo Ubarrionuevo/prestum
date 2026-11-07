@@ -106,6 +106,8 @@ export function breadcrumbLd(items: Array<{ name: string; path: string }>): Json
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    // Nombre de la lista (sin esto, Search Console la muestra como "Unnamed item").
+    name: items.map((it) => it.name).join(" › "),
     itemListElement: items.map((it, i) => ({
       "@type": "ListItem",
       position: i + 1,
