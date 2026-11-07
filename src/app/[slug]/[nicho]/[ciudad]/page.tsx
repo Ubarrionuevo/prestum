@@ -25,7 +25,7 @@ async function cargar(params: Props["params"]) {
   const { slug, nicho, ciudad } = await params;
   const found = getCityNiche(slug, nicho, ciudad);
   if (!found) return undefined;
-  const { planes } = await getPrecios();
+  const { planes } = await getPrecios(found.niche.slug);
   const desde = formatPrecio(Math.min(...planes.map((p) => p.precio_mensual)));
   return { ...found, planes, desde, textos: textosCiudadRubro(found.product, found.niche, found.city, desde) };
 }

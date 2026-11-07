@@ -42,7 +42,7 @@ export type Rol = "dueno" | "recepcion" | "profesional";
 export interface OrganizacionDB {
   id: string;
   nombre: string;
-  plan: "prueba" | "inicial" | "profesional" | "empresa";
+  plan: "prueba" | "inicial" | "profesional" | "empresa" | "barberia_basico" | "barberia_premium";
   prueba_hasta: string;
   pago_hasta: string | null;
 }
@@ -71,7 +71,7 @@ export interface NegocioDB {
   horarios: Record<string, Array<[string, string]>>;
   medios_pago: PagoKey[];
   dias_anticipacion: number;
-  plan: "prueba" | "inicial" | "profesional" | "empresa";
+  plan: "prueba" | "inicial" | "profesional" | "empresa" | "barberia_basico" | "barberia_premium";
   prueba_hasta: string;
   pago_hasta: string | null;
   recurso_etiqueta: string;

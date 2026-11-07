@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { absoluteUrl, site } from "@/config/site";
 import type { Faq, Product } from "@/config/types";
 import type { Plan } from "@/config/planes";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { PRUEBA_DIAS, tieneAnual } from "@/config/planes";
 
 interface BuildMetadataInput {
   title: string;
@@ -163,7 +163,9 @@ function planOffers(planes: Plan[]) {
     { "@type": "Offer", name: "Prueba gratis", price: "0", priceCurrency: "ARS", description: `${PRUEBA_DIAS} días gratis con todas las funciones, sin tarjeta.` },
     ...planes.flatMap((p) => [
       { "@type": "Offer", name: `${p.nombre} mensual`, price: String(p.precio_mensual), priceCurrency: "ARS", description: `${p.bajada} Por mes.` },
-      { "@type": "Offer", name: `${p.nombre} anual`, price: String(p.precio_anual), priceCurrency: "ARS", description: `${p.bajada} Por año.` },
+      ...(tieneAnual(p)
+        ? [{ "@type": "Offer", name: `${p.nombre} anual`, price: String(p.precio_anual), priceCurrency: "ARS", description: `${p.bajada} Por año.` }]
+        : []),
     ]),
   ];
 }

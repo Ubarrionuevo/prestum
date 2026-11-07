@@ -41,7 +41,7 @@ export default async function NichePage({ params }: Props) {
   const { product, niche } = found;
 
   const path = nichePath(product, niche);
-  const { planes } = await getPrecios();
+  const { planes } = await getPrecios(niche.slug);
   const crumbs = [
     { name: product.brandName, path: productHomePath(product) },
     { name: niche.name, path },

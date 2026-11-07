@@ -94,7 +94,7 @@ export function Panel() {
 
   const negocio = negocios.find((n) => n.id === negocioId) ?? null;
   const rol: Rol = miembro?.rol ?? "profesional";
-  const { planes } = usePreciosPanel();
+  const { planes, ofrecidos } = usePreciosPanel(negocio?.rubro);
 
   const cargarProximos = useCallback(async (id: string) => {
     const { data } = await getSupabase()
@@ -201,7 +201,7 @@ export function Panel() {
     recursos,
     rol,
     tiene: (f: Funcion) => tieneFuncion(planes, org.plan, pagoVigente, f),
-    planPara: (f: Funcion) => planMinimo(planes, f),
+    planPara: (f: Funcion) => planMinimo(ofrecidos, f),
   };
 
   return (

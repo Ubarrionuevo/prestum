@@ -49,7 +49,7 @@ $$;
 create table if not exists public.organizaciones (
   id           uuid primary key default gen_random_uuid(),
   nombre       text not null check (char_length(nombre) between 2 and 60),
-  plan         text not null default 'prueba' check (plan in ('prueba','inicial','profesional','empresa')),
+  plan         text not null default 'prueba' check (plan in ('prueba','inicial','profesional','empresa','barberia_basico','barberia_premium')),
   prueba_hasta date not null default (public.hoy_ar() + 30),
   pago_hasta   date,
   created_at   timestamptz not null default now()
@@ -90,7 +90,7 @@ alter table public.negocios drop constraint if exists negocios_plan_check;
 update public.negocios set plan = 'inicial' where plan = 'basico';
 update public.negocios set plan = 'profesional' where plan = 'pro';
 alter table public.negocios add constraint negocios_plan_check
-  check (plan in ('prueba','inicial','profesional','empresa'));
+  check (plan in ('prueba','inicial','profesional','empresa','barberia_basico','barberia_premium'));
 alter table public.negocios alter column prueba_hasta set default (public.hoy_ar() + 30);
 
 -- Migración a organizaciones (instalaciones que ya tenían negocios).
@@ -113,7 +113,7 @@ create index if not exists negocios_org_idx on public.negocios (organizacion_id)
 -- Para cambiar un precio: Table Editor → planes → editar la celda. La web lo toma sola
 -- (en hasta 24 h, o al instante con el webhook de README → "Cambiar precios").
 create table if not exists public.planes (
-  id               text primary key check (id in ('inicial','profesional','empresa')),
+  id               text primary key check (id in ('inicial','profesional','empresa','barberia_basico','barberia_premium')),
   nombre           text not null,
   bajada           text not null default '',
   precio_mensual   integer not null check (precio_mensual >= 0),   -- ARS
@@ -752,6 +752,10 @@ begin
   if org is null then raise exception 'sin_permiso'; end if;
   if p_ciclo not in ('mensual','anual') then raise exception 'ciclo_invalido'; end if;
   if not exists (select 1 from public.planes where id = p_plan and activo) then raise exception 'plan_invalido'; end if;
+  -- Cada rubro elige solo entre sus planes (barberías: los suyos; el resto: los generales).
+  if not exists (select 1 from public.planes where id = p_plan and rubro is not distinct from public.rubro_planes(org))
+    then raise exception 'plan_invalido'; end if;
+  if p_ciclo = 'anual' and not (select anual from public.planes where id = p_plan) then raise exception 'ciclo_invalido'; end if;
 
   select * into aj from public.ajustes where id = 1;
   es_fundador := aj.fundador_activo and p_plan = aj.fundador_plan and public.cupo_fundador() > 0;
@@ -1428,3 +1432,44 @@ revoke execute on function public.es_admin(), public.admin_resumen(), public.adm
   from public, anon;
 grant execute on function public.es_admin(), public.admin_resumen(), public.admin_activar(bigint), public.admin_renovar(bigint)
   to authenticated;
+
+-- ---------------------------------------------------------------- PLANES POR RUBRO (barberías)
+-- Las barberías (rubro 'barberias') ven y eligen SOLO sus 2 planes, más baratos y solo mensuales.
+-- El resto de los rubros sigue con los planes generales (rubro null).
+alter table public.planes add column if not exists rubro text;                              -- null = planes generales
+alter table public.planes add column if not exists anual boolean not null default true;     -- false = solo pago mensual
+
+-- Planes válidos (instalaciones que ya tenían las restricciones viejas).
+alter table public.planes drop constraint if exists planes_id_check;
+alter table public.planes add constraint planes_id_check
+  check (id in ('inicial','profesional','empresa','barberia_basico','barberia_premium'));
+alter table public.organizaciones drop constraint if exists organizaciones_plan_check;
+alter table public.organizaciones add constraint organizaciones_plan_check
+  check (plan in ('prueba','inicial','profesional','empresa','barberia_basico','barberia_premium'));
+
+insert into public.planes (id, nombre, bajada, precio_mensual, precio_anual, anual, rubro, recursos_max, sucursales_max, roles, funciones, destacado, orden, items) values
+  ('barberia_basico', 'Básico', 'Para el barbero que trabaja solo o con un compañero.', 9000, 0, false, 'barberias', 2, 1, false,
+   '{recordatorios,sena}', false, 11,
+   '[{"texto":"Hasta 2 barberos"},
+     {"texto":"Link de reservas propio"},
+     {"texto":"Recordatorios por WhatsApp"},
+     {"texto":"Seña con Mercado Pago"}]'),
+  ('barberia_premium', 'Premium', 'Para la barbería con equipo que quiere llenar la agenda y ordenar la caja.', 15000, 0, false, 'barberias', null, 1, false,
+   '{recordatorios,sena,lista_espera,caja,fidelizacion}', true, 12,
+   '[{"texto":"Todo lo del Básico"},
+     {"texto":"Barberos ilimitados"},
+     {"texto":"Lista de espera automática"},
+     {"texto":"Comisiones y caja por barbero"},
+     {"texto":"Fidelización (cada X cortes, 1 gratis)"}]')
+on conflict (id) do nothing;
+
+-- Rubro cuyos planes le corresponden a una cuenta: el de su primer negocio, si ese rubro tiene
+-- planes propios activos; si no, null (= planes generales).
+create or replace function public.rubro_planes(p_org uuid) returns text
+language sql stable security definer set search_path = public as $$
+  select p.rubro from public.planes p
+  where p.activo and p.rubro is not null
+    and p.rubro = (select n.rubro from public.negocios n where n.organizacion_id = p_org order by n.created_at limit 1)
+  limit 1
+$$;
+revoke all on function public.rubro_planes(uuid) from public, anon, authenticated;

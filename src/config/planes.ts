@@ -12,7 +12,7 @@ export const PRUEBA_DIAS = 30;
 /** Días de la prueba en que se le muestra un aviso al dueño. */
 export const AVISOS_PRUEBA = [7, 20, 27];
 
-export type PlanId = "inicial" | "profesional" | "empresa";
+export type PlanId = "inicial" | "profesional" | "empresa" | "barberia_basico" | "barberia_premium";
 
 export interface PlanItem {
   texto: string;
@@ -36,6 +36,10 @@ export interface Plan {
   items: PlanItem[];
   destacado: boolean;
   orden: number;
+  /** Rubro al que pertenece el plan (null/ausente = planes generales, para todos los rubros). */
+  rubro?: string | null;
+  /** false = solo se paga por mes (no tiene opción anual). */
+  anual?: boolean;
 }
 
 export interface Fundador {
@@ -111,6 +115,73 @@ export const PLANES_DEFAULT: Plan[] = [
   },
 ];
 
+/**
+ * Planes propios de BARBERÍAS (más baratos, solo pago mensual). Las cuentas y páginas del rubro
+ * "barberias" ven solo estos dos; el resto de los rubros ve los planes generales de arriba.
+ */
+export const PLANES_BARBERIAS_DEFAULT: Plan[] = [
+  {
+    id: "barberia_basico",
+    nombre: "Básico",
+    bajada: "Para el barbero que trabaja solo o con un compañero.",
+    precio_mensual: 9000,
+    precio_anual: 0,
+    anual: false,
+    rubro: "barberias",
+    recursos_max: 2,
+    sucursales_max: 1,
+    roles: false,
+    funciones: ["recordatorios", "sena"],
+    destacado: false,
+    orden: 11,
+    items: [
+      { texto: "Hasta 2 barberos" },
+      { texto: "Link de reservas propio" },
+      { texto: "Recordatorios por WhatsApp" },
+      { texto: "Seña con Mercado Pago" },
+    ],
+  },
+  {
+    id: "barberia_premium",
+    nombre: "Premium",
+    bajada: "Para la barbería con equipo que quiere llenar la agenda y ordenar la caja.",
+    precio_mensual: 15000,
+    precio_anual: 0,
+    anual: false,
+    rubro: "barberias",
+    recursos_max: null,
+    sucursales_max: 1,
+    roles: false,
+    funciones: ["recordatorios", "sena", "lista_espera", "caja", "fidelizacion"],
+    destacado: true,
+    orden: 12,
+    items: [
+      { texto: "Todo lo del Básico" },
+      { texto: "Barberos ilimitados" },
+      { texto: "Lista de espera automática" },
+      { texto: "Comisiones y caja por barbero" },
+      { texto: "Fidelización (cada X cortes, 1 gratis)" },
+    ],
+  },
+];
+
+/** Todos los planes (generales + por rubro): para saber qué incluye el plan de una cuenta. */
+export const PLANES_TODOS_DEFAULT: Plan[] = [...PLANES_DEFAULT, ...PLANES_BARBERIAS_DEFAULT];
+
+/**
+ * Planes que se ofrecen a un rubro: los propios del rubro si tiene (hoy: barberías),
+ * si no, los generales.
+ */
+export function planesPara(todos: Plan[], rubro?: string | null): Plan[] {
+  const propios = rubro ? todos.filter((p) => p.rubro === rubro) : [];
+  if (propios.length) return propios;
+  const generales = todos.filter((p) => !p.rubro);
+  return generales.length ? generales : PLANES_DEFAULT;
+}
+
+/** ¿El plan tiene opción de pago anual? */
+export const tieneAnual = (p: Pick<Plan, "anual">) => p.anual !== false;
+
 export const FUNDADOR_DEFAULT: Fundador = {
   plan: "profesional",
   precio_mensual: 14900,
@@ -121,5 +192,5 @@ export const FUNDADOR_DEFAULT: Fundador = {
 };
 
 /** Cuántos meses "regala" el plan anual frente a pagar 12 meses. */
-export const mesesGratisAnual = (p: Pick<Plan, "precio_mensual" | "precio_anual">) =>
-  p.precio_mensual > 0 ? Math.round(12 - p.precio_anual / p.precio_mensual) : 0;
+export const mesesGratisAnual = (p: Pick<Plan, "precio_mensual" | "precio_anual" | "anual">) =>
+  p.precio_mensual > 0 && tieneAnual(p) ? Math.round(12 - p.precio_anual / p.precio_mensual) : 0;

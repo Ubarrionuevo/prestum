@@ -78,7 +78,7 @@ export function PruebaVencida({ negocio, onSalir }: { negocio: NegocioDB; onSali
  * Aparece una vez por hito al entrar al panel (se recuerda en el navegador).
  */
 export function AvisoPrueba({ negocio, diasRestantes, onElegirPlan }: { negocio: NegocioDB; diasRestantes: number; onElegirPlan: () => void }) {
-  const { planes, fundador, pruebaDias } = usePreciosPanel();
+  const { ofrecidos: planes, fundador, pruebaDias } = usePreciosPanel(negocio.rubro);
   const turnos = useTurnosGestionados(negocio.id);
   const [hito, setHito] = useState<number | null>(null);
   const diaActual = pruebaDias - diasRestantes;

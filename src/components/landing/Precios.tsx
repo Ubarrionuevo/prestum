@@ -4,8 +4,8 @@ import { Section, SectionHead } from "./ui";
 import { PreciosTabla } from "./PreciosTabla";
 
 /** 08 · PRECIOS: los valores salen de Supabase (editables sin tocar código). */
-export async function Precios({ n }: { n: number }) {
-  const { planes, fundador } = await getPrecios();
+export async function Precios({ n, rubro }: { n: number; rubro?: string }) {
+  const { planes, fundador } = await getPrecios(rubro);
   return (
     <Section id="precios" className="bg-slate-50">
       <SectionHead
