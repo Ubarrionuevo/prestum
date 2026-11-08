@@ -40,13 +40,6 @@ export function Header({ product }: { product: Product }) {
               </ul>
             </div>
           </li>
-          {product.demoPath && (
-            <li className="hidden lg:block">
-              <Link href={anchor("pagina")} className="px-2 py-1 text-slate-700 hover:text-brand-700">
-                Demo
-              </Link>
-            </li>
-          )}
           <li>
             <Link href="/ingresar" className="whitespace-nowrap px-1.5 py-1 font-medium text-slate-700 hover:text-brand-700 sm:px-2">
               Ingresar

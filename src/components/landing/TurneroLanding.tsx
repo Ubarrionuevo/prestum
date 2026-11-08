@@ -4,22 +4,22 @@ import { getPrecios } from "@/lib/planes";
 import { LandingState } from "./LandingState";
 import { Hero } from "./Hero";
 import { Sabado } from "./Sabado";
-import { Pagina } from "./Pagina";
 import { Funciones } from "./Funciones";
 import { Calculadora } from "./Calculadora";
 import { Precios } from "./Precios";
 import { Faq } from "./Faq";
 import { PRUEBA_DIAS } from "@/config/planes";
 import { ComoFunciona } from "./ComoFunciona";
-import { Activar, MobileCta } from "./Activar";
+import { MobileCta } from "./Activar";
+import { tituloWhatsApp } from "@/config/seo-content";
 
 /**
- * Landing del turnero (estructura en 9 secciones numeradas).
+ * Landing del turnero (estructura en 7 secciones numeradas).
  * Se usa en la home (sin `niche`, con selector de rubro) y en cada /turnero/<rubro>
  * (con `niche`: textos, servicios, mensajes y FAQs del rubro → contenido único para SEO).
  *
- *  01 Hero (qué es)  02 Cómo funciona  03 Un día cualquiera  04 Probalo con tu negocio
- *  05 Funciones  06 Calculadora  07 Precios  08 FAQ  09 Cierre (CTA)
+ *  01 Hero (qué es)  02 Cómo funciona  03 Un día cualquiera  04 Funciones
+ *  05 Calculadora  06 Precios  07 FAQ
  *  + barra CTA fija en celular (solo entre el hero y el cierre).
  *  En celular la página se aliviana plegando lo secundario, no sacando contenido: el texto
  *  sigue en el HTML para Google.
@@ -33,19 +33,17 @@ export async function TurneroLanding({ product, niche }: { product: Product; nic
   return (
     <LandingState initialRubro={niche?.slug}>
       <Hero
-        titulo={niche ? niche.seoTitle : "Dejá de dar turnos por WhatsApp. Que tus clientes reserven solos."}
+        titulo={tituloWhatsApp(niche?.business)}
         etiqueta={niche ? `Sistema de turnos online · ${niche.name}` : `Sistema de turnos online · ${PRUEBA_DIAS} días gratis`}
         subtitle={niche ? niche.heroSubtitle : product.heroSubtitle}
         showRubros={!niche}
       />
       <ComoFunciona n={2} />
       <Sabado n={3} />
-      <Pagina n={4} showRubros={!niche} />
-      <Funciones n={5} rubros={rubros} extra={niche ? { title: `Pensado para ${niche.name.toLowerCase()}`, items: niche.benefits } : undefined} />
-      <Calculadora n={6} planBase={base.precio_mensual} planBaseNombre={base.nombre} />
-      <Precios n={7} rubro={niche?.slug} />
-      <Faq n={8} faqs={faqs} />
-      <Activar n={9} />
+      <Funciones n={4} rubros={rubros} extra={niche ? { title: `Pensado para ${niche.name.toLowerCase()}`, items: niche.benefits } : undefined} />
+      <Calculadora n={5} planBase={base.precio_mensual} planBaseNombre={base.nombre} />
+      <Precios n={6} rubro={niche?.slug} />
+      <Faq n={7} faqs={faqs} />
       <MobileCta />
     </LandingState>
   );

@@ -24,7 +24,6 @@ export function Footer({ product }: { product: Product }) {
         <nav aria-label="Producto">
           <p className={col}>PRODUCTO</p>
           <ul className="mt-4 grid gap-2 text-sm">
-            <li><Link href={a("pagina")} className={link}>Tu página</Link></li>
             <li><Link href={a("funciones")} className={link}>Funcionalidades</Link></li>
             <li><Link href={a("precios")} className={link}>Precios</Link></li>
             <li><Link href={a("preguntas")} className={link}>Preguntas frecuentes</Link></li>

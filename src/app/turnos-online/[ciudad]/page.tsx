@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDefaultProduct } from "@/config/products";
 import { cityNichePath, rubrosConCiudades } from "@/lib/pseo";
-import { ciudades, getCiudad } from "@/config/seo-content";
+import { ciudades, getCiudad, tituloWhatsApp } from "@/config/seo-content";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductShell } from "@/components/product/ProductShell";
@@ -52,7 +52,7 @@ export default async function CiudadPage({ params }: Props) {
       <JsonLd data={[graphLd(product, { path, name: `${product.brandName} en ${c.nombre}`, planes }), faqLd(faqs), breadcrumbLd(crumbs)]} />
       <Breadcrumbs items={crumbs} />
       <section className="mx-auto max-w-6xl px-4 pb-10 pt-10">
-        <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">Turnos online para negocios en {c.nombre}</h1>
+        <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{tituloWhatsApp("negocio", c)}</h1>
         <p className="mt-5 max-w-2xl text-lg text-slate-600">
           Si tenés un negocio con turnos en {c.nombre}, {c.provincia}, tus clientes pueden reservar solos desde tu link, a cualquier hora. Vos recibís cada turno armado en WhatsApp.
         </p>

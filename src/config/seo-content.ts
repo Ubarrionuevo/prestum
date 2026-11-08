@@ -57,3 +57,13 @@ export const getCiudad = (slug: string) => ciudades.find((c) => c.slug === slug)
 
 // El glosario vive en ./glosario.ts (se re-exporta para no romper imports).
 export { glosario, getTermino, type Termino } from "./glosario";
+
+/** "Rosario, Santa Fe" / "Córdoba" (si la ciudad y la provincia se llaman igual, una sola vez). */
+export const lugarConProvincia = (c: Pick<Ciudad, "corto" | "provincia">) =>
+  c.corto === c.provincia ? c.corto : `${c.corto}, ${c.provincia}`;
+
+/** Título principal (h1) de las páginas: el mismo mensaje en todo el sitio. */
+export const tituloWhatsApp = (negocio = "negocio", c?: Pick<Ciudad, "corto" | "provincia">) =>
+  c
+    ? `Automatizá los turnos de tu ${negocio} en ${lugarConProvincia(c)}${c.corto === c.provincia ? "" : ","} con tu propio WhatsApp`
+    : `Automatizá los turnos de tu ${negocio} en tu propio WhatsApp`;

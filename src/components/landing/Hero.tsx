@@ -35,10 +35,10 @@ export function Hero({ titulo, etiqueta, subtitle, showRubros }: { titulo: strin
               Empezar gratis · {PRUEBA_DIAS} días
             </Link>
             <a
-              href="#pagina"
+              href="#como-funciona"
               className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700"
             >
-              Probalo con tu negocio
+              Ver cómo funciona
             </a>
           </div>
           <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600">

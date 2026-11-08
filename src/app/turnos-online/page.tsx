@@ -24,7 +24,7 @@ export default function CiudadesPage() {
       <JsonLd data={[graphLd(product), breadcrumbLd(crumbs)]} />
       <Breadcrumbs items={crumbs} />
       <section className="mx-auto max-w-6xl px-4 py-12">
-        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">Turnos online en toda Argentina</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">Automatizá los turnos de tu negocio en toda Argentina con tu propio WhatsApp</h1>
         <p className="mt-3 max-w-2xl text-lg text-slate-600">Tu link de reservas funciona en cualquier ciudad. Elegí la tuya:</p>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {ciudades.map((c) => (
