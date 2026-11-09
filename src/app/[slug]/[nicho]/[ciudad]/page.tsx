@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { nichePath } from "@/config/products";
-import { site } from "@/config/site";
+import { LandingState } from "@/components/landing/LandingState";
+import { Hero } from "@/components/landing/Hero";
 import { PRUEBA_DIAS } from "@/config/planes";
 import { formatPrecio } from "@/config/negocios";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
@@ -61,9 +62,6 @@ export default async function CiudadRubroPage({ params }: Props) {
     { name: niche.name, path: nichePath(product, niche) },
     { name: city.corto, path },
   ];
-  const wa = `https://wa.me/${site.whatsappVentas}?text=${encodeURIComponent(
-    `Hola! Vi ${product.brandName} para ${rubro} en ${city.corto} y quería hacer una consulta.`,
-  )}`;
   const otrosRubros = rubrosConCiudades(product).filter((n) => n.slug !== niche.slug);
 
   return (
@@ -84,24 +82,12 @@ export default async function CiudadRubroPage({ params }: Props) {
       />
       <div className="bg-brand-50">
         <Breadcrumbs items={crumbs} />
-        <section className="mx-auto max-w-6xl px-4 pb-12 pt-8">
-          <p className="mb-4 inline-block rounded-full bg-white px-3 py-1 text-sm font-medium text-brand-700">
-            {niche.emoji} {niche.name} · {city.nombre}, {city.provincia}
-          </p>
-          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{textos.h1}</h1>
-          <p className="mt-4 max-w-3xl text-xl font-bold leading-snug text-brand-700 sm:text-2xl">{textos.lema}</p>
-          <p className="mt-5 max-w-2xl text-lg text-slate-600">{textos.bajada}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/registro" className="rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white hover:bg-brand-900">
-              Empezar gratis · {PRUEBA_DIAS} días
-            </Link>
-            <a href={wa} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700">
-              Hablar con un asesor
-            </a>
-          </div>
-          <p className="mt-3 text-sm text-slate-500">Sin tarjeta · Sin comisión por turno · Desde {desde}/mes</p>
-        </section>
       </div>
+      {/* Mismo inicio que la página del rubro: título y botones a la izquierda y la app funcionando
+          (página de reservas con servicios del rubro) a la derecha. El texto local sigue abajo. */}
+      <LandingState initialRubro={niche.slug}>
+        <Hero titulo={textos.h1} lema={textos.lema} etiqueta={`${niche.emoji} ${niche.name} · ${city.nombre}`} subtitle={textos.bajada} showRubros={false} compacto />
+      </LandingState>
 
       <section className="mx-auto max-w-3xl px-4 py-12">
         <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">

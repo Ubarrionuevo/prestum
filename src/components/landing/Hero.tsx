@@ -17,7 +17,10 @@ export function Hero({
   etiqueta,
   subtitle,
   showRubros,
+  compacto,
 }: {
+  /** En celular: título más chico, sin bajada ni segundo botón, para que la app entre en la primera pantalla. */
+  compacto?: boolean;
   titulo: string;
   /** Frase fuerte debajo del h1 (ej: "Automatizá los turnos de tu barbería en tu propio WhatsApp"). */
   lema?: string;
@@ -37,11 +40,15 @@ export function Hero({
             <span className="h-2 w-2 rounded-full bg-brand-500" aria-hidden />
             {etiqueta}
           </p>
-          <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-6xl">{titulo}</h1>
-          {lema && <p className="mt-4 text-xl font-bold leading-snug text-brand-700 sm:text-2xl">{lema}</p>}
-          <p className="mt-5 max-w-lg text-lg text-slate-600">{subtitle}</p>
+          <h1
+            className={`font-extrabold leading-[1.05] tracking-tight text-slate-900 ${compacto ? "mt-4 text-[1.75rem] sm:mt-5 sm:text-5xl" : "mt-5 text-4xl sm:text-6xl"}`}
+          >
+            {titulo}
+          </h1>
+          {lema && <p className={`font-bold leading-snug text-brand-700 sm:mt-4 sm:text-2xl ${compacto ? "mt-3 text-lg" : "mt-4 text-xl"}`}>{lema}</p>}
+          <p className={`mt-5 max-w-lg text-lg text-slate-600 ${compacto ? "hidden sm:block" : ""}`}>{subtitle}</p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div className={`flex flex-col gap-3 sm:mt-7 sm:flex-row ${compacto ? "mt-5" : "mt-7"}`}>
             <Link
               href={registro}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white shadow-lg shadow-brand-700/20 hover:bg-brand-900"
@@ -50,7 +57,7 @@ export function Hero({
             </Link>
             <a
               href="#como-funciona"
-              className="inline-flex items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700"
+              className={`items-center justify-center rounded-xl border border-slate-300 bg-white px-6 py-3.5 font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700 ${compacto ? "hidden sm:inline-flex" : "inline-flex"}`}
             >
               Ver cómo funciona
             </a>
