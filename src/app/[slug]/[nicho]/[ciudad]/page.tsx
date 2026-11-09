@@ -40,10 +40,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     brand: product.brandName,
     description: `Turnos online para ${rubro} en ${city.nombre}, ${city.provincia}. Tus clientes reservan solos 24/7 y el turno te llega a WhatsApp. ${PRUEBA_DIAS} días gratis, sin tarjeta.`,
     path: cityNichePath(product, niche, city),
-    // Fuera de Google (noindex) pero con links seguidos: estas páginas atraían a gente que busca
-    // un lavadero o una peluquería en su ciudad, no a dueños. La página sigue existiendo.
-    noindex: true,
-    follow: true,
     keywords: [
       `turnero ${rubro} ${city.corto}`,
       `turnos online ${rubro} ${city.corto}`,
