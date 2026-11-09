@@ -1,7 +1,7 @@
 import type { Faq, Niche, Product } from "@/config/types";
 import { getProduct } from "@/config/products";
 import { PSEO_PRODUCTO } from "@/config/aliases";
-import { NO_PSEO_RUBROS, ciudades, getCiudad, tituloWhatsApp, type Ciudad, type Region } from "@/config/seo-content";
+import { NO_PSEO_RUBROS, ciudades, getCiudad, lugarConProvincia, tituloWhatsApp, type Ciudad, type Region } from "@/config/seo-content";
 import { PRUEBA_DIAS } from "@/config/planes";
 
 /**
@@ -64,7 +64,8 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
   const rubro = n.name.toLowerCase();
   const zonas = c.zonas.length > 1 ? lista(c.zonas) : null;
 
-  const h1 = tituloWhatsApp(n.business, c);
+  const h1 = `Sistema de turnos para ${rubro} en ${lugarConProvincia(c)}`;
+  const lema = tituloWhatsApp(n.business);
 
   const bajada = `Tus clientes de ${c.nombre} eligen ${n.examples.slice(0, 2).map((e) => e.toLowerCase()).join(" o ")}, el día y el horario desde tu link. La reserva te llega armada a WhatsApp. ${PRUEBA_DIAS} días gratis, sin tarjeta.`;
 
@@ -108,5 +109,5 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
     ...n.faqs,
   ];
 
-  return { h1, bajada, local, faqs };
+  return { h1, lema, bajada, local, faqs };
 }

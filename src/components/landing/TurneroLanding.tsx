@@ -12,6 +12,7 @@ import { PRUEBA_DIAS } from "@/config/planes";
 import { ComoFunciona } from "./ComoFunciona";
 import { MobileCta } from "./Activar";
 import { tituloWhatsApp } from "@/config/seo-content";
+import { faqsDeRubro } from "@/lib/faqs";
 
 /**
  * Landing del turnero (estructura en 7 secciones numeradas).
@@ -27,14 +28,17 @@ import { tituloWhatsApp } from "@/config/seo-content";
 export async function TurneroLanding({ product, niche }: { product: Product; niche?: Niche }) {
   const { planes } = await getPrecios(niche?.slug);
   const base = [...planes].sort((a, b) => a.precio_mensual - b.precio_mensual)[0];
-  const faqs = niche ? [...niche.faqs, ...product.faqs] : product.faqs;
+  const faqs = faqsDeRubro(product, niche, planes);
   const rubros = product.niches.map((n) => ({ href: nichePath(product, n), label: `${n.emoji} ${n.name}` }));
 
   return (
     <LandingState initialRubro={niche?.slug}>
       <Hero
-        titulo={tituloWhatsApp(niche?.business)}
-        etiqueta={niche ? `Sistema de turnos online · ${niche.name}` : `Sistema de turnos online · ${PRUEBA_DIAS} días gratis`}
+        // En la página de cada rubro el h1 usa lo que busca el dueño ("sistema de turnos para …")
+        // y el mensaje "Automatizá…" queda justo debajo. La home no cambia.
+        titulo={niche ? `Sistema de turnos para ${niche.name.toLowerCase()}` : tituloWhatsApp()}
+        lema={niche ? tituloWhatsApp(niche.business) : undefined}
+        etiqueta={niche ? `Software para ${niche.name.toLowerCase()} · ${PRUEBA_DIAS} días gratis` : `Sistema de turnos online · ${PRUEBA_DIAS} días gratis`}
         subtitle={niche ? niche.heroSubtitle : product.heroSubtitle}
         showRubros={!niche}
       />

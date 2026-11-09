@@ -10,12 +10,14 @@ interface BuildMetadataInput {
   path: string;
   keywords?: readonly string[];
   noindex?: boolean;
+  /** Con noindex: Google no la muestra, pero sigue los links que tiene (noindex, follow). */
+  follow?: boolean;
   /** Marca del producto: el título queda "<title> | <brand>" (ej: "… | Prestum Turnos"). */
   brand?: string;
 }
 
 /** Metadata consistente para cualquier página: canonical, OG, Twitter, robots. */
-export function buildMetadata({ title, description, path, keywords, noindex, brand }: BuildMetadataInput): Metadata {
+export function buildMetadata({ title, description, path, keywords, noindex, follow, brand }: BuildMetadataInput): Metadata {
   const url = absoluteUrl(path);
   const fullTitle = brand ? `${title} | ${brand}` : title;
   return {
@@ -33,7 +35,7 @@ export function buildMetadata({ title, description, path, keywords, noindex, bra
     },
     twitter: { card: "summary_large_image", title: fullTitle, description },
     robots: noindex
-      ? { index: false, follow: false }
+      ? { index: false, follow: !!follow }
       : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   };
 }

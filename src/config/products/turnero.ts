@@ -79,7 +79,7 @@ export const turnero: Product = {
       name: "Odontólogos",
       business: "consultorio odontológico",
       emoji: "🦷",
-      seoTitle: "Turnero online para odontólogos y consultorios dentales",
+      seoTitle: "Sistema de turnos para odontólogos y consultorios dentales",
       seoDescription:
         "Agenda de turnos online para odontólogos. Tus pacientes reservan limpieza, control o urgencia desde un link y el turno te llega por WhatsApp.",
       keywords: [
@@ -127,7 +127,7 @@ export const turnero: Product = {
       name: "Kinesiólogos",
       business: "consultorio de kinesiología",
       emoji: "💪",
-      seoTitle: "Turnero online para kinesiólogos y fisioterapeutas",
+      seoTitle: "Sistema de turnos para kinesiólogos y fisioterapeutas",
       seoDescription:
         "Sistema de turnos para kinesiólogos: tus pacientes reservan sesiones de rehabilitación o masajes desde un link y te llega la reserva a WhatsApp.",
       keywords: [
@@ -175,7 +175,7 @@ export const turnero: Product = {
       name: "Esteticistas",
       business: "centro de estética",
       emoji: "✨",
-      seoTitle: "Turnero online para centros de estética y cosmetólogas",
+      seoTitle: "Sistema de turnos para centros de estética y cosmetólogas",
       seoDescription:
         "Turnos online para esteticistas y cosmetólogas. Tus clientas reservan limpieza facial, depilación o tratamientos desde Instagram y te llega a WhatsApp.",
       keywords: [
@@ -223,7 +223,7 @@ export const turnero: Product = {
       name: "Peluquerías caninas",
       business: "peluquería canina",
       emoji: "🐶",
-      seoTitle: "Turnero online para peluquería canina y grooming",
+      seoTitle: "Sistema de turnos para peluquería canina y grooming",
       seoDescription:
         "Agenda de turnos para peluquería canina: el dueño elige baño, corte o deslanado según el tamaño del perro y te llega la reserva por WhatsApp.",
       keywords: [
@@ -271,7 +271,7 @@ export const turnero: Product = {
       name: "Talleres mecánicos",
       business: "taller mecánico",
       emoji: "🚗",
-      seoTitle: "Turnero online para talleres mecánicos y service del auto",
+      seoTitle: "Sistema de turnos para talleres mecánicos y service del auto",
       seoDescription:
         "Sistema de turnos para talleres mecánicos: tus clientes reservan service, cambio de aceite o alineación desde un link y te llega el turno a WhatsApp.",
       keywords: [
@@ -319,7 +319,7 @@ export const turnero: Product = {
       name: "Barberías y peluquerías",
       business: "barbería",
       emoji: "💈",
-      seoTitle: "Turnero online para barberías y peluquerías",
+      seoTitle: "Sistema de turnos para barberías y peluquerías",
       seoDescription:
         "Agenda online para barberías y peluquerías: tus clientes eligen corte, barba o color, el horario y cómo pagan. La reserva te llega por WhatsApp.",
       keywords: [
@@ -367,7 +367,7 @@ export const turnero: Product = {
       name: "Psicólogos",
       business: "consultorio de psicología",
       emoji: "🧠",
-      seoTitle: "Turnero online para psicólogos: sesiones presenciales y virtuales",
+      seoTitle: "Sistema de turnos para psicólogos: sesiones presenciales y virtuales",
       seoDescription:
         "Agenda de turnos para psicólogos. Tus pacientes reservan sesiones presenciales u online desde un link discreto y te llega la reserva a WhatsApp.",
       keywords: [
@@ -415,7 +415,7 @@ export const turnero: Product = {
       name: "Nutricionistas",
       business: "consultorio de nutrición",
       emoji: "🥗",
-      seoTitle: "Turnero online para nutricionistas",
+      seoTitle: "Sistema de turnos para nutricionistas",
       seoDescription:
         "Sistema de turnos para nutricionistas: primera consulta, controles y planes, presenciales u online. Tus pacientes reservan y te llega a WhatsApp.",
       keywords: [
@@ -463,7 +463,7 @@ export const turnero: Product = {
       name: "Manicuras y salones de uñas",
       business: "salón de uñas",
       emoji: "💅",
-      seoTitle: "Turnero online para manicuras y salones de uñas",
+      seoTitle: "Sistema de turnos para manicuras y salones de uñas",
       seoDescription:
         "Turnos online para manicuras: semipermanente, esculpidas, kapping o pedicuría. Tus clientas reservan desde Instagram y te llega a WhatsApp.",
       keywords: [
@@ -511,7 +511,7 @@ export const turnero: Product = {
       name: "Lavaderos de autos",
       business: "lavadero de autos",
       emoji: "🧽",
-      seoTitle: "Turnero online para lavaderos de autos y detailing",
+      seoTitle: "Sistema de turnos para lavaderos de autos y detailing",
       seoDescription:
         "Agenda de turnos para lavaderos y detailing: lavado exterior, completo o pulido. El cliente reserva el horario y te llega la reserva a WhatsApp.",
       keywords: [

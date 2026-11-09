@@ -36,10 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product, niche, city } = d;
   const rubro = niche.name.toLowerCase();
   return buildMetadata({
-    title: `Turnero para ${rubro} en ${city.corto}`,
+    title: `Sistema de turnos para ${rubro} en ${city.corto}`,
     brand: product.brandName,
     description: `Turnos online para ${rubro} en ${city.nombre}, ${city.provincia}. Tus clientes reservan solos 24/7 y el turno te llega a WhatsApp. ${PRUEBA_DIAS} días gratis, sin tarjeta.`,
     path: cityNichePath(product, niche, city),
+    // Fuera de Google (noindex) pero con links seguidos: estas páginas atraían a gente que busca
+    // un lavadero o una peluquería en su ciudad, no a dueños. La página sigue existiendo.
+    noindex: true,
+    follow: true,
     keywords: [
       `turnero ${rubro} ${city.corto}`,
       `turnos online ${rubro} ${city.corto}`,
@@ -89,6 +93,7 @@ export default async function CiudadRubroPage({ params }: Props) {
             {niche.emoji} {niche.name} · {city.nombre}, {city.provincia}
           </p>
           <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{textos.h1}</h1>
+          <p className="mt-4 max-w-3xl text-xl font-bold leading-snug text-brand-700 sm:text-2xl">{textos.lema}</p>
           <p className="mt-5 max-w-2xl text-lg text-slate-600">{textos.bajada}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/registro" className="rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white hover:bg-brand-900">
@@ -184,7 +189,7 @@ export default async function CiudadRubroPage({ params }: Props) {
               ))}
               <li>
                 <Link href={nichePath(product, niche)} className="inline-block rounded-full border border-brand-100 bg-brand-50 px-3 py-1.5 font-medium text-brand-700">
-                  Turnero para {rubro} →
+                  Sistema de turnos para {rubro} →
                 </Link>
               </li>
             </ul>

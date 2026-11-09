@@ -10,6 +10,7 @@ import { getPrecios } from "@/lib/planes";
 import Link from "next/link";
 import { ciudades } from "@/config/seo-content";
 import { cityNichePath, getCityNiche } from "@/lib/pseo";
+import { faqsDeRubro } from "@/lib/faqs";
 
 type Props = { params: Promise<{ slug: string; nicho: string }> };
 
@@ -52,13 +53,13 @@ export default async function NichePage({ params }: Props) {
       <JsonLd
         data={[
           graphLd(product, {
-            name: `${product.name} para ${niche.name.toLowerCase()}`,
+            name: `Sistema de turnos para ${niche.name.toLowerCase()}`,
             description: niche.seoDescription,
             path,
             audience: niche.name,
             planes,
           }),
-          faqLd([...niche.faqs, ...product.faqs]),
+          faqLd(faqsDeRubro(product, niche, planes)),
           breadcrumbLd(crumbs),
         ]}
       />
@@ -68,7 +69,7 @@ export default async function NichePage({ params }: Props) {
       <TurneroLanding product={product} niche={niche} />
       {getCityNiche(product.slug, niche.slug, ciudades[0].slug) && (
         <section className="mx-auto max-w-6xl px-4 pb-12">
-          <h2 className="text-lg font-semibold text-slate-900">Turnero para {niche.name.toLowerCase()} por ciudad</h2>
+          <h2 className="text-lg font-semibold text-slate-900">Sistema de turnos para {niche.name.toLowerCase()} por ciudad</h2>
           <ul className="mt-4 flex flex-wrap gap-2 text-sm">
             {ciudades.map((c) => (
               <li key={c.slug}>

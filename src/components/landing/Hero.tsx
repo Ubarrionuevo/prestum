@@ -11,7 +11,20 @@ import { PRUEBA_DIAS } from "@/config/planes";
  * El "Probalo con tu negocio" vive en la sección 04 (Pagina): acá en celular el hero
  * entra en una pantalla y media en vez de dos y pico.
  */
-export function Hero({ titulo, etiqueta, subtitle, showRubros }: { titulo: string; etiqueta: string; subtitle: string; showRubros: boolean }) {
+export function Hero({
+  titulo,
+  lema,
+  etiqueta,
+  subtitle,
+  showRubros,
+}: {
+  titulo: string;
+  /** Frase fuerte debajo del h1 (ej: "Automatizá los turnos de tu barbería en tu propio WhatsApp"). */
+  lema?: string;
+  etiqueta: string;
+  subtitle: string;
+  showRubros: boolean;
+}) {
   const { demo, display, activos } = useLanding();
   const registro = useRegistroLink();
   const servicios = demo.servicios.filter((s) => activos.includes(s.nombre));
@@ -25,6 +38,7 @@ export function Hero({ titulo, etiqueta, subtitle, showRubros }: { titulo: strin
             {etiqueta}
           </p>
           <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-6xl">{titulo}</h1>
+          {lema && <p className="mt-4 text-xl font-bold leading-snug text-brand-700 sm:text-2xl">{lema}</p>}
           <p className="mt-5 max-w-lg text-lg text-slate-600">{subtitle}</p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
