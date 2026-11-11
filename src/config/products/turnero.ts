@@ -1,5 +1,5 @@
 import type { Product } from "../types";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { TURNOS_GRATIS } from "@/config/planes";
 
 /**
  * TURNERO ONLINE
@@ -14,10 +14,15 @@ export const turnero: Product = {
   demoPath: "/demo",
   status: "activo",
   emoji: "📅",
-  seoTitle: "Turnero online con reservas por WhatsApp",
+  seoTitle: "Sistema de turnos para barberías, peluquerías y estética",
   seoDescription:
-    "Turnero online para profesionales y comercios de Argentina. Tus clientes eligen servicio, día, horario y forma de pago, y la reserva te llega directo a WhatsApp.",
+    "Sistema de turnos online para barberías, peluquerías y centros de estética de Argentina. Tus clientes reservan solos desde Instagram y el turno te llega directo a WhatsApp.",
   keywords: [
+    "sistema de turnos para barberías",
+    "sistema de turnos para peluquerías",
+    "sistema de turnos para centros de estética",
+    "sistema de turnos gratis",
+    "turnero gratis",
     "turnero online",
     "sistema de turnos online",
     "agenda de turnos",
@@ -25,7 +30,7 @@ export const turnero: Product = {
     "app de turnos",
     "turnos online Argentina",
   ],
-  heroTitle: "Tu agenda de turnos online, con reservas directo a tu WhatsApp",
+  heroTitle: "Tu agenda de turnos online para barbería, peluquería o estética",
   heroSubtitle:
     "Compartís tu link, tu cliente elige servicio, día y horario, y el turno te llega armado a WhatsApp. Sin apps, sin registros y sin comisiones.",
   applicationCategory: "BusinessApplication",
@@ -62,18 +67,177 @@ export const turnero: Product = {
     },
     {
       q: "¿Es gratis?",
-      a: `Tenés ${PRUEBA_DIAS} días gratis con todas las funciones, sin tarjeta. Te registrás con tu email y tu WhatsApp y tu link queda andando en un minuto.`,
+      a: `Sí. El plan Gratis incluye hasta ${TURNOS_GRATIS} turnos por mes, sin tarjeta y sin vencimiento. Te registrás con tu email y tu WhatsApp y tu link queda andando en un minuto. Si necesitás más turnos o más profesionales, pasás a un plan pago.`,
     },
     {
       q: "¿Cuánto cuesta?",
-      a: "Hay tres planes con precio fijo en pesos (Inicial, Profesional y Empresa), con pago mensual o anual. El anual equivale a 2 meses gratis. Sin contrato y sin comisión por turno. Mirá los valores en la página de precios.",
+      a: `Es gratis hasta ${TURNOS_GRATIS} turnos por mes. Si necesitás más, hay dos planes con precio fijo en pesos y pago mensual: Básico y Premium. Sin contrato y sin comisión por turno. Mirá los valores en la página de precios.`,
     },
     {
-      q: "¿Sirve para cualquier rubro?",
-      a: "Sí. Tenemos versiones pensadas para salud, estética, mascotas, automotor y más, con textos y servicios adaptados a cada rubro.",
+      q: "¿Para qué negocios está pensado?",
+      a: "Para barberías, peluquerías y centros de estética (incluye uñas y pestañas). También funciona para consultorios, peluquerías caninas, talleres y otros negocios que trabajan con turnos.",
     },
   ],
   niches: [
+    // ---------------- RUBROS FOCO (ver RUBROS_FOCO en config/aliases.ts) ----------------
+    {
+      slug: "barberias",
+      name: "Barberías",
+      business: "barbería",
+      emoji: "💈",
+      seoTitle: "Sistema de turnos para barberías con reservas por WhatsApp",
+      seoDescription:
+        "Software de turnos para dueños de barberías: tus clientes reservan corte o barba desde Instagram, cada barbero tiene su agenda y el turno te llega a WhatsApp.",
+      keywords: [
+        "sistema de turnos para barberías",
+        "app de turnos para barbería",
+        "agenda para barberos",
+        "software para barberías",
+        "turnero barbería",
+      ],
+      heroTitle: "Turnos online para tu barbería",
+      heroSubtitle:
+        "Corte, barba o combo: tu cliente reserva en 30 segundos desde Instagram, elige con qué barbero y vos lo ves en WhatsApp. Sin contestar mensajes con la máquina en la mano.",
+      pains: [
+        "El sillón vacío a las 15 y desbordado a las 19.",
+        "Responder mensajes con las manos ocupadas.",
+        "Cada barbero anotando en su cuaderno y turnos pisados.",
+        "Clientes que caen sin turno y se van.",
+      ],
+      benefits: [
+        {
+          title: "Una agenda por barbero",
+          text: "Cada barbero con sus días y horarios. El cliente elige con quién se corta o toma el primero libre.",
+        },
+        {
+          title: "Combos y precios a la vista",
+          text: "Corte + barba, degradé, color, perfilado: cada uno con su precio y su duración.",
+        },
+        {
+          title: "Llená las horas flojas",
+          text: "Tus clientes ven los horarios libres y eligen solos, también a la noche o el domingo.",
+        },
+      ],
+      examples: ["Corte clásico", "Corte + barba", "Perfilado de barba", "Color"],
+      faqs: [
+        {
+          q: "¿Puedo tener una agenda por barbero?",
+          a: "Sí. Cada barbero tiene sus propios días y horarios, y el cliente elige con quién atenderse o toma el primer turno libre.",
+        },
+        {
+          q: "¿Puedo ver la caja y las comisiones de cada barbero?",
+          a: "Sí, en el plan Premium tenés la caja del día y las comisiones de cada barbero.",
+        },
+        {
+          q: "¿Funciona con mi Instagram?",
+          a: "Sí, es un link que va en tu bio, en tus historias o en las respuestas rápidas.",
+        },
+      ],
+    },
+    {
+      slug: "peluquerias",
+      name: "Peluquerías",
+      business: "peluquería",
+      emoji: "✂️",
+      seoTitle: "Sistema de turnos para peluquerías y salones de belleza",
+      seoDescription:
+        "Software de turnos para dueños de peluquerías: tus clientas reservan corte, color o alisado con la duración justa de cada servicio y el turno te llega a WhatsApp.",
+      keywords: [
+        "sistema de turnos para peluquerías",
+        "agenda para peluquería",
+        "app de turnos para peluquería",
+        "software para peluquerías",
+        "turnero salón de belleza",
+      ],
+      heroTitle: "Turnos online para tu peluquería",
+      heroSubtitle:
+        "Corte, color, mechas o alisado: cada servicio con su duración, para que un color de tres horas no se pise con un brushing. Tu clienta reserva desde Instagram y vos lo ves en WhatsApp.",
+      pains: [
+        "Un color largo que se pisa con los turnos de la tarde.",
+        "Clientas que preguntan el precio por mensaje y nunca reservan.",
+        "La agenda en un cuaderno que solo entiende una persona.",
+      ],
+      benefits: [
+        {
+          title: "Cada servicio con su duración",
+          text: "Un alisado no dura lo mismo que un corte: el link solo ofrece los horarios donde el trabajo entra completo.",
+        },
+        {
+          title: "Una agenda por estilista",
+          text: "Cada peluquera o peluquero con sus horarios. La clienta elige con quién atenderse.",
+        },
+        {
+          title: "Seña para trabajos largos",
+          text: "Si querés, pedí una seña para asegurar los turnos de color o alisado. Si no se paga a tiempo, el horario se libera solo.",
+        },
+      ],
+      examples: ["Corte y brushing", "Color", "Mechas o balayage", "Alisado"],
+      faqs: [
+        {
+          q: "¿Cada peluquera puede tener su propia agenda?",
+          a: "Sí. Cada profesional tiene sus días y horarios, y la clienta elige con quién atenderse o toma el primer turno libre.",
+        },
+        {
+          q: "¿Puedo pedir seña para color o alisado?",
+          a: "Sí. La seña es opcional: podés pedirla para asegurar los turnos largos y, si no se paga en el plazo que elegís, el horario se libera solo.",
+        },
+      ],
+    },
+    {
+      slug: "esteticistas",
+      name: "Centros de estética",
+      business: "centro de estética",
+      emoji: "✨",
+      seoTitle: "Sistema de turnos para centros de estética y uñas",
+      seoDescription:
+        "Software de turnos para centros de estética, cosmetólogas y manicuras: tus clientas reservan facial, depilación o semipermanente desde Instagram y te llega a WhatsApp.",
+      keywords: [
+        "sistema de turnos para centros de estética",
+        "agenda para estética",
+        "app de turnos para cosmetólogas",
+        "turnero para manicuras",
+        "agenda para salón de uñas",
+      ],
+      heroTitle: "Reservas online para tu centro de estética",
+      heroSubtitle:
+        "Faciales, depilación, pestañas o uñas: poné el link en tu Instagram y tus clientas eligen el tratamiento, ven el precio y reservan el horario. Vos lo recibís en WhatsApp.",
+      pains: [
+        "Mensajes de Instagram preguntando precios todo el día.",
+        "Clientas que preguntan y nunca concretan.",
+        "Trabajos largos (esculpidas, láser) que se superponen.",
+        "Agenda en papel o en notas del celular.",
+      ],
+      benefits: [
+        {
+          title: "Link para la bio de Instagram",
+          text: "Convertí seguidoras en turnos sin responder cada mensaje.",
+        },
+        {
+          title: "Catálogo de tratamientos",
+          text: "Faciales, corporales, depilación, pestañas y uñas, cada uno con su precio y su duración.",
+        },
+        {
+          title: "Pago informado al reservar",
+          text: "Sabés si viene a pagar en efectivo o si te transfiere.",
+        },
+      ],
+      examples: ["Limpieza facial", "Depilación láser", "Lifting de pestañas", "Semipermanente", "Esculpidas"],
+      faqs: [
+        {
+          q: "¿Sirve también para manicuras y salones de uñas?",
+          a: "Sí. Cargás semipermanente, esculpidas, kapping o service, cada uno con su tiempo y su precio, y tus clientas reservan igual que un facial.",
+        },
+        {
+          q: "¿Lo puedo poner en Instagram?",
+          a: "Sí, es un link común: va en la bio, en historias destacadas o en respuestas rápidas.",
+        },
+        {
+          q: "¿Sirve si trabajo desde mi casa?",
+          a: "Sí, mandás la dirección por WhatsApp al confirmar el turno.",
+        },
+      ],
+    },
+    // ---------------- RUBROS SECUNDARIOS ("también sirve para…", sin páginas por ciudad) ----------------
     {
       slug: "odontologos",
       name: "Odontólogos",
@@ -167,54 +331,6 @@ export const turnero: Product = {
         {
           q: "¿Puedo indicar si atiendo por obra social?",
           a: "Sí, podés sumar “obra social” como opción de pago o aclararlo en la descripción del servicio.",
-        },
-      ],
-    },
-    {
-      slug: "esteticistas",
-      name: "Esteticistas",
-      business: "centro de estética",
-      emoji: "✨",
-      seoTitle: "Sistema de turnos para centros de estética y cosmetólogas",
-      seoDescription:
-        "Turnos online para esteticistas y cosmetólogas. Tus clientas reservan limpieza facial, depilación o tratamientos desde Instagram y te llega a WhatsApp.",
-      keywords: [
-        "turnero para estética",
-        "agenda online centro de estética",
-        "turnos cosmetología",
-        "reservas depilación online",
-      ],
-      heroTitle: "Reservas online para tu centro de estética",
-      heroSubtitle:
-        "Poné el link en tu Instagram: tus clientas eligen el tratamiento, ven el precio y reservan el horario. Vos lo recibís en WhatsApp.",
-      pains: [
-        "Mensajes de Instagram preguntando precios todo el día.",
-        "Clientas que preguntan y nunca concretan.",
-        "Agenda en papel o en notas del celular.",
-      ],
-      benefits: [
-        {
-          title: "Link para la bio de Instagram",
-          text: "Convertí seguidoras en turnos sin responder cada mensaje.",
-        },
-        {
-          title: "Catálogo de tratamientos",
-          text: "Faciales, corporales, depilación, pestañas, cada uno con su precio.",
-        },
-        {
-          title: "Pago informado al reservar",
-          text: "Sabés si viene a pagar en efectivo o si te transfiere.",
-        },
-      ],
-      examples: ["Limpieza facial profunda", "Depilación láser", "Lifting de pestañas", "Tratamiento corporal"],
-      faqs: [
-        {
-          q: "¿Lo puedo poner en Instagram?",
-          a: "Sí, es un link común: va en la bio, en historias destacadas o en respuestas rápidas.",
-        },
-        {
-          q: "¿Puedo mostrar promociones?",
-          a: "Sí, podés cargar un servicio como promo con su precio especial.",
         },
       ],
     },
@@ -315,54 +431,6 @@ export const turnero: Product = {
       ],
     },
     {
-      slug: "barberias",
-      name: "Barberías y peluquerías",
-      business: "barbería",
-      emoji: "💈",
-      seoTitle: "Sistema de turnos para barberías y peluquerías",
-      seoDescription:
-        "Agenda online para barberías y peluquerías: tus clientes eligen corte, barba o color, el horario y cómo pagan. La reserva te llega por WhatsApp.",
-      keywords: [
-        "turnero barbería",
-        "turnos peluquería online",
-        "agenda para barberos",
-        "reservar corte de pelo online",
-      ],
-      heroTitle: "Turnos online para tu barbería",
-      heroSubtitle:
-        "Corte, barba, color o combo: tu cliente reserva en 30 segundos desde Instagram y vos lo ves en WhatsApp.",
-      pains: [
-        "El sillón vacío a las 15 y desbordado a las 19.",
-        "Responder mensajes con las manos ocupadas.",
-        "Clientes que caen sin turno y se van.",
-      ],
-      benefits: [
-        {
-          title: "Reserva en 30 segundos",
-          text: "Servicio, día, hora y listo. Sin crear cuentas.",
-        },
-        {
-          title: "Combos y precios a la vista",
-          text: "Corte + barba, color, perfilado: cada uno con su valor.",
-        },
-        {
-          title: "Llená las horas flojas",
-          text: "Mostrá los horarios libres y que el cliente elija.",
-        },
-      ],
-      examples: ["Corte clásico", "Corte + barba", "Perfilado de barba", "Color"],
-      faqs: [
-        {
-          q: "¿Puedo tener un link por barbero?",
-          a: "Sí, cada barbero puede tener su propio link con su agenda.",
-        },
-        {
-          q: "¿Funciona con mi Instagram?",
-          a: "Sí, es un link que va en tu bio o en tus historias.",
-        },
-      ],
-    },
-    {
       slug: "psicologos",
       name: "Psicólogos",
       business: "consultorio de psicología",
@@ -455,54 +523,6 @@ export const turnero: Product = {
         {
           q: "¿Puedo cobrar distinto la primera consulta?",
           a: "Sí, cada servicio tiene su propio precio.",
-        },
-      ],
-    },
-    {
-      slug: "manicuria",
-      name: "Manicuras y salones de uñas",
-      business: "salón de uñas",
-      emoji: "💅",
-      seoTitle: "Sistema de turnos para manicuras y salones de uñas",
-      seoDescription:
-        "Turnos online para manicuras: semipermanente, esculpidas, kapping o pedicuría. Tus clientas reservan desde Instagram y te llega a WhatsApp.",
-      keywords: [
-        "turnero manicura",
-        "turnos uñas online",
-        "agenda salón de uñas",
-        "reservar semipermanente",
-      ],
-      heroTitle: "Turnos online para tu salón de uñas",
-      heroSubtitle:
-        "Semipermanente, esculpidas, kapping o service: cada servicio con su tiempo y precio. Tu clienta reserva y vos lo ves en WhatsApp.",
-      pains: [
-        "Mensajes preguntando “¿tenés lugar el sábado?”.",
-        "Services que se superponen con trabajos largos.",
-        "Clientas que no avisan cómo van a pagar.",
-      ],
-      benefits: [
-        {
-          title: "Cada trabajo con su tiempo",
-          text: "Unas esculpidas no duran lo mismo que un esmaltado.",
-        },
-        {
-          title: "Ideal para Instagram",
-          text: "Mostrá tus trabajos y que reserven desde la bio.",
-        },
-        {
-          title: "Pagos claros",
-          text: "Efectivo, transferencia o Mercado Pago, informado al reservar.",
-        },
-      ],
-      examples: ["Semipermanente", "Esculpidas", "Kapping", "Pedicuría"],
-      faqs: [
-        {
-          q: "¿Puedo cargar el service como servicio aparte?",
-          a: "Sí, con su propio precio y duración.",
-        },
-        {
-          q: "¿Sirve si trabajo desde mi casa?",
-          a: "Sí, mandás la dirección por WhatsApp al confirmar el turno.",
         },
       ],
     },

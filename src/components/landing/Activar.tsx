@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRegistroLink } from "./LandingState";
-import { PRUEBA_DIAS } from "@/config/planes";
 
 /**
  * Barra fija con CTA en celular. Aparece recién cuando el hero (que ya tiene su botón)
@@ -41,7 +40,7 @@ export function MobileCta() {
       }`}
     >
       <Link href={registro} tabIndex={visible ? 0 : -1} className="flex items-center justify-center gap-2 rounded-xl bg-brand-700 py-3 font-semibold text-white">
-        Empezar gratis · {PRUEBA_DIAS} días
+        Empezar gratis
       </Link>
     </div>
   );

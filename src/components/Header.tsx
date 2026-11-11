@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Product } from "@/config/types";
-import { nichePath, productHomePath } from "@/config/products";
+import { nichePath, productHomePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
 import { Logo } from "./Logo";
 
 /** Header propio de cada producto: solo navega dentro de ese producto. */
@@ -30,13 +30,27 @@ export function Header({ product }: { product: Product }) {
             </button>
             <div className="invisible absolute right-0 top-full z-50 w-72 pt-2 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
               <ul className="grid gap-0.5 rounded-2xl bg-white p-2 shadow-xl ring-1 ring-slate-100">
-                {product.niches.map((n) => (
+                {(rubrosFoco(product).length ? rubrosFoco(product) : product.niches).map((n) => (
                   <li key={n.slug}>
-                    <Link href={nichePath(product, n)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-slate-700 hover:bg-brand-50 hover:text-brand-700">
+                    <Link href={nichePath(product, n)} className="flex items-center gap-2 rounded-lg px-3 py-2 font-medium text-slate-800 hover:bg-brand-50 hover:text-brand-700">
                       <span aria-hidden>{n.emoji}</span> {n.name}
                     </Link>
                   </li>
                 ))}
+                {rubrosFoco(product).length > 0 && rubrosSecundarios(product).length > 0 && (
+                  <li className="mt-1 border-t border-slate-100 px-3 pb-1 pt-2">
+                    <p className="text-xs font-semibold text-slate-400">También para</p>
+                    <ul className="mt-1 flex flex-wrap gap-x-3 gap-y-1 text-xs">
+                      {rubrosSecundarios(product).map((n) => (
+                        <li key={n.slug}>
+                          <Link href={nichePath(product, n)} className="text-slate-500 hover:text-brand-700">
+                            {n.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                )}
               </ul>
             </div>
           </li>

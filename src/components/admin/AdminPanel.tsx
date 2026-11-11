@@ -216,7 +216,6 @@ function Tablero({ d, recargar }: { d: Resumen; recargar: () => Promise<void> })
             <Kpi t="Ingreso mensual" v={pesos(d.ingreso_mensual)} sub="Suscripciones activas (anual ÷ 12)" destacado />
             <Kpi t="Activado en 30 días" v={pesos(d.cobrado_30)} sub="Planes activados este mes" />
             <Kpi t="Pendiente de cobro" v={pesos(d.pendiente_cobro)} sub={`${d.solicitudes.length} solicitudes`} />
-            <Kpi t="Cupo fundador libre" v={d.fundador_cupo} />
           </div>
           <p className="mt-2 text-xs text-slate-500">Turnos reservados en todas las agendas (30 días): {d.turnos_30.toLocaleString("es-AR")}</p>
         </Seccion>
@@ -248,7 +247,7 @@ function Tablero({ d, recargar }: { d: Resumen; recargar: () => Promise<void> })
                     <p className="font-semibold text-slate-900">{s.cuenta}</p>
                     <p className="text-sm text-slate-500">
                       {s.plan} · {s.ciclo} · <strong>{pesos(s.precio)}</strong>
-                      {s.fundador && " · fundador"} · pedido el {fecha(s.created_at)}
+                      · pedido el {fecha(s.created_at)}
                     </p>
                   </div>
                   <div className="flex flex-none gap-2">
@@ -278,7 +277,7 @@ function Tablero({ d, recargar }: { d: Resumen; recargar: () => Promise<void> })
                     <p className="font-semibold text-slate-900">{s.cuenta}</p>
                     <p className="text-sm text-slate-500">
                       {s.plan} · {s.ciclo} · {pesos(s.precio)}
-                      {s.fundador && " · fundador"} · vence el <strong>{fecha(s.vence)}</strong>
+                      · vence el <strong>{fecha(s.vence)}</strong>
                     </p>
                   </div>
                   <div className="flex flex-none gap-2">

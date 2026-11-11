@@ -1,11 +1,13 @@
 import type { Faq, Niche, Product } from "@/config/types";
-import { getProduct } from "@/config/products";
+import { esRubroFoco, getProduct, rubrosFoco } from "@/config/products";
 import { PSEO_PRODUCTO } from "@/config/aliases";
 import { NO_PSEO_RUBROS, ciudades, getCiudad, lugarConProvincia, tituloWhatsApp, type Ciudad, type Region } from "@/config/seo-content";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA, TURNOS_GRATIS } from "@/config/planes";
 
 /**
  * SEO programático: una página por Rubro × Ciudad → /turnero/<rubro>/<ciudad>.
+ * Solo para los RUBROS FOCO (barberías, peluquerías, estética) y escrita para el DUEÑO del negocio,
+ * no para quien busca dónde cortarse el pelo.
  * El texto se arma combinando datos reales del rubro (dolores, servicios, preguntas)
  * con datos reales de la ciudad (zonas, horario cortado, temporada, región), para que
  * cada página diga algo útil y distinto, no solo cambie el nombre de la ciudad.
@@ -13,7 +15,7 @@ import { PRUEBA_DIAS } from "@/config/planes";
 
 export const pseoProduct = (): Product | undefined => getProduct(PSEO_PRODUCTO);
 
-export const rubrosConCiudades = (p: Product) => p.niches.filter((n) => !NO_PSEO_RUBROS.includes(n.slug));
+export const rubrosConCiudades = (p: Product) => rubrosFoco(p).filter((n) => !NO_PSEO_RUBROS.includes(n.slug));
 
 export const cityNichePath = (p: Product, n: Niche, c: Ciudad) => `/${p.slug}/${n.slug}/${c.slug}`;
 
@@ -27,7 +29,7 @@ export function pseoRoutes() {
 export function getCityNiche(producto: string, nicho: string, ciudad: string) {
   const p = pseoProduct();
   if (!p || p.slug !== producto || NO_PSEO_RUBROS.includes(nicho)) return undefined;
-  const niche = p.niches.find((n) => n.slug === nicho);
+  const niche = p.niches.find((n) => n.slug === nicho && esRubroFoco(n));
   const city = getCiudad(ciudad);
   return niche && city ? { product: p, niche, city } : undefined;
 }
@@ -46,6 +48,9 @@ function pick<T>(seed: string, opciones: T[]): T {
   for (const ch of seed) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
   return opciones[h % opciones.length];
 }
+
+/** "una barbería" / "un centro de estética". */
+const conArticulo = (negocio: string) => `${/a$/.test(negocio.split(" ")[0]) ? "una" : "un"} ${negocio}`;
 
 const lista = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} y ${xs[xs.length - 1]}`);
 
@@ -67,12 +72,12 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
   const h1 = `Sistema de turnos para ${rubro} en ${lugarConProvincia(c)}`;
   const lema = tituloWhatsApp(n.business);
 
-  const bajada = `Tus clientes de ${c.nombre} eligen ${n.examples.slice(0, 2).map((e) => e.toLowerCase()).join(" o ")}, el día y el horario desde tu link. La reserva te llega armada a WhatsApp. ${PRUEBA_DIAS} días gratis, sin tarjeta.`;
+  const bajada = `Tus clientes de ${c.nombre} eligen ${n.examples.slice(0, 2).map((e) => e.toLowerCase()).join(" o ")}, el día y el horario desde tu link. La reserva te llega armada a WhatsApp. ${OFERTA_CORTA}, sin tarjeta.`;
 
   const local: string[] = [
     zonas
-      ? `Si tenés un ${n.business} en ${c.nombre} —en ${zonas} o en cualquier otra zona—, tus clientes ya buscan turno desde el celular. ${REGION[c.region]}`
-      : `Si tenés un ${n.business} en ${c.nombre}, ${c.provincia}, tus clientes ya buscan turno desde el celular. ${REGION[c.region]}`,
+      ? `Si tenés ${conArticulo(n.business)} en ${c.nombre} —en ${zonas} o en cualquier otra zona—, tus clientes ya buscan turno desde el celular. ${REGION[c.region]}`
+      : `Si tenés ${conArticulo(n.business)} en ${c.nombre}, ${c.provincia}, tus clientes ya buscan turno desde el celular. ${REGION[c.region]}`,
   ];
   if (c.siesta)
     local.push(
@@ -97,7 +102,7 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
     },
     {
       q: `¿Cuánto cuesta un turnero para ${rubro} en ${c.corto}?`,
-      a: `Lo mismo que en todo el país: ${PRUEBA_DIAS} días gratis con todas las funciones y después planes desde ${precioDesde} por mes, sin comisión por turno.`,
+      a: `Lo mismo que en todo el país: es gratis hasta ${TURNOS_GRATIS} turnos por mes, sin tarjeta y sin vencimiento. Si necesitás más, planes desde ${precioDesde} por mes, sin comisión por turno.`,
     },
     c.siesta
       ? { q: "¿Puedo poner horario cortado?", a: "Sí. Cargás dos franjas por día (mañana y tarde) y el link solo ofrece turnos dentro de esos horarios." }

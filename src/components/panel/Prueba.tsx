@@ -78,7 +78,7 @@ export function PruebaVencida({ negocio, onSalir }: { negocio: NegocioDB; onSali
  * Aparece una vez por hito al entrar al panel (se recuerda en el navegador).
  */
 export function AvisoPrueba({ negocio, diasRestantes, onElegirPlan }: { negocio: NegocioDB; diasRestantes: number; onElegirPlan: () => void }) {
-  const { ofrecidos: planes, fundador, pruebaDias } = usePreciosPanel(negocio.rubro);
+  const { pruebaDias } = usePreciosPanel(negocio.rubro);
   const turnos = useTurnosGestionados(negocio.id);
   const [hito, setHito] = useState<number | null>(null);
   const diaActual = pruebaDias - diasRestantes;
@@ -102,8 +102,6 @@ export function AvisoPrueba({ negocio, diasRestantes, onElegirPlan }: { negocio:
     } catch {}
     setHito(null);
   };
-  const recomendado = planes.find((p) => p.destacado) ?? planes[0];
-  const esFundador = fundador.activo && recomendado?.id === fundador.plan;
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 p-4 sm:items-center" role="dialog" aria-modal="true">
@@ -127,12 +125,6 @@ export function AvisoPrueba({ negocio, diasRestantes, onElegirPlan }: { negocio:
             ? "Tus clientes ya reservan solos. Elegí un plan para que tu agenda siga andando cuando termine la prueba."
             : "Compartí tu link en Instagram y WhatsApp para que empiecen a llegar los turnos."}
         </p>
-        {esFundador && recomendado && (
-          <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-sm text-amber-900">
-            ⭐ Precio fundador: {recomendado.nombre} a <strong>{formatPrecio(fundador.precio_mensual)}/mes</strong> por {fundador.meses} meses
-            {fundador.restantes != null ? ` · quedan ${fundador.restantes} lugares` : ` (primeros ${fundador.cupo} negocios)`}.
-          </p>
-        )}
         <div className="mt-5 flex flex-col gap-2 sm:flex-row-reverse">
           <button
             onClick={() => {

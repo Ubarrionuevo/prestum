@@ -295,7 +295,7 @@ export const glosario: Termino[] = [
       "Con el rol profesional, cada uno ve solo sus propios turnos.",
     ],
     faqs: [
-      { q: "¿Cuántos profesionales puedo cargar?", a: "Hasta 2 en el plan Inicial e ilimitados desde el plan Profesional." },
+      { q: "¿Cuántos profesionales puedo cargar?", a: "1 en el plan Gratis, hasta 2 en el plan Básico e ilimitados en el plan Premium." },
     ],
     relacionados: ["comisiones-por-profesional", "roles-y-permisos", "sobreturno"],
   },
@@ -503,7 +503,7 @@ export const glosario: Termino[] = [
       "Desde el mismo panel cambiás de sucursal en un toque.",
       "Las métricas y reportes se ven por sucursal o todas juntas.",
     ],
-    faqs: [{ q: "¿En qué plan están las sucursales?", a: "En el plan Empresa." }],
+    faqs: [{ q: "¿En qué plan están las sucursales?", a: "Las cuentas con varios locales se arman a medida: escribinos por WhatsApp y te pasamos el plan." }],
     relacionados: ["roles-y-permisos", "horarios-pico", "agenda-por-profesional"],
   },
   {

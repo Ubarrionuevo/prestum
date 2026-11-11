@@ -1,5 +1,5 @@
 import { getDefaultProduct } from "@/config/products";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { TURNOS_GRATIS } from "@/config/planes";
 import { buildMetadata } from "@/lib/seo";
 import { ProductShell } from "@/components/product/ProductShell";
 import { ProductHome } from "@/components/product/ProductHome";
@@ -21,7 +21,7 @@ const base = buildMetadata({
   keywords: product.keywords,
 });
 // Mismo patrón de título que los líderes: "Marca — keyword | beneficio".
-const homeTitle = `${product.brandName} — ${product.seoTitle} | ${PRUEBA_DIAS} días gratis`;
+const homeTitle = `${product.brandName} — ${product.seoTitle} | ${TURNOS_GRATIS} turnos gratis por mes`;
 export const metadata = {
   ...base,
   title: { absolute: homeTitle },

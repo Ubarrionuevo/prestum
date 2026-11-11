@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getDefaultProduct } from "@/config/products";
 import { getTermino, glosario } from "@/config/glosario";
 import { absoluteUrl, site } from "@/config/site";
-import { PLANES_DEFAULT, PRUEBA_DIAS } from "@/config/planes";
+import { PLANES_BARBERIAS_DEFAULT } from "@/config/planes";
 import { planMinimo } from "@/lib/funciones";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
@@ -39,7 +39,7 @@ export default async function TerminoPage({ params }: Props) {
   const verbo = t.articulo === "los" || t.articulo === "las" ? "Qué son" : "Qué es";
   const enTexto = /[A-Z]/.test(nombre.slice(1)) ? nombre : nombre.toLowerCase();
   const pregunta = `¿${verbo} ${t.articulo ? t.articulo + " " : ""}${enTexto}?`;
-  const plan = t.funcion ? planMinimo(PLANES_DEFAULT, t.funcion) : undefined;
+  const plan = t.funcion ? planMinimo(PLANES_BARBERIAS_DEFAULT, t.funcion) : undefined;
   const crumbs = [
     { name: product.brandName, path: "/" },
     { name: "Glosario", path: "/glosario" },
@@ -93,10 +93,10 @@ export default async function TerminoPage({ params }: Props) {
               </li>
             ))}
           </ul>
-          {plan && <p className="mt-4 text-sm text-slate-500">Incluido desde el plan {plan}. En la prueba gratis tenés todas las funciones.</p>}
+          {plan && <p className="mt-4 text-sm text-slate-500">Incluido desde el plan {plan}.</p>}
           <div className="mt-5 flex flex-wrap gap-3">
             <Link href="/registro" className="rounded-xl bg-brand-700 px-5 py-3 font-semibold text-white hover:bg-brand-900">
-              Probar {PRUEBA_DIAS} días gratis
+              Empezar gratis
             </Link>
             <a href={wa} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-slate-300 px-5 py-3 font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700">
               Consultar por WhatsApp

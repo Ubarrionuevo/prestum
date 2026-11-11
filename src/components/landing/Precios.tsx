@@ -1,21 +1,21 @@
 import { getPrecios } from "@/lib/planes";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { TURNOS_GRATIS } from "@/config/planes";
 import { Section, SectionHead } from "./ui";
 import { PreciosTabla } from "./PreciosTabla";
 
 /** 08 · PRECIOS: los valores salen de Supabase (editables sin tocar código). */
 export async function Precios({ n, rubro }: { n: number; rubro?: string }) {
-  const { planes, fundador } = await getPrecios(rubro);
+  const { planes } = await getPrecios();
   return (
     <Section id="precios" className="bg-slate-50">
       <SectionHead
         n={n}
         center
         eyebrow="Precios en pesos"
-        title="Un precio fijo. Sin sorpresas."
-        subtitle={`Probá ${PRUEBA_DIAS} días gratis con todas las funciones, sin tarjeta. Después elegís el plan. Sin contrato y sin comisión por turno.`}
+        title="Empezá gratis. Pagá solo cuando crezcas."
+        subtitle={`Empezá gratis con hasta ${TURNOS_GRATIS} turnos por mes, sin tarjeta y sin vencimiento. Cuando necesitás más, pasás a un plan pago. Sin contrato y sin comisión por turno.`}
       />
-      <PreciosTabla planes={planes} fundador={fundador} />
+      <PreciosTabla planes={planes} rubroRegistro={rubro} />
     </Section>
   );
 }

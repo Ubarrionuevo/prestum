@@ -1,5 +1,5 @@
 import type { Niche, Product } from "@/config/types";
-import { nichePath } from "@/config/products";
+import { nichePath, rubrosFoco } from "@/config/products";
 import { getPrecios } from "@/lib/planes";
 import { LandingState } from "./LandingState";
 import { Hero } from "./Hero";
@@ -8,7 +8,7 @@ import { Funciones } from "./Funciones";
 import { Calculadora } from "./Calculadora";
 import { Precios } from "./Precios";
 import { Faq } from "./Faq";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA } from "@/config/planes";
 import { ComoFunciona } from "./ComoFunciona";
 import { MobileCta } from "./Activar";
 import { tituloWhatsApp } from "@/config/seo-content";
@@ -26,10 +26,10 @@ import { faqsDeRubro } from "@/lib/faqs";
  *  sigue en el HTML para Google.
  */
 export async function TurneroLanding({ product, niche }: { product: Product; niche?: Niche }) {
-  const { planes } = await getPrecios(niche?.slug);
+  const { planes } = await getPrecios();
   const base = [...planes].sort((a, b) => a.precio_mensual - b.precio_mensual)[0];
   const faqs = faqsDeRubro(product, niche, planes);
-  const rubros = product.niches.map((n) => ({ href: nichePath(product, n), label: `${n.emoji} ${n.name}` }));
+  const rubros = rubrosFoco(product).map((n) => ({ href: nichePath(product, n), label: `${n.emoji} ${n.name}` }));
 
   return (
     <LandingState initialRubro={niche?.slug}>
@@ -38,7 +38,7 @@ export async function TurneroLanding({ product, niche }: { product: Product; nic
         // y el mensaje "Automatizá…" queda justo debajo. La home no cambia.
         titulo={niche ? `Sistema de turnos para ${niche.name.toLowerCase()}` : tituloWhatsApp()}
         lema={niche ? tituloWhatsApp(niche.business) : undefined}
-        etiqueta={niche ? `Software para ${niche.name.toLowerCase()} · ${PRUEBA_DIAS} días gratis` : `Sistema de turnos online · ${PRUEBA_DIAS} días gratis`}
+        etiqueta={niche ? `Software para ${niche.name.toLowerCase()} · ${OFERTA_CORTA}` : `Sistema de turnos online · ${OFERTA_CORTA}`}
         subtitle={niche ? niche.heroSubtitle : product.heroSubtitle}
         showRubros={!niche}
       />

@@ -1,4 +1,4 @@
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA } from "@/config/planes";
 
 /**
  * CONTENIDO DE LA LANDING DEL TURNERO (home y páginas por rubro).
@@ -70,6 +70,19 @@ export const demos: Record<string, RubroDemo> = {
     extras: ["Degradé", "Cejas", "Color", "Perfilado"],
     chats: chatsGenericos("el corte"),
   },
+  peluquerias: {
+    negocio: "peluquería",
+    genero: "f",
+    cliente: "clienta",
+    ejemplos: ["Peluquería Valentina", "Studio Tijeras", "Salón Malva"],
+    servicios: [
+      { nombre: "Corte y brushing", duracion: 45, precio: 14000, top: true },
+      { nombre: "Color", duracion: 120, precio: 35000 },
+      { nombre: "Mechas / balayage", duracion: 180, precio: 60000 },
+    ],
+    extras: ["Alisado", "Nutrición", "Peinado", "Lavado"],
+    chats: chatsGenericos("el color"),
+  },
   odontologos: {
     negocio: "consultorio",
     genero: "m",
@@ -124,7 +137,7 @@ export const demos: Record<string, RubroDemo> = {
       { nombre: "Depilación láser", duracion: 30, precio: 20000 },
       { nombre: "Lifting de pestañas", duracion: 45, precio: 18000 },
     ],
-    extras: ["Peeling", "Dermaplaning", "Masaje reductor", "Cejas"],
+    extras: ["Semipermanente", "Esculpidas", "Peeling", "Cejas"],
     chats: chatsGenericos("la limpieza facial"),
   },
   "peluqueria-canina": {
@@ -206,6 +219,7 @@ export const demos: Record<string, RubroDemo> = {
     extras: ["Plan deportivo", "Antropometría", "Plan vegetariano"],
     chats: chatsGenericos("la primera consulta"),
   },
+  // Uñas quedó dentro de Estética: se mantiene para las cuentas viejas con rubro "manicuria".
   manicuria: {
     negocio: "salón de uñas",
     genero: "m",
@@ -239,11 +253,8 @@ export const getDemo = (slug?: string) => (slug && demos[slug]) || demos.default
 /** Rubros que aparecen como "chips" en el hero de la home (slug del nicho + etiqueta corta). */
 export const heroRubros: Array<{ slug: string; label: string }> = [
   { slug: "barberias", label: "Barbería" },
-  { slug: "odontologos", label: "Odontología" },
+  { slug: "peluquerias", label: "Peluquería" },
   { slug: "esteticistas", label: "Estética" },
-  { slug: "kinesiologos", label: "Kinesiología" },
-  { slug: "peluqueria-canina", label: "Peluquería canina" },
-  { slug: "talleres-mecanicos", label: "Taller" },
 ];
 
 /* ------------------------------- PRECIOS ------------------------------- */
@@ -255,7 +266,7 @@ export const numeros: Array<{ valor: string; label: string }> = [];
 export const testimonios: Array<{ texto: string; autor: string; detalle: string }> = [];
 
 export const garantias = [
-  `${PRUEBA_DIAS} días gratis, sin tarjeta`,
+  `${OFERTA_CORTA}, sin tarjeta`,
   "Sin comisión por turno",
   "Tus clientes no bajan ninguna app",
   "Hecho en Argentina · precios en pesos",

@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { nichePath } from "@/config/products";
 import { LandingState } from "@/components/landing/LandingState";
 import { Hero } from "@/components/landing/Hero";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA, TURNOS_GRATIS, planesPagos } from "@/config/planes";
 import { formatPrecio } from "@/config/negocios";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { cityNichePath, ciudadesCercanas, getCityNiche, pseoRoutes, rubrosConCiudades, textosCiudadRubro } from "@/lib/pseo";
@@ -26,8 +26,8 @@ async function cargar(params: Props["params"]) {
   const { slug, nicho, ciudad } = await params;
   const found = getCityNiche(slug, nicho, ciudad);
   if (!found) return undefined;
-  const { planes } = await getPrecios(found.niche.slug);
-  const desde = formatPrecio(Math.min(...planes.map((p) => p.precio_mensual)));
+  const { planes } = await getPrecios();
+  const desde = formatPrecio(planesPagos(planes)[0]?.precio_mensual ?? 0);
   return { ...found, planes, desde, textos: textosCiudadRubro(found.product, found.niche, found.city, desde) };
 }
 
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildMetadata({
     title: `Sistema de turnos para ${rubro} en ${city.corto}`,
     brand: product.brandName,
-    description: `Turnos online para ${rubro} en ${city.nombre}, ${city.provincia}. Tus clientes reservan solos 24/7 y el turno te llega a WhatsApp. ${PRUEBA_DIAS} días gratis, sin tarjeta.`,
+    description: `Software de turnos para dueños de ${rubro} en ${city.corto}, ${city.provincia}. Tus clientes reservan solos 24/7 y el turno te llega a WhatsApp. ${OFERTA_CORTA}, sin tarjeta.`,
     path: cityNichePath(product, niche, city),
     keywords: [
       `turnero ${rubro} ${city.corto}`,
@@ -91,7 +91,7 @@ export default async function CiudadRubroPage({ params }: Props) {
 
       <section className="mx-auto max-w-3xl px-4 py-12">
         <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-          Turnos online para tu {niche.business} en {city.corto}
+          Agenda online para tu {niche.business} en {city.corto}
         </h2>
         <div className="mt-5 grid gap-4 text-slate-600">
           {textos.local.map((t) => (
@@ -139,12 +139,12 @@ export default async function CiudadRubroPage({ params }: Props) {
         <div className="rounded-3xl bg-brand-900 px-6 py-10 text-white sm:px-12">
           <h2 className="text-2xl font-bold sm:text-3xl">Se paga solo con un turno</h2>
           <p className="mt-3 max-w-2xl text-brand-100">
-            Si recuperás un solo turno por mes que antes se perdía por no contestar a tiempo, el sistema ya está pagado. Planes desde {desde}/mes, precio fijo en
-            pesos y sin comisión por turno. La seña es 100% opcional.
+            Si recuperás un solo turno por mes que antes se perdía por no contestar a tiempo, el sistema ya está pagado. Y para empezar no pagás nada: es gratis hasta {TURNOS_GRATIS} turnos por mes. Después,
+            planes desde {desde}/mes, precio fijo en pesos y sin comisión por turno. La seña es 100% opcional.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/registro" className="rounded-xl bg-white px-5 py-3 font-semibold text-brand-900 hover:bg-brand-50">
-              Probar {PRUEBA_DIAS} días gratis
+              Empezar gratis
             </Link>
             <Link href="/precios" className="rounded-xl border border-white/40 px-5 py-3 font-semibold hover:bg-white/10">
               Ver precios
@@ -177,7 +177,7 @@ export default async function CiudadRubroPage({ params }: Props) {
             </ul>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">Otros rubros en {city.corto}</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Sistema de turnos para otros rubros en {city.corto}</h2>
             <ul className="mt-4 flex flex-wrap gap-2 text-sm">
               {otrosRubros.map((n) => (
                 <li key={n.slug}>
@@ -186,11 +186,6 @@ export default async function CiudadRubroPage({ params }: Props) {
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link href={`/turnos-online/${city.slug}`} className="inline-block rounded-full border border-brand-100 bg-brand-50 px-3 py-1.5 font-medium text-brand-700">
-                  Turnos online en {city.corto} →
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

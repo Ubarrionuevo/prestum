@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Product } from "@/config/types";
+import { rubrosFoco } from "@/config/products";
+import { cityNichePath } from "@/lib/pseo";
 import { ciudades, glosario } from "@/config/seo-content";
 import { compararPath, competidores } from "@/config/comparativas";
 import { articulos } from "@/config/blog";
@@ -7,14 +9,15 @@ import { PlegableCelular } from "@/components/PlegableCelular";
 
 /**
  * Enlazado interno (antes del footer): hace fluir la autoridad de cada página hacia
- * glosario, ciudades, comparativas y blog, con textos de anclaje naturales.
+ * glosario, páginas por ciudad (del rubro foco principal), comparativas y blog, con textos de anclaje naturales.
  * Los rubros ya están enlazados en el footer, por eso no se repiten acá.
  * Solo para el producto que tiene ese contenido (el turnero).
  */
-const TERMINOS = ["no-show", "sena", "caja-diaria", "comisiones-por-profesional", "lista-de-espera", "ticket-promedio", "recordatorio-de-turno", "multi-sucursal"];
+const TERMINOS = ["no-show", "sena", "caja-diaria", "comisiones-por-profesional", "lista-de-espera", "ticket-promedio", "recordatorio-de-turno", "agenda-por-profesional"];
 
 export function SeoLinks({ product }: { product: Product }) {
   if (product.slug !== "turnero") return null;
+  const rubroCiudad = rubrosFoco(product)[0];
   const terminos = TERMINOS.map((s) => glosario.find((t) => t.slug === s)).filter((t) => t !== undefined);
   const titulo = "mb-3 text-sm font-semibold text-slate-900";
   const link = "text-slate-600 hover:text-brand-700";
@@ -67,15 +70,16 @@ export function SeoLinks({ product }: { product: Product }) {
           </ul>
         </nav>
         <nav aria-label="Ciudades">
-          <p className={titulo}>Turnos online en tu ciudad</p>
+          <p className={titulo}>Turnos para {rubroCiudad?.name.toLowerCase() ?? "tu negocio"} en tu ciudad</p>
           <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
-            {ciudades.map((c) => (
-              <li key={c.slug}>
-                <Link href={`/turnos-online/${c.slug}`} className={link}>
-                  {c.corto}
-                </Link>
-              </li>
-            ))}
+            {rubroCiudad &&
+              ciudades.map((c) => (
+                <li key={c.slug}>
+                  <Link href={cityNichePath(product, rubroCiudad, c)} className={link}>
+                    {c.corto}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </nav>
       </div>

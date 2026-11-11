@@ -51,7 +51,7 @@ export const proveedorManual: ProveedorPagos = {
   iniciarPago(s, ctx) {
     const msg =
       `Hola! Quiero activar el plan ${ctx.planNombre} (${s.ciclo}) por ${formatPrecio(s.precio)}` +
-      `${s.fundador ? " con precio fundador" : ""} para ${ctx.negocio} (prestum.com.ar/${ctx.slug}). Solicitud #${s.id}.`;
+      ` para ${ctx.negocio} (prestum.com.ar/${ctx.slug}). Solicitud #${s.id}.`;
     return { tipo: "contacto", url: `https://wa.me/${site.whatsappVentas}?text=${encodeURIComponent(msg)}` };
   },
 };

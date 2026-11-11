@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDefaultProduct } from "@/config/products";
 import { site, absoluteUrl } from "@/config/site";
-import { PRUEBA_DIAS } from "@/config/planes";
 import { REVISADO, compararPath, competidores, getCompetidor, slugDeRuta } from "@/config/comparativas";
 import { conPrecios, datosPrestum, preciosPrestum } from "@/lib/comparar";
 import { getPrecios } from "@/lib/planes";
@@ -125,7 +124,7 @@ export default async function ComparativaPage({ params }: Props) {
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="/registro" className="rounded-xl bg-brand-700 px-6 py-3.5 text-center font-semibold text-white hover:bg-brand-900">
-            Probar {PRUEBA_DIAS} días gratis
+            Empezar gratis
           </Link>
           <a href={wa} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-slate-300 px-6 py-3.5 text-center font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700">
             Consultar por WhatsApp

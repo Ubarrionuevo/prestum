@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Product } from "@/config/types";
 import { site } from "@/config/site";
-import { nichePath, productHomePath } from "@/config/products";
+import { nichePath, productHomePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
 import { Logo } from "./Logo";
 
 /**
@@ -33,15 +33,29 @@ export function Footer({ product }: { product: Product }) {
         </nav>
         <nav aria-label={`${product.name} por rubro`}>
           <p className={col}>RUBROS</p>
-          <ul className="mt-4 grid gap-2 text-sm sm:grid-cols-2">
-            {product.niches.map((n) => (
+          <ul className="mt-4 grid gap-2 text-sm">
+            {(rubrosFoco(product).length ? rubrosFoco(product) : product.niches).map((n) => (
               <li key={n.slug}>
                 <Link href={nichePath(product, n)} className={link}>
-                  {product.name} para {n.name.toLowerCase()}
+                  Sistema de turnos para {n.name.toLowerCase()}
                 </Link>
               </li>
             ))}
           </ul>
+          {rubrosFoco(product).length > 0 && rubrosSecundarios(product).length > 0 && (
+            <>
+              <p className={`${col} mt-6`}>TAMBIÉN PARA</p>
+              <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5 text-xs">
+                {rubrosSecundarios(product).map((n) => (
+                  <li key={n.slug}>
+                    <Link href={nichePath(product, n)} className={link}>
+                      {n.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </nav>
         <nav aria-label="Recursos y contacto">
           <p className={col}>RECURSOS</p>
@@ -50,7 +64,6 @@ export function Footer({ product }: { product: Product }) {
             <li><Link href="/glosario" className={link}>Glosario</Link></li>
             <li><Link href="/comparar" className={link}>Comparar apps de turnos</Link></li>
             <li><Link href="/blog" className={link}>Blog</Link></li>
-            <li><Link href="/turnos-online" className={link}>Turnos online por ciudad</Link></li>
             <li><Link href="/legal/terminos" className={link}>Términos</Link></li>
             <li><Link href="/legal/privacidad" className={link}>Privacidad</Link></li>
           </ul>

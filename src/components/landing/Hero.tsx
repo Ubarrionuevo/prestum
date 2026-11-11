@@ -3,7 +3,7 @@
 import { BookingPreview, Phone } from "./ui";
 import Link from "next/link";
 import { useLanding, useRegistroLink } from "./LandingState";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA, TURNOS_GRATIS } from "@/config/planes";
 
 /**
  * 01 · HERO: solo se entiende qué es (título grande = <h1>), con un botón y una vista previa.
@@ -53,7 +53,7 @@ export function Hero({
               href={registro}
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-6 py-3.5 font-semibold text-white shadow-lg shadow-brand-700/20 hover:bg-brand-900"
             >
-              Empezar gratis · {PRUEBA_DIAS} días
+              Empezar gratis
             </Link>
             <a
               href="#como-funciona"
@@ -63,10 +63,10 @@ export function Hero({
             </a>
           </div>
           <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600">
-            <li>✓ {PRUEBA_DIAS} días gratis</li>
+            <li>✓ {OFERTA_CORTA}</li>
             <li>✓ Sin tarjeta</li>
             <li>✓ Listo en 1 minuto</li>
-            {showRubros && <li>✓ Para cualquier rubro</li>}
+            {showRubros && <li>✓ Para barberías, peluquerías y estética</li>}
           </ul>
         </div>
 
@@ -94,7 +94,7 @@ export function Hero({
         <ul className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-4 py-4 text-sm text-slate-600">
           <li>🇦🇷 Hecho en Argentina · precios en pesos</li>
           <li>💬 Soporte por WhatsApp, de persona a persona</li>
-          <li>🎁 {PRUEBA_DIAS} días gratis, sin tarjeta</li>
+          <li>🎁 {TURNOS_GRATIS} turnos por mes gratis, sin tarjeta</li>
         </ul>
       </div>
     </header>

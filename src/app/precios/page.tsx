@@ -1,6 +1,6 @@
 import { getDefaultProduct } from "@/config/products";
 import { getPrecios } from "@/lib/planes";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA, planesPagos } from "@/config/planes";
 import { formatPrecio } from "@/config/negocios";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
@@ -14,11 +14,11 @@ export const revalidate = 86400;
 
 export async function generateMetadata() {
   const { planes } = await getPrecios();
-  const lista = planes.map((p) => `${p.nombre} ${formatPrecio(p.precio_mensual)}`).join(", ");
+  const lista = planesPagos(planes).map((p) => `${p.nombre} ${formatPrecio(p.precio_mensual)}`).join(" y ");
   return buildMetadata({
-    title: "Precios del turnero online en pesos",
+    title: "Precios: gratis hasta 45 turnos por mes",
     brand: product.brandName,
-    description: `Planes de Prestum Turnos en pesos argentinos: ${lista} por mes. Anual con 2 meses gratis. ${PRUEBA_DIAS} días gratis, sin tarjeta.`,
+    description: `Prestum Turnos es ${OFERTA_CORTA.toLowerCase()}, sin tarjeta y sin vencimiento. Si necesitás más: ${lista} por mes, en pesos y sin comisión por turno.`,
     path: "/precios",
   });
 }

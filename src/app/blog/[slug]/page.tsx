@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDefaultProduct } from "@/config/products";
 import { absoluteUrl, site } from "@/config/site";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA } from "@/config/planes";
 import { articulos, getArticulo } from "@/config/blog";
 import { getTermino } from "@/config/glosario";
 import { breadcrumbLd, buildMetadata, faqLd } from "@/lib/seo";
@@ -102,7 +102,7 @@ export default async function ArticuloPage({ params }: Props) {
 
         <section className="mt-10 rounded-2xl bg-brand-900 p-6 text-white">
           <h2 className="text-xl font-bold">Probalo en tu negocio</h2>
-          <p className="mt-2 text-brand-100">Tu link de reservas listo en un minuto. {PRUEBA_DIAS} días gratis, sin tarjeta y sin comisión por turno.</p>
+          <p className="mt-2 text-brand-100">Tu link de reservas listo en un minuto. {OFERTA_CORTA}, sin tarjeta y sin comisión por turno.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <Link href="/registro" className="rounded-xl bg-white px-5 py-3 text-center font-semibold text-brand-900 hover:bg-brand-50">
               Empezar gratis

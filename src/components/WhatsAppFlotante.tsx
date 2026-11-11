@@ -22,7 +22,6 @@ export function mensajeSegunPagina(path: string, c: ContextoWa) {
     const enCiudad = d && c.ciudades[d] ? ` en ${c.ciudades[d]}` : "";
     return `Hola! Vi ${c.marca} para ${c.rubros[b]}${enCiudad} ${consulta}`;
   }
-  if (a === "turnos-online" && b && c.ciudades[b]) return `Hola! Vi ${c.marca} en ${c.ciudades[b]} ${consulta}`;
   if (a === "glosario" && b && c.terminos[b]) return `Hola! Estaba leyendo sobre ${c.terminos[b]} en ${c.marca} ${consulta}`;
   if (a === "blog") return `Hola! Estuve leyendo el blog de ${c.marca} y quería hacer una consulta.`;
   if (a === "comparar") return `Hola! Estuve viendo la comparativa de ${c.marca} y quería consultar sobre los planes.`;

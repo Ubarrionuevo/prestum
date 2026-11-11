@@ -34,7 +34,7 @@ export interface Competidor {
   /** Qué es, en una frase neutral. */
   queEs: string;
   datos: Record<FilaId, string>;
-  /** Respuesta corta (arriba de la página). Usar {inicial}, {profesional}, {empresa} para los precios de Prestum. */
+  /** Respuesta corta (arriba de la página). Usar {gratis} (turnos gratis por mes), {basico} y {premium} para la oferta de Prestum. */
   respuesta: string;
   /** En qué conviene Prestum, con datos. */
   ventajas: string[];
@@ -60,19 +60,18 @@ export const competidores: Competidor[] = [
       rubros: "Barberías (también peluquería, estética y uñas)",
     },
     respuesta:
-      "Si sos un barbero que trabaja solo y tenés menos de 40 turnos por mes, Cortik tiene un plan gratis que Prestum no tiene. Si tenés equipo o tu negocio no es una barbería, Prestum Turnos te da profesionales ilimitados por {profesional}/mes (Cortik cobra $25.000 por su plan de equipos) y sirve para cualquier rubro con turnos.",
+      "Los dos tienen plan gratis para siempre: Cortik incluye 40 turnos por mes y Prestum Turnos {gratis}. Los planes pagos arrancan en el mismo precio, pero para un equipo la diferencia es grande: en Prestum los profesionales ilimitados están en Premium por {premium}/mes, y Cortik cobra $25.000 por su plan para varios barberos.",
     ventajas: [
-      "Cualquier rubro: consultorios, kinesiología, talleres, lavaderos, peluquerías caninas y más, no solo barberías.",
-      "Profesionales ilimitados por {profesional}/mes.",
-      "Varias sucursales en un mismo panel y roles (dueño, recepción, profesional) en el plan Empresa.",
-      "30 días gratis con todas las funciones, sin límite de turnos durante la prueba.",
+      "{gratis} turnos gratis por mes, sin tarjeta y sin vencimiento (Cortik: 40).",
+      "Profesionales ilimitados por {premium}/mes (el plan de Cortik para varios barberos cuesta $25.000).",
+      "Lista de espera, caja y comisiones por profesional y fidelización incluidas en Premium.",
+      "Seña opcional por alias o link de pago, sin comisión.",
     ],
     convieneElOtro: [
-      "Sos barbero, trabajás solo y tenés pocos turnos: el plan gratis de Cortik te alcanza.",
-      "Querés un producto pensado 100% para barberías, con textos y ejemplos de ese rubro.",
+      "Ya usás Cortik, trabajás solo y no pasás de 40 turnos por mes: cambiar no te suma mucho.",
     ],
     faqs: [
-      { q: "¿Prestum tiene plan gratis como Cortik?", a: "No tiene plan gratis permanente: tiene 30 días gratis con todas las funciones y sin tarjeta. Después, planes desde {inicial}/mes." },
+      { q: "¿Prestum tiene plan gratis como Cortik?", a: "Sí, y con más turnos: hasta {gratis} turnos por mes gratis (Cortik: 40), sin tarjeta y sin vencimiento. Si necesitás más, planes desde {basico}/mes." },
       { q: "¿Puedo pasarme de Cortik a Prestum?", a: "Sí. Cargás tus servicios, horarios y equipo en Prestum (te ayudamos por WhatsApp) y cambiás el link en tu Instagram." },
     ],
   },
@@ -92,19 +91,20 @@ export const competidores: Competidor[] = [
       rubros: "Varios rubros",
     },
     respuesta:
-      "Si querés un bot que conteste tu WhatsApp con inteligencia artificial y entienda audios, TurnoFácil lo tiene y Prestum no. Si preferís que tus clientes reserven desde un link y vos confirmar desde tu WhatsApp, Prestum Turnos cuesta {profesional}/mes con profesionales ilimitados (TurnoFácil: $29.900) y las sucursales están en {empresa}/mes (TurnoFácil: $89.000).",
+      "Si querés un bot que conteste tu WhatsApp con inteligencia artificial y entienda audios, TurnoFácil lo tiene y Prestum no. Si preferís que tus clientes reserven desde un link y vos confirmar desde tu WhatsApp, Prestum Turnos es gratis hasta {gratis} turnos por mes y los profesionales ilimitados cuestan {premium}/mes (TurnoFácil Profesional: $29.900).",
     ventajas: [
-      "Más barato: profesionales ilimitados por {profesional}/mes y sucursales por {empresa}/mes.",
-      "Un plan más chico para arrancar: {inicial}/mes con hasta 2 profesionales.",
+      "Plan gratis para siempre hasta {gratis} turnos por mes (TurnoFácil tiene 30 días de prueba).",
+      "Más barato: profesionales ilimitados por {premium}/mes, y un plan de {basico}/mes para hasta 2 profesionales.",
       "No hace falta vincular tu WhatsApp a ningún sistema: el cliente reserva en tu link y te escribe a tu número.",
     ],
     convieneElOtro: [
       "Querés que un bot con IA atienda y agende solo dentro de tu WhatsApp, incluso con audios.",
       "Necesitás venta de productos dentro del chat, reseñas automáticas en Google o Google Calendar.",
+      "Tenés varias sucursales: TurnoFácil tiene un plan Empresarial para eso.",
     ],
     faqs: [
       { q: "¿Prestum tiene bot de WhatsApp con IA?", a: "No. El cliente reserva desde tu link y la reserva te llega armada a tu WhatsApp; los recordatorios se mandan con un toque desde tu número." },
-      { q: "¿Los dos tienen 30 días gratis?", a: "Sí, los dos tienen 30 días de prueba sin tarjeta." },
+      { q: "¿Los dos se pueden usar gratis?", a: "TurnoFácil tiene 30 días de prueba sin tarjeta. Prestum Turnos tiene un plan gratis sin vencimiento, hasta {gratis} turnos por mes." },
     ],
   },
   {
@@ -123,15 +123,14 @@ export const competidores: Competidor[] = [
       rubros: "Belleza, estética, salud y fitness",
     },
     respuesta:
-      "AgendaPro es más barato si atendés solo ($7.900/mes) y suma marketplace de clientes y app móvil. Prestum Turnos conviene si tenés más de 5 profesionales ({profesional}/mes con ilimitados), si querés varias sucursales con precio publicado ({empresa}/mes) o si no querés un cupo de recordatorios: en Prestum salen de tu propio WhatsApp, sin límite mensual.",
+      "AgendaPro suma marketplace de clientes y app móvil, y su plan para 1 profesional cuesta $7.900/mes. Prestum Turnos es gratis hasta {gratis} turnos por mes, tiene profesionales ilimitados por {premium}/mes (en AgendaPro, Full llega hasta 5) y los recordatorios salen de tu propio WhatsApp, sin cupo mensual.",
     ventajas: [
-      "Profesionales ilimitados por {profesional}/mes (en AgendaPro, Full llega hasta 5).",
+      "Plan gratis para siempre hasta {gratis} turnos por mes, sin tarjeta.",
+      "Profesionales ilimitados por {premium}/mes (en AgendaPro, Full llega hasta 5).",
       "Recordatorios por WhatsApp sin cupo mensual: los mandás con un toque desde tu número.",
-      "Sucursales con precio publicado: {empresa}/mes.",
-      "Sirve también para rubros fuera de belleza y salud: talleres, lavaderos, peluquerías caninas.",
     ],
     convieneElOtro: [
-      "Atendés solo y buscás lo más barato: $7.900/mes.",
+      "Atendés solo, tenés más de {gratis} turnos por mes y querés pagar lo mínimo: su plan de 1 profesional cuesta $7.900/mes.",
       "Querés aparecer en un marketplace que te traiga clientes nuevos.",
       "Necesitás app nativa para iOS y Android o ficha clínica (planes de estética y salud).",
     ],
@@ -156,12 +155,11 @@ export const competidores: Competidor[] = [
       rubros: "Varios rubros",
     },
     respuesta:
-      "Turnito tiene un plan gratis con 100 reservas por mes y cobra online con Mercado Pago y PayPal, pero con comisión por cada cobro (5% en el plan gratis). Prestum Turnos no cobra comisión en ningún plan, no limita los mensajes de WhatsApp y tiene profesionales ilimitados por {profesional}/mes.",
+      "Turnito tiene un plan gratis con 100 reservas por mes y cobra online con Mercado Pago y PayPal, pero con comisión por cada cobro (5% en el plan gratis). Prestum Turnos es gratis hasta {gratis} turnos por mes, no cobra comisión en ningún plan, no limita los mensajes de WhatsApp y tiene profesionales ilimitados por {premium}/mes.",
     ventajas: [
       "0% de comisión en todos los planes: la seña va directo a tu cuenta.",
       "Recordatorios por WhatsApp sin cupo mensual.",
-      "Servicios ilimitados desde el primer plan.",
-      "Varias sucursales y roles en el plan Empresa.",
+      "Profesionales ilimitados por {premium}/mes.",
     ],
     convieneElOtro: [
       "Tenés menos de 100 reservas por mes y querés no pagar nada.",

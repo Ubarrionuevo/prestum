@@ -6,12 +6,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { demos, getDemo } from "@/config/products/turnero-landing";
 import { turnero } from "@/config/products/turnero";
+import { RUBRO_ALIASES, RUBROS_FOCO } from "@/config/aliases";
 import { RESERVED_SLUGS, SLUG_RE } from "@/config/reserved";
 import { slugify } from "@/components/landing/LandingState";
 import { errorAmigable, getSupabase, supabaseConfigured } from "@/lib/supabase";
 import { normalizarWhatsApp } from "@/lib/telefono";
 import { btnCls, inputCls, labelCls } from "./AuthShell";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { TURNOS_GRATIS } from "@/config/planes";
 
 const HORARIOS_DEFAULT = {
   "1": [["09:00", "13:00"], ["15:00", "19:00"]],
@@ -32,8 +33,9 @@ export function RegistroForm() {
   const params = useSearchParams();
   const [nombre, setNombre] = useState(params.get("nombre") ?? "");
   const [rubro, setRubro] = useState(() => {
-    const r = params.get("rubro") ?? "";
-    return demos[r] ? r : "barberias";
+    const p = params.get("rubro") ?? "";
+    const r = RUBRO_ALIASES[p] ?? p; // ej: "manicuria" → "esteticistas"
+    return demos[r] && turnero.niches.some((n) => n.slug === r) ? r : "barberias";
   });
   const [email, setEmail] = useState("");
   const [wa, setWa] = useState("");
@@ -105,7 +107,7 @@ export function RegistroForm() {
 
   return (
     <form onSubmit={enviar} className="rounded-3xl bg-white p-6 shadow-xl ring-1 ring-slate-100 sm:p-8" noValidate>
-      <p className="inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900">{PRUEBA_DIAS} DÍAS GRATIS · SIN TARJETA</p>
+      <p className="inline-block rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900">GRATIS HASTA {TURNOS_GRATIS} TURNOS POR MES · SIN TARJETA</p>
       <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900">Creá tu agenda online</h1>
       <p className="mt-1 text-slate-600">En 1 minuto tenés tu link para compartir con tus clientes.</p>
 
@@ -123,12 +125,23 @@ export function RegistroForm() {
         <label className={labelCls}>
           Rubro
           <select className={inputCls} value={rubro} onChange={(e) => setRubro(e.target.value)}>
-            {turnero.niches.map((n) => (
-              <option key={n.slug} value={n.slug}>
-                {n.emoji} {n.name}
-              </option>
-            ))}
-            <option value="default">Otro</option>
+            {turnero.niches
+              .filter((n) => RUBROS_FOCO.includes(n.slug))
+              .map((n) => (
+                <option key={n.slug} value={n.slug}>
+                  {n.emoji} {n.name}
+                </option>
+              ))}
+            <optgroup label="Otros rubros">
+              {turnero.niches
+                .filter((n) => !RUBROS_FOCO.includes(n.slug))
+                .map((n) => (
+                  <option key={n.slug} value={n.slug}>
+                    {n.emoji} {n.name}
+                  </option>
+                ))}
+              <option value="default">Otro</option>
+            </optgroup>
           </select>
         </label>
 

@@ -3,14 +3,14 @@ import { AuthShell } from "@/components/auth/AuthShell";
 import { RegistroForm } from "@/components/auth/RegistroForm";
 import { buildMetadata } from "@/lib/seo";
 import { getDefaultProduct } from "@/config/products";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA, TURNOS_GRATIS } from "@/config/planes";
 
 const product = getDefaultProduct();
 
 export const metadata = buildMetadata({
   title: "Creá tu agenda de turnos online gratis",
   brand: product.brandName,
-  description: `Registrate gratis y en 1 minuto tenés tu link de reservas. ${PRUEBA_DIAS} días de prueba con todas las funciones, sin tarjeta.`,
+  description: `Registrate gratis y en 1 minuto tenés tu link de reservas. ${OFERTA_CORTA}, sin tarjeta y sin vencimiento.`,
   path: "/registro",
 });
 
@@ -19,7 +19,7 @@ function Beneficios() {
     ["🔗", "Tu link al instante", "prestum.com.ar/tu-negocio, listo para Instagram y WhatsApp."],
     ["📲", "Reservas a tu WhatsApp", "Con servicio, día, hora y medio de pago."],
     ["📊", "Tus números claros", "Turnos del mes, ingresos y cómo te pagan."],
-    ["🎁", `${PRUEBA_DIAS} días gratis`, "Todas las funciones, sin tarjeta. Si no te sirve, no pagás nada."],
+    ["🎁", `${TURNOS_GRATIS} turnos por mes gratis`, "Sin tarjeta y sin vencimiento. Si necesitás más, pasás a un plan pago."],
   ];
   return (
     <ul className="grid gap-4 pt-16">

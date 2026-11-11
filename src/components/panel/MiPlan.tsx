@@ -19,7 +19,7 @@ const fechaLarga = (iso: string) => {
  * con el proveedor activo (hoy: manual por WhatsApp) y la activación la hace el admin.
  */
 export function MiPlan({ negocio, compacto = false }: { negocio: NegocioDB; compacto?: boolean }) {
-  const { planes, ofrecidos, fundador } = usePreciosPanel(negocio.rubro);
+  const { planes, ofrecidos } = usePreciosPanel(negocio.rubro);
   const [subs, setSubs] = useState<Suscripcion[] | null>(null);
   const [eligiendo, setEligiendo] = useState(compacto);
   const [enviando, setEnviando] = useState(false);
@@ -81,11 +81,6 @@ export function MiPlan({ negocio, compacto = false }: { negocio: NegocioDB; comp
                   {activa.vence && <> · vence el {fechaLarga(activa.vence)}</>}
                 </p>
               </div>
-              {activa.fundador && (
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900">
-                  ⭐ Precio fundador{activa.fundador_hasta ? ` hasta ${fechaCorta(activa.fundador_hasta)}` : ""}
-                </span>
-              )}
             </div>
           ) : enPrueba ? (
             <div>
@@ -108,9 +103,6 @@ export function MiPlan({ negocio, compacto = false }: { negocio: NegocioDB; comp
           <p className="mt-1 text-xl font-extrabold text-slate-900">
             {nombrePlan(pendiente.plan)} {pendiente.ciclo} · {formatPrecio(pendiente.precio)}/{pendiente.ciclo === "anual" ? "año" : "mes"}
           </p>
-          {pendiente.fundador && (
-            <p className="mt-1 text-sm text-amber-900">⭐ Con precio fundador congelado por {fundador.meses} meses (sujeto a cupo al momento del pago).</p>
-          )}
           <p className="mt-2 text-sm text-slate-600">Cuando se acredite el pago, tu plan se activa y queda guardado este precio.</p>
           <div className="mt-4 flex flex-wrap gap-2">
             <a
@@ -141,7 +133,7 @@ export function MiPlan({ negocio, compacto = false }: { negocio: NegocioDB; comp
         <section className={compacto ? "" : "rounded-2xl bg-slate-50"}>
           {error && <p className="mb-2 rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700">{error}</p>}
           {enviando && <p className="mb-2 text-center text-sm text-slate-500">Guardando tu elección…</p>}
-          <PreciosTabla planes={ofrecidos} fundador={fundador} modo="elegir" onElegir={(p, c) => solicitar(p.id, c)} />
+          <PreciosTabla planes={ofrecidos} modo="elegir" onElegir={(p, c) => solicitar(p.id, c)} />
           {!compacto && (
             <button onClick={() => setEligiendo(false)} className="mx-auto mt-4 block text-sm text-slate-500">
               Cancelar

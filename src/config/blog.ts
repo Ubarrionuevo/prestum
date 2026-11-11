@@ -219,7 +219,7 @@ export const articulos: Articulo[] = [
     ],
     faqs: [
       { q: "¿Se calcula sobre el precio o sobre lo cobrado?", a: "Conviene sobre lo efectivamente cobrado: si un turno no se cobró, no genera comisión." },
-      { q: "¿Prestum calcula las comisiones?", a: "Sí, desde el plan Profesional: cargás el % de cada profesional y la caja muestra cuánto facturó cada uno y cuánto le corresponde." },
+      { q: "¿Prestum calcula las comisiones?", a: "Sí, en el plan Premium: cargás el % de cada profesional y la caja muestra cuánto facturó cada uno y cuánto le corresponde." },
     ],
     glosario: ["comisiones-por-profesional", "caja-diaria", "roles-y-permisos"],
   },

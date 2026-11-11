@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getDefaultProduct } from "@/config/products";
 import { absoluteUrl, site } from "@/config/site";
-import { PRUEBA_DIAS } from "@/config/planes";
 import { REVISADO, compararPath, competidores } from "@/config/comparativas";
 import { conPrecios, datosPrestum, preciosPrestum } from "@/lib/comparar";
 import { getPrecios } from "@/lib/planes";
@@ -35,16 +34,15 @@ export default async function CompararPage() {
   ];
 
   const casos = [
-    { si: "Trabajás solo y tenés pocos turnos por mes", conviene: "Un plan gratis: Cortik (40 turnos) o Turnito (100 reservas, con comisión por cobro)." },
+    { si: "Trabajás solo y tenés pocos turnos por mes", conviene: t(`Un plan gratis: ${product.brandName} ({gratis} turnos por mes), Cortik (40) o Turnito (100 reservas, con comisión por cobro).`) },
     { si: "Querés un bot con IA que conteste tu WhatsApp", conviene: "TurnoFácil, o AgendaPro en su plan PRO IA." },
     { si: "Querés aparecer en un marketplace de clientes", conviene: "AgendaPro." },
-    { si: "Tenés equipo y querés profesionales ilimitados sin comisión", conviene: t(`${product.brandName}: {profesional}/mes con ilimitados, 0% comisión.`) },
-    { si: "Tenés varias sucursales", conviene: t(`${product.brandName} (plan Empresa, {empresa}/mes, con roles) o TurnoFácil (Empresarial, $89.000/mes).`) },
-    { si: "Tu negocio no es de belleza (taller, lavadero, consultorio, peluquería canina)", conviene: `${product.brandName}, que está pensado para cualquier rubro con turnos.` },
+    { si: "Tenés equipo y querés profesionales ilimitados sin comisión", conviene: t(`${product.brandName}: {premium}/mes con ilimitados, 0% comisión.`) },
+    { si: "Tenés varias sucursales", conviene: "TurnoFácil (Empresarial, $89.000/mes) o AgendaPro (plan a medida)." },
   ];
 
   const faqs = [
-    { q: "¿Cuál es la mejor app de turnos en Argentina?", a: "Depende de tu negocio. Si trabajás solo con pocos turnos, un plan gratis alcanza; si querés un bot con IA, TurnoFácil; si tenés equipo y no querés pagar comisiones, Prestum Turnos. Abajo está la tabla con todos los datos." },
+    { q: "¿Cuál es la mejor app de turnos en Argentina?", a: t("Depende de tu negocio. Si trabajás solo con pocos turnos, un plan gratis alcanza (Prestum Turnos da {gratis} turnos por mes; Cortik, 40); si querés un bot con IA, TurnoFácil; si tenés una barbería, peluquería o centro de estética con equipo y no querés pagar comisiones, Prestum Turnos. Abajo está la tabla con todos los datos.") },
     { q: "¿Qué app de turnos no cobra comisión?", a: t(`${product.brandName}, Cortik y TurnoFácil no cobran comisión por turno ni por la seña. Turnito cobra entre 0% y 5% según el plan.`) },
     { q: "¿De dónde salen estos datos?", a: `De la web oficial de cada empresa, revisada el ${fechaLarga}. Los precios pueden cambiar: cada comparativa enlaza su fuente.` },
   ];
@@ -72,7 +70,7 @@ export default async function CompararPage() {
           <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Respuesta corta</p>
           <p className="mt-2 text-slate-800">
             {t(
-              `No hay una mejor para todos. Para arrancar gratis con pocos turnos: Cortik o Turnito. Para un bot con IA en WhatsApp: TurnoFácil. Para un equipo o varias sucursales sin comisiones y en cualquier rubro: ${product.brandName}, desde {inicial}/mes y con ilimitados por {profesional}/mes.`,
+              `No hay una mejor para todos. Para arrancar gratis: ${product.brandName} ({gratis} turnos por mes), Cortik (40) o Turnito (100, con comisión por cobro). Para un bot con IA en WhatsApp: TurnoFácil. Para una barbería, peluquería o centro de estética con equipo y sin comisiones: ${product.brandName}, con profesionales ilimitados por {premium}/mes.`,
             )}
           </p>
         </div>
@@ -108,7 +106,7 @@ export default async function CompararPage() {
 
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
           <Link href="/registro" className="rounded-xl bg-brand-700 px-6 py-3.5 text-center font-semibold text-white hover:bg-brand-900">
-            Probar {product.brandName} {PRUEBA_DIAS} días gratis
+            Empezar gratis con {product.brandName}
           </Link>
           <Link href="/precios" className="rounded-xl border border-slate-300 px-6 py-3.5 text-center font-semibold text-slate-800 hover:border-brand-700 hover:text-brand-700">
             Ver precios

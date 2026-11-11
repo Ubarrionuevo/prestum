@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { formatPrecio } from "@/config/negocios";
-import { PRUEBA_DIAS } from "@/config/planes";
+import { OFERTA_CORTA } from "@/config/planes";
 import { Section, SectionHead } from "./ui";
 import Link from "next/link";
 import { useLanding, useRegistroLink } from "./LandingState";
@@ -84,7 +84,7 @@ export function Calculadora({ n, planBase, planBaseNombre }: { n: number; planBa
         <Link href={registro} className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 font-semibold text-brand-900 hover:bg-brand-50">
           Empezar gratis →
         </Link>
-        <p className="mt-2 text-sm text-brand-100">{PRUEBA_DIAS} días gratis · sin tarjeta</p>
+        <p className="mt-2 text-sm text-brand-100">{OFERTA_CORTA} · sin tarjeta</p>
       </div>
       <p className="mx-auto mt-6 max-w-xl text-center text-xs text-brand-100/70">
         Estimación: {MIN_POR_CONSULTA} min por consulta, {DIAS_MES} días hábiles y 1 de cada 10 consultas sin respuesta a tiempo.

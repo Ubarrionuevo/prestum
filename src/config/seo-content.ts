@@ -1,6 +1,6 @@
 /**
  * Contenido para SEO programático (mismo patrón que los líderes del rubro):
- *  - Ciudades → /turnos-online/<ciudad>
+ *  - Ciudades → solo como /turnero/<rubro foco>/<ciudad> (las /turnos-online/<ciudad> se quitaron)
  *  - Glosario → /glosario/<termino> (ver glosario.ts)
  * Agregar una ciudad o un término acá crea la página, la suma al sitemap y la enlaza.
  */
