@@ -10,6 +10,7 @@ import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductShell } from "@/components/product/ProductShell";
 import { Breadcrumbs, FaqSection } from "@/components/sections";
+import { RubrosFocoLinks } from "@/components/RubrosFocoLinks";
 
 type Props = { params: Promise<{ termino: string }> };
 export const dynamicParams = false;
@@ -104,6 +105,8 @@ export default async function TerminoPage({ params }: Props) {
           </div>
         </section>
       </article>
+
+      <RubrosFocoLinks product={product} />
 
       <FaqSection faqs={t.faqs} />
 

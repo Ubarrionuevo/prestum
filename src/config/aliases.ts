@@ -83,5 +83,8 @@ export function aliasRedirects() {
   // Las páginas genéricas por ciudad (/turnos-online/<ciudad>) se quitaron: van a la home.
   out.push({ source: "/turnos-online", destination: "/", permanent: true });
   out.push({ source: "/turnos-online/:ciudad", destination: "/", permanent: true });
+  // Términos del glosario que ya no aplican a la oferta (varias sucursales, roles).
+  out.push({ source: "/glosario/multi-sucursal", destination: "/glosario/agenda-por-profesional", permanent: true });
+  out.push({ source: "/glosario/roles-y-permisos", destination: "/glosario/agenda-por-profesional", permanent: true });
   return out;
 }

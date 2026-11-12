@@ -10,6 +10,7 @@ import { breadcrumbLd, buildMetadata, faqLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductShell } from "@/components/product/ProductShell";
 import { Breadcrumbs, FaqSection } from "@/components/sections";
+import { RubrosFocoLinks } from "@/components/RubrosFocoLinks";
 
 type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
@@ -101,7 +102,7 @@ export default async function ArticuloPage({ params }: Props) {
         ))}
 
         <section className="mt-10 rounded-2xl bg-brand-900 p-6 text-white">
-          <h2 className="text-xl font-bold">Probalo en tu negocio</h2>
+          <h2 className="text-xl font-bold">Probalo en tu barbería, peluquería o centro de estética</h2>
           <p className="mt-2 text-brand-100">Tu link de reservas listo en un minuto. {OFERTA_CORTA}, sin tarjeta y sin comisión por turno.</p>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <Link href="/registro" className="rounded-xl bg-white px-5 py-3 text-center font-semibold text-brand-900 hover:bg-brand-50">
@@ -113,6 +114,8 @@ export default async function ArticuloPage({ params }: Props) {
           </div>
         </section>
       </article>
+
+      <RubrosFocoLinks product={product} />
 
       <FaqSection faqs={a.faqs} />
 

@@ -9,9 +9,9 @@ import { Breadcrumbs } from "@/components/sections";
 
 const product = getDefaultProduct();
 export const metadata = buildMetadata({
-  title: "Blog: guías para negocios con turnos",
+  title: "Blog para dueños de barberías, peluquerías y estética",
   brand: product.brandName,
-  description: "Guías prácticas para dueños de negocios con turnos: menos mensajes, menos ausencias, cómo cobrar seña, comisiones del equipo y cómo sumar clientes.",
+  description: "Guías para dueños de barberías, peluquerías y centros de estética: menos mensajes, menos ausencias, cómo cobrar seña, comisiones del equipo y cómo sumar clientes.",
   path: "/blog",
 });
 

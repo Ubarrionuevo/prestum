@@ -3,15 +3,16 @@ import type { Funcion } from "@/lib/funciones";
 
 /**
  * GLOSARIO SEO → /glosario y /glosario/<slug>
- * Términos que buscan los dueños de negocios con turnos (dolores reales, no relleno).
+ * Términos que buscan los dueños de barberías, peluquerías y centros de estética (dolores reales, no relleno).
+ * Ejemplos de esos tres rubros. Términos quitados (multi-sucursal, roles-y-permisos) redirigen desde aliases.ts.
  * Cada término: definición rápida arriba (para el fragmento destacado de Google y las IA),
  * análisis, cómo lo resuelve Prestum Turnos (solo funciones que existen), preguntas y relacionados.
  * Agregar un término acá crea la página, la suma al sitemap y la enlaza.
  */
 
-export type CategoriaGlosario = "Turnos y agenda" | "Finanzas y métricas" | "Administración" | "Clientes y WhatsApp";
+export type CategoriaGlosario = "Turnos y agenda" | "Finanzas y métricas" | "Clientes y WhatsApp";
 
-export const CATEGORIAS_GLOSARIO: CategoriaGlosario[] = ["Turnos y agenda", "Finanzas y métricas", "Administración", "Clientes y WhatsApp"];
+export const CATEGORIAS_GLOSARIO: CategoriaGlosario[] = ["Turnos y agenda", "Finanzas y métricas", "Clientes y WhatsApp"];
 
 export interface Termino {
   slug: string;
@@ -39,14 +40,14 @@ export const glosario: Termino[] = [
     articulo: "un",
     termino: "Turno online",
     categoria: "Turnos y agenda",
-    definicion: "Un turno online es una reserva que el cliente saca solo, desde internet, eligiendo servicio, día y horario sin llamar ni escribir para coordinar.",
+    definicion: "Un turno online es una reserva que el cliente saca solo, desde internet, eligiendo servicio, día y horario sin llamar ni escribir para coordinar. En barberías, peluquerías y centros de estética reemplaza la ida y vuelta por WhatsApp.",
     titulo: "Qué es un turno online y cómo funciona",
     analisis: [
       {
         titulo: "Cómo funciona un turno online",
         texto: [
-          "El cliente abre el link del negocio desde el celular, elige el servicio, ve solo los horarios libres y confirma. No hay idas y vueltas de mensajes preguntando “¿tenés lugar el jueves?”.",
-          "La agenda se llena también fuera del horario de atención: el link está disponible las 24 horas, incluso mientras estás atendiendo o durmiendo.",
+          "El cliente abre el link de la barbería, la peluquería o el centro de estética desde el celular, elige el servicio (corte, color, uñas, depilación), ve solo los horarios libres y confirma. No hay idas y vueltas de mensajes preguntando “¿tenés lugar el jueves?”.",
+          "La agenda se llena también fuera del horario de atención: el link está disponible las 24 horas, incluso mientras estás cortando, haciendo un color o con alguien en la camilla.",
         ],
       },
       {
@@ -57,7 +58,7 @@ export const glosario: Termino[] = [
       },
     ],
     solucion: [
-      "Cada negocio tiene su link propio (prestum.com.ar/tu-negocio), activo apenas te registrás.",
+      "Cada negocio tiene su link propio (prestum.com.ar/tu-barberia), activo apenas te registrás y gratis hasta 45 turnos por mes.",
       "El cliente elige servicio, profesional, día, hora y medio de pago; la reserva te llega armada a WhatsApp.",
       "Los horarios ocupados desaparecen solos del link, así nadie reserva encima de otro.",
     ],
@@ -73,7 +74,7 @@ export const glosario: Termino[] = [
     termino: "Agenda online",
     categoria: "Turnos y agenda",
     definicion: "Una agenda online es el calendario de turnos de un negocio disponible en internet, que se actualiza sola con cada reserva y muestra solo los horarios libres.",
-    titulo: "Qué es una agenda online para negocios",
+    titulo: "Agenda online para barberías, peluquerías y estética: qué es",
     analisis: [
       {
         titulo: "Qué reemplaza",
@@ -85,7 +86,7 @@ export const glosario: Termino[] = [
       {
         titulo: "La duración importa",
         texto: [
-          "Una buena agenda online respeta la duración de cada servicio: un trabajo de una hora bloquea una hora, no media. Así se evitan los turnos pisados y las esperas.",
+          "Una buena agenda online respeta la duración de cada servicio: un corte de 30 minutos no ocupa lo mismo que un color de dos horas o un esculpido de uñas. Así se evitan los turnos pisados y las esperas.",
         ],
       },
     ],
@@ -95,7 +96,7 @@ export const glosario: Termino[] = [
       "Elegís con cuántos días de anticipación se puede reservar.",
     ],
     faqs: [
-      { q: "¿La agenda online sirve si tengo varios profesionales?", a: "Sí. Cada profesional puede tener su propia agenda, sus servicios y sus horarios." },
+      { q: "¿La agenda online sirve si tengo varios barberos o esteticistas?", a: "Sí. Cada profesional tiene su propia agenda, sus servicios y sus horarios. El plan Gratis incluye 1 profesional, el Básico hasta 2 y el Premium ilimitados." },
       { q: "¿Puedo bloquear un día?", a: "Sí, cerrás ese día en los horarios y deja de aparecer en el link." },
     ],
     relacionados: ["turno-online", "agenda-por-profesional", "horario-cortado"],
@@ -105,7 +106,7 @@ export const glosario: Termino[] = [
     articulo: "un",
     termino: "Link de reservas",
     categoria: "Turnos y agenda",
-    definicion: "El link de reservas es la dirección web propia de un negocio donde sus clientes sacan turno solos, por ejemplo prestum.com.ar/mi-negocio.",
+    definicion: "El link de reservas es la dirección web propia de un negocio donde sus clientes sacan turno solos, por ejemplo prestum.com.ar/mi-barberia.",
     titulo: "Qué es un link de reservas y dónde ponerlo",
     analisis: [
       {
@@ -117,14 +118,13 @@ export const glosario: Termino[] = [
       {
         titulo: "Dónde genera más reservas",
         texto: [
-          "En la bio de Instagram, en el estado y las respuestas rápidas de WhatsApp Business, en la ficha de Google Maps y en los mensajes automáticos de ausencia.",
+          "En la bio de Instagram (al lado de tus trabajos), en el estado y las respuestas rápidas de WhatsApp Business, en la ficha de Google Maps y en un QR en el espejo o la caja.",
           "Cuanto más visible está, menos mensajes de “¿tenés turno?” vas a tener que contestar.",
         ],
       },
     ],
     solucion: [
       "Tu link tiene la forma prestum.com.ar/nombre-del-negocio y lo elegís al registrarte.",
-      "Si tenés varias sucursales, cada una tiene su propio link.",
       "Desde el panel lo copiás o lo compartís por WhatsApp con un toque.",
     ],
     faqs: [
@@ -139,30 +139,30 @@ export const glosario: Termino[] = [
     termino: "No-show (ausentismo)",
     categoria: "Turnos y agenda",
     definicion: "No-show es cuando un cliente reserva un turno y no se presenta ni avisa. Ese horario queda vacío y no se puede ofrecer a otra persona.",
-    titulo: "Qué es el no-show y cómo reducir el ausentismo",
+    titulo: "No-show: qué es y cómo bajar las ausencias en tu barbería o peluquería",
     analisis: [
       {
         titulo: "Cuánto cuesta un no-show",
         texto: [
-          "Cada ausencia es un horario que no se cobra y que ya no se puede vender. Si tu servicio sale $15.000 y tenés 4 ausencias por semana, perdés unos $240.000 por mes.",
+          "Cada ausencia es un horario que no se cobra y que ya no se puede vender. Si tu servicio sale $15.000 y tenés 4 ausencias por semana, perdés unos $240.000 por mes. En servicios largos como un color o un tratamiento facial, cada falta pesa todavía más.",
         ],
       },
       {
         titulo: "Las 4 formas más efectivas de bajarlo",
         texto: [
-          "1) Enviar un recordatorio el día anterior. 2) Pedir seña en servicios caros o largos. 3) Tener lista de espera para llenar el hueco si alguien cancela. 4) Medirlo: lo que no se mide no se mejora.",
+          "1) Enviar un recordatorio el día anterior. 2) Pedir seña en servicios caros o largos (color, alisado, esculpidas, tratamientos). 3) Tener lista de espera para llenar el hueco si alguien cancela. 4) Anotar quién no vino, para ver si baja.",
         ],
       },
     ],
     solucion: [
       "Recordatorio por WhatsApp con un toque desde cada turno, con tu propio texto.",
       "Seña opcional: si no se marca como pagada en el plazo que elegís, el horario se libera solo.",
-      "Marcás “No vino” en el turno y los reportes te muestran tu porcentaje de ausentismo.",
+      "Marcás “No vino” en el turno, así sabés quién falta seguido.",
     ],
     funcion: "recordatorios",
     faqs: [
-      { q: "¿Qué porcentaje de ausentismo es normal?", a: "Depende del rubro, pero si más de 1 de cada 10 turnos no se presenta, conviene sumar recordatorios y seña." },
-      { q: "¿Conviene cobrar seña siempre?", a: "No necesariamente. Es más útil en servicios largos o caros; en servicios cortos suele alcanzar con el recordatorio." },
+      { q: "¿Qué porcentaje de ausentismo es normal?", a: "Varía según el servicio, pero si más de 1 de cada 10 turnos no se presenta, conviene sumar recordatorios y seña." },
+      { q: "¿Conviene cobrar seña siempre?", a: "No. Es útil en servicios largos o caros (color, uñas esculpidas, tratamientos); en un corte suele alcanzar con el recordatorio." },
     ],
     relacionados: ["recordatorio-de-turno", "sena", "lista-de-espera"],
   },
@@ -177,7 +177,7 @@ export const glosario: Termino[] = [
       {
         titulo: "Cuándo enviarlo",
         texto: [
-          "Lo más común es el día anterior, o unas horas antes si el turno es temprano a la mañana. Debe incluir fecha, hora, servicio y dirección.",
+          "Lo más común es el día anterior, o unas horas antes si el turno es temprano a la mañana. Debe incluir fecha, hora, servicio y dirección: “Mañana 18:00, corte y barba”.",
         ],
       },
       {
@@ -211,7 +211,7 @@ export const glosario: Termino[] = [
         titulo: "Para qué sirve",
         texto: [
           "Cuando alguien cancela, ese horario suele quedar vacío porque no hay tiempo de conseguir otro cliente. Con una lista de espera, ya sabés a quién avisarle.",
-          "Es especialmente útil los días más pedidos, como viernes y sábados.",
+          "Es especialmente útil en barberías y peluquerías los viernes y sábados, y en estética antes de fiestas y vacaciones, cuando la agenda se llena primero.",
         ],
       },
     ],
@@ -223,7 +223,7 @@ export const glosario: Termino[] = [
     faqs: [
       { q: "¿Se le avisa automáticamente al cliente?", a: "El panel te muestra el aviso y el mensaje armado; vos lo enviás desde tu WhatsApp con un toque." },
     ],
-    relacionados: ["no-show", "ocupacion", "sobreturno"],
+    relacionados: ["no-show", "horarios-pico", "sobreturno"],
   },
   {
     slug: "sobreturno",
@@ -237,7 +237,7 @@ export const glosario: Termino[] = [
         titulo: "Por qué pasa",
         texto: [
           "Pasa cuando la agenda está en varios lugares (cuaderno, WhatsApp, la recepción) o cuando dos personas reservan el mismo horario al mismo tiempo.",
-          "El resultado es un cliente esperando, otro enojado y un profesional apurado.",
+          "El resultado es un cliente esperando en la silla de al lado, otro enojado y un barbero o una esteticista apurados.",
         ],
       },
     ],
@@ -267,7 +267,7 @@ export const glosario: Termino[] = [
     ],
     solucion: [
       "Cargás hasta dos franjas por día de la semana, y el link solo ofrece turnos dentro de esas franjas.",
-      "Cada profesional puede tener su propio horario, distinto del general del negocio.",
+      "Cada barbero, peluquera o esteticista puede tener su propio horario, distinto del general del negocio.",
     ],
     faqs: [
       { q: "¿Puedo tener horario corrido unos días y cortado otros?", a: "Sí, cada día de la semana se configura por separado." },
@@ -279,25 +279,25 @@ export const glosario: Termino[] = [
     articulo: "la",
     termino: "Agenda por profesional",
     categoria: "Turnos y agenda",
-    definicion: "La agenda por profesional es cuando cada miembro del equipo tiene su propio calendario de turnos, con sus servicios y horarios, dentro del mismo negocio.",
+    titulo: "Agenda por profesional: un calendario para cada barbero o esteticista",
+    definicion: "La agenda por profesional es cuando cada barbero, peluquera o esteticista tiene su propio calendario de turnos, con sus servicios y horarios, dentro del mismo negocio.",
     analisis: [
       {
         titulo: "Cuándo la necesitás",
         texto: [
-          "Apenas tenés más de una persona atendiendo: no todos hacen los mismos servicios ni trabajan los mismos días.",
-          "Muchos clientes además quieren elegir con quién atenderse.",
+          "Apenas tenés más de una persona atendiendo: no todos hacen los mismos servicios (uno hace color, otra uñas) ni trabajan los mismos días.",
+          "En barbería y peluquería, además, el cliente suele querer a su barbero o a su peluquera de siempre.",
         ],
       },
     ],
     solucion: [
-      "Cada profesional (o sala, box o cancha) tiene sus servicios y, si querés, su propio horario.",
+      "Cada profesional (o cada box o camilla) tiene sus servicios y, si querés, su propio horario.",
       "El cliente elige con quién atenderse o toca “Cualquiera” y se asigna uno libre.",
-      "Con el rol profesional, cada uno ve solo sus propios turnos.",
     ],
     faqs: [
       { q: "¿Cuántos profesionales puedo cargar?", a: "1 en el plan Gratis, hasta 2 en el plan Básico e ilimitados en el plan Premium." },
     ],
-    relacionados: ["comisiones-por-profesional", "roles-y-permisos", "sobreturno"],
+    relacionados: ["comisiones-por-profesional", "sobreturno", "horario-cortado"],
   },
   {
     slug: "confirmacion-de-turno",
@@ -328,12 +328,12 @@ export const glosario: Termino[] = [
     termino: "Seña",
     categoria: "Finanzas y métricas",
     definicion: "La seña es un pago parcial por adelantado que asegura un turno y reduce las ausencias y cancelaciones de último momento.",
-    titulo: "Qué es una seña y cómo cobrarla por transferencia o Mercado Pago",
+    titulo: "Seña para turnos: qué es y cómo cobrarla en peluquería y estética",
     analisis: [
       {
         titulo: "Cuándo conviene pedir seña",
         texto: [
-          "En servicios largos o caros: tratamientos estéticos, uñas esculpidas, detailing de autos, sesiones de más de una hora. Ahí una ausencia duele mucho.",
+          "En servicios largos o caros: color, mechas, alisados, uñas esculpidas, depilación láser, tratamientos faciales o corporales. Ahí una ausencia duele mucho.",
           "Suele ser un porcentaje del precio (20% a 50%) o un monto fijo.",
         ],
       },
@@ -367,7 +367,7 @@ export const glosario: Termino[] = [
       {
         titulo: "Cómo se hace",
         texto: [
-          "Se anotan los ingresos (cada servicio cobrado) y los egresos (productos, insumos, gastos) separados por medio de pago: efectivo, transferencia y Mercado Pago.",
+          "Se anotan los ingresos (cada corte, color o tratamiento cobrado) y los egresos (tinturas, insumos, productos, gastos) separados por medio de pago: efectivo, transferencia y Mercado Pago.",
           "Al cierre, el efectivo contado tiene que coincidir con el saldo en efectivo registrado. Si no coincide, hay un cobro sin anotar o un gasto olvidado.",
         ],
       },
@@ -378,7 +378,7 @@ export const glosario: Termino[] = [
       "Ves ingresos, egresos y saldo de hoy, de los últimos 7 días o del mes.",
     ],
     funcion: "caja",
-    faqs: [{ q: "¿La recepción puede usar la caja?", a: "Sí. Con roles, recepción carga movimientos y el dueño es el único que puede borrarlos y ver las comisiones." }],
+    faqs: [{ q: "¿En qué plan está la caja?", a: "En el plan Premium, junto con las comisiones por profesional." }],
     relacionados: ["comisiones-por-profesional", "ticket-promedio", "sena"],
   },
   {
@@ -386,13 +386,13 @@ export const glosario: Termino[] = [
     articulo: "la",
     termino: "Comisiones por profesional",
     categoria: "Finanzas y métricas",
-    definicion: "La comisión por profesional es el porcentaje de lo facturado que le corresponde a cada miembro del equipo por los servicios que atendió.",
-    titulo: "Cómo calcular las comisiones de tu equipo",
+    definicion: "La comisión por profesional es el porcentaje de lo facturado que le corresponde a cada barbero, peluquera o esteticista por los servicios que atendió.",
+    titulo: "Comisiones por profesional en barberías y peluquerías: cómo calcularlas",
     analisis: [
       {
         titulo: "Cómo se calcula",
         texto: [
-          "Se suma lo que facturó cada profesional en el período y se multiplica por su porcentaje. Si alguien facturó $800.000 y cobra el 40%, le corresponden $320.000.",
+          "Se suma lo que facturó cada profesional en el período y se multiplica por su porcentaje. Si un barbero facturó $800.000 y cobra el 40%, le corresponden $320.000.",
           "El problema habitual es reconstruir a fin de mes quién atendió qué: si no queda registrado en cada turno, aparecen diferencias y discusiones.",
         ],
       },
@@ -404,7 +404,7 @@ export const glosario: Termino[] = [
     ],
     funcion: "caja",
     faqs: [{ q: "¿Cada profesional puede tener un porcentaje distinto?", a: "Sí, el porcentaje se configura por profesional." }],
-    relacionados: ["caja-diaria", "agenda-por-profesional", "roles-y-permisos"],
+    relacionados: ["caja-diaria", "agenda-por-profesional", "ticket-promedio"],
   },
   {
     slug: "ticket-promedio",
@@ -412,7 +412,7 @@ export const glosario: Termino[] = [
     termino: "Ticket promedio",
     categoria: "Finanzas y métricas",
     definicion: "El ticket promedio es lo que gasta en promedio cada cliente por visita: lo facturado dividido por la cantidad de turnos atendidos.",
-    titulo: "Qué es el ticket promedio y cómo subirlo",
+    titulo: "Ticket promedio: qué es y cómo subirlo en tu peluquería o barbería",
     analisis: [
       {
         titulo: "Cómo se calcula",
@@ -423,16 +423,16 @@ export const glosario: Termino[] = [
       {
         titulo: "Cómo subirlo",
         texto: [
-          "Suele ser más fácil que conseguir clientes nuevos: combos, servicios adicionales, versiones premium y actualizar precios a tiempo.",
+          "Suele ser más fácil que conseguir clientes nuevos: combos como corte y barba o corte y color, adicionales como lavado, perfilado de cejas o un tratamiento, y actualizar precios a tiempo.",
         ],
       },
     ],
     solucion: [
-      "El panel muestra turnos e ingresos del período.",
-      "Los reportes calculan el ticket promedio solo, mes a mes.",
+      "Cargás combos y adicionales como servicios, con su precio y su duración, para que el cliente los elija al reservar.",
+      "En el plan Premium, la caja te muestra lo facturado del período para hacer la cuenta.",
     ],
-    funcion: "reportes",
-    faqs: [{ q: "¿Se cuentan los turnos cancelados?", a: "No, solo los turnos válidos del período." }],
+    funcion: "caja",
+    faqs: [{ q: "¿Se cuentan los turnos cancelados?", a: "No: solo los turnos atendidos y cobrados del período." }],
     relacionados: ["ocupacion", "horarios-pico", "caja-diaria"],
   },
   {
@@ -447,16 +447,15 @@ export const glosario: Termino[] = [
         titulo: "Cómo se calcula",
         texto: [
           "Si atendés 40 horas por semana y tenés 30 horas reservadas, tu ocupación es del 75%.",
-          "Mirarla por día y por franja muestra dónde hay huecos: muchos negocios están llenos los sábados y vacíos los martes a la tarde.",
+          "Mirarla por día y por franja muestra dónde hay huecos: muchas barberías y peluquerías están llenas los sábados y vacías los martes a la tarde.",
         ],
       },
     ],
     solucion: [
-      "Los reportes muestran los turnos por día de la semana y por hora.",
-      "Con eso ajustás horarios, promociones en horas flojas o sumás un profesional en los picos.",
+      "En la agenda ves los turnos de cada día, así detectás qué franjas quedan vacías.",
+      "Con eso ajustás horarios, armás promociones para las horas flojas o sumás un profesional en los picos.",
     ],
-    funcion: "reportes",
-    faqs: [{ q: "¿Qué ocupación es buena?", a: "Por encima del 70–80% la agenda está sana; si estás siempre al 100%, quizás conviene subir precios o sumar gente." }],
+    faqs: [{ q: "¿Qué ocupación es buena?", a: "Como referencia, por encima del 70–80% la agenda está sana; si estás siempre al 100%, quizás conviene subir precios o sumar un profesional." }],
     relacionados: ["horarios-pico", "ticket-promedio", "lista-de-espera"],
   },
   {
@@ -469,65 +468,17 @@ export const glosario: Termino[] = [
       {
         titulo: "Para qué sirve conocerlos",
         texto: [
-          "Te permite poner más gente en esos momentos, cobrar distinto, o mover clientes flexibles a horarios con menos demanda.",
+          "En barberías y peluquerías suelen ser la salida del trabajo y los sábados. Conocerlos te permite poner más gente en esos momentos, cobrar distinto o mover clientes flexibles a horarios con menos demanda.",
         ],
       },
     ],
     solucion: [
-      "El reporte de horarios pico muestra cuántos turnos hubo en cada hora y cuál fue la más pedida.",
-      "También ves la distribución por día de la semana y por mes.",
+      "En la agenda ves qué horarios se llenan primero cada semana.",
+      "En el plan Premium, la lista de espera junta a los que no consiguieron lugar en los horarios pico.",
     ],
-    funcion: "reportes",
-    faqs: [{ q: "¿Puedo ver los datos de todas las sucursales juntas?", a: "Sí, los reportes se pueden ver por sucursal o de todas juntas." }],
-    relacionados: ["ocupacion", "ticket-promedio", "multi-sucursal"],
-  },
-
-  /* ---------------------------- Administración ---------------------------- */
-  {
-    slug: "multi-sucursal",
-    articulo: "la",
-    termino: "Administración multi-sucursal",
-    categoria: "Administración",
-    definicion: "La administración multi-sucursal es manejar varios locales de un mismo negocio desde un solo panel, con agendas, equipos y números separados por sede.",
-    titulo: "Cómo administrar varias sucursales desde un solo panel",
-    analisis: [
-      {
-        titulo: "El problema de tener varias sedes",
-        texto: [
-          "Cada sucursal termina con su propio cuaderno o su propia cuenta, y el dueño no tiene una foto completa del negocio.",
-        ],
-      },
-    ],
-    solucion: [
-      "Cada sucursal tiene su link, sus servicios, sus horarios y su equipo.",
-      "Desde el mismo panel cambiás de sucursal en un toque.",
-      "Las métricas y reportes se ven por sucursal o todas juntas.",
-    ],
-    faqs: [{ q: "¿En qué plan están las sucursales?", a: "Las cuentas con varios locales se arman a medida: escribinos por WhatsApp y te pasamos el plan." }],
-    relacionados: ["roles-y-permisos", "horarios-pico", "agenda-por-profesional"],
-  },
-  {
-    slug: "roles-y-permisos",
-    articulo: "los",
-    termino: "Roles y permisos",
-    categoria: "Administración",
-    definicion: "Los roles y permisos definen qué puede ver y hacer cada persona del equipo en el sistema: por ejemplo, que un profesional vea su agenda pero no la caja del negocio.",
-    titulo: "Roles y permisos para empleados: qué puede ver cada uno",
-    analisis: [
-      {
-        titulo: "Por qué separar accesos",
-        texto: [
-          "Compartir una sola contraseña con todo el equipo expone la facturación y permite que cualquiera borre o cambie cosas sin dejar rastro.",
-        ],
-      },
-    ],
-    solucion: [
-      "Dueño: ve y configura todo, incluidas caja, comisiones, reportes y plan.",
-      "Recepción: maneja los turnos y la caja del día, sin acceso a la configuración.",
-      "Profesional: ve solo sus propios turnos.",
-    ],
-    faqs: [{ q: "¿Cómo invito a alguien del equipo?", a: "Desde Equipo cargás su email y su rol; le pasás el link de invitación y se registra con su propia clave." }],
-    relacionados: ["multi-sucursal", "comisiones-por-profesional", "caja-diaria"],
+    funcion: "lista_espera",
+    faqs: [{ q: "¿Conviene cobrar más caro en los horarios pico?", a: "Puede ser, pero lo más común es lo inverso: dejar el precio y ofrecer promociones en las horas flojas para mover clientes flexibles." }],
+    relacionados: ["ocupacion", "lista-de-espera", "ticket-promedio"],
   },
 
   /* ---------------------------- Clientes y WhatsApp ---------------------------- */
@@ -542,7 +493,7 @@ export const glosario: Termino[] = [
       {
         titulo: "Por qué conviene",
         texto: [
-          "Conseguir un cliente nuevo cuesta más que retener a uno que ya conoce tu trabajo. Un premio simple y fácil de entender (“cada 5 visitas, la 6ª es gratis”) motiva a volver.",
+          "Conseguir un cliente nuevo cuesta más que retener a uno que ya conoce tu trabajo. En barberías, donde el cliente vuelve cada 2 o 3 semanas, un premio simple (“cada 5 cortes, el 6º es gratis”) motiva a volver siempre al mismo lugar.",
         ],
       },
     ],

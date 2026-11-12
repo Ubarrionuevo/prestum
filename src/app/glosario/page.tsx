@@ -9,10 +9,10 @@ import { GlosarioBuscador } from "@/components/GlosarioBuscador";
 
 const product = getDefaultProduct();
 export const metadata = buildMetadata({
-  title: "Glosario para negocios con turnos: agenda, caja y clientes",
+  title: "Glosario para barberías, peluquerías y estética: agenda y caja",
   brand: product.brandName,
   description:
-    "Qué es el no-show, la seña, la caja diaria, las comisiones, el ticket promedio, la lista de espera y más. Explicado simple para dueños de negocios.",
+    "Qué es el no-show, la seña, la caja diaria, las comisiones, el ticket promedio, la lista de espera y más. Explicado simple para dueños de barberías, peluquerías y centros de estética.",
   path: "/glosario",
   keywords: ["glosario turnos", "qué es no-show", "cómo hacer la caja diaria", "cómo calcular comisiones", "ticket promedio"],
 });
@@ -37,7 +37,7 @@ export default function GlosarioPage() {
       <JsonLd data={[graphLd(product), termSet, breadcrumbLd(crumbs)]} />
       <Breadcrumbs items={crumbs} />
       <section className="mx-auto max-w-5xl px-4 py-12">
-        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">Glosario para negocios con turnos</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">Glosario para barberías, peluquerías y estética</h1>
         <p className="mt-3 max-w-2xl text-lg text-slate-600">
           Los conceptos que usás todos los días para manejar la agenda, la caja y los clientes, explicados simple.
         </p>
