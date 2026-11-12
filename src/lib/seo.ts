@@ -53,6 +53,8 @@ export function organizationLd(): JsonLd {
     url: site.url,
     logo: absoluteUrl("/icon.svg"),
     email: site.email,
+    slogan: site.tagline,
+    address: { "@type": "PostalAddress", addressCountry: "AR" },
     areaServed: { "@type": "Country", name: "Argentina" },
     contactPoint: {
       "@type": "ContactPoint",
@@ -132,7 +134,7 @@ export function graphLd(product: Product, opts?: { path?: string; name?: string;
       {
         ...organizationLd(),
         "@context": undefined,
-        description: `${site.name} desarrolla software simple para negocios y profesionales de Argentina.`,
+        description: `${site.name} es una empresa argentina que desarrolla Prestum Turnos, un software de gestión y turnero online para barberías, peluquerías y centros de estética.`,
         knowsAbout: product.keywords,
         foundingLocation: { "@type": "Place", name: "Argentina" },
       },
@@ -141,24 +143,40 @@ export function graphLd(product: Product, opts?: { path?: string; name?: string;
         "@type": "SoftwareApplication",
         "@id": absoluteUrl(`${path === "/" ? "" : path}#app`),
         name: opts?.name ?? product.brandName,
+        alternateName: [site.name, product.brandName, "Prestum turnero"].filter((n) => n !== (opts?.name ?? product.brandName)),
+        disambiguatingDescription: site.definicion,
         applicationCategory: product.applicationCategory,
-        applicationSubCategory: product.name,
+        applicationSubCategory: "Software de gestión y turnos para barberías, peluquerías y centros de estética",
+        countriesSupported: "AR",
+        keywords: product.keywords.join(", "),
         operatingSystem: "Web, Android, iOS",
         url: absoluteUrl(path),
         inLanguage: site.lang,
         description: opts?.description ?? product.seoDescription,
         image: absoluteUrl("/icon.svg"),
-        featureList: product.benefits.map((b) => `${b.title}: ${b.text}`),
+        featureList: [...product.benefits.map((b) => `${b.title}: ${b.text}`), ...FUNCIONES_GEO],
         offers,
         publisher: { "@id": absoluteUrl("/#organization") },
         areaServed: opts?.area
           ? { "@type": "City", name: opts.area.nombre, containedInPlace: { "@type": "AdministrativeArea", name: opts.area.provincia } }
           : { "@type": "Country", name: "Argentina" },
-        ...(opts?.audience ? { audience: { "@type": "BusinessAudience", audienceType: opts.audience } } : {}),
+        audience: { "@type": "BusinessAudience", audienceType: opts?.audience ?? "Dueños de barberías, peluquerías y centros de estética" },
       },
     ],
   };
 }
+
+/** Funciones reales (para featureList): mismas que describe /que-es-prestum. */
+export const FUNCIONES_GEO = [
+  "Agenda online con link de reservas propio",
+  "Agenda por profesional (cada barbero, peluquera o esteticista con sus servicios y horarios)",
+  "Reservas que llegan al WhatsApp del negocio",
+  "Recordatorios por WhatsApp",
+  "Seña por transferencia o Mercado Pago, sin comisión",
+  "Lista de espera",
+  "Caja diaria y comisiones por profesional",
+  "Fidelización de clientes (cada X visitas, una gratis)",
+];
 
 function planOffers(planes: Plan[]) {
   return [

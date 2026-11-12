@@ -60,6 +60,7 @@ export function Footer({ product }: { product: Product }) {
         <nav aria-label="Recursos y contacto">
           <p className={col}>RECURSOS</p>
           <ul className="mt-4 grid gap-2 text-sm">
+            <li><Link href="/que-es-prestum" className={link}>Qué es Prestum</Link></li>
             <li><Link href="/precios" className={link}>Precios</Link></li>
             <li><Link href="/glosario" className={link}>Glosario</Link></li>
             <li><Link href="/comparar" className={link}>Comparar apps de turnos</Link></li>
