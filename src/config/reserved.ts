@@ -10,6 +10,7 @@ export const RESERVED_SLUGS = new Set<string>([
   "turnos", "turneros", "admin", "soporte", "legal", "blog", "login", "app", "www", "prestum", "ayuda",
   "contacto", "rubros", "funcionalidades", "como-funciona", "opengraph-image", "terminos", "privacidad",
   "cuenta", "configuracion", "comparar", "vs", "alternativas", "llms", "sitemap-pseo",
+  "funciones", "calculadora-ausencias", "que-es-prestum", "calculadora", "soluciones",
 ]);
 
 export const SLUG_RE = /^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$/;

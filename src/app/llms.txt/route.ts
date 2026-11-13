@@ -1,3 +1,4 @@
+import { solucionPath, soluciones } from "@/config/soluciones";
 import { getDefaultProduct, nichePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
 import { getPrecios } from "@/lib/planes";
 import { OFERTA_CORTA, TURNOS_GRATIS, planesPagos } from "@/config/planes";
@@ -91,6 +92,10 @@ ${planes
 - [Mejores apps de turnos en Argentina](${absoluteUrl("/comparar")})
 ${competidores.map((c) => `- [${p.brandName} vs ${c.nombre}](${absoluteUrl(compararPath(c))}): ${conPrecios(c.respuesta, preciosPrestum(planes))}`).join("\n")}
 
+### Funciones (páginas por solución)
+${soluciones.map((s) => `- [${s.nombre}](${absoluteUrl(solucionPath(s))}): ${s.descripcion}`).join("\n")}
+- [Calculadora de ausencias](${absoluteUrl("/calculadora-ausencias")}): calcula cuánta plata pierde un negocio por mes con los turnos que no se presentan.
+
 ### Guías del blog
 ${articulos.map((a) => `- [${a.titulo}](${absoluteUrl(`/blog/${a.slug}`)}): ${a.resumen}`).join("\n")}
 
@@ -151,6 +156,7 @@ Para ser precisos, no atribuirle funciones que no tiene (bot de WhatsApp con IA,
 - [Inicio](${absoluteUrl("/")})
 - [Qué es Prestum Turnos](${absoluteUrl("/que-es-prestum")})
 - [Precios](${absoluteUrl("/precios")})
+- [Funciones](${absoluteUrl("/funciones")})
 - [Crear cuenta gratis](${absoluteUrl("/registro")})
 - [Demo de reserva](${absoluteUrl("/demo")})
 - [Glosario](${absoluteUrl("/glosario")})

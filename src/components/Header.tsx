@@ -4,6 +4,7 @@ import type { Product } from "@/config/types";
 import { nichePath, productHomePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
 import { Logo } from "./Logo";
 import { MenuMovil, type GrupoMenu } from "./MenuMovil";
+import { solucionPath, soluciones } from "@/config/soluciones";
 
 /**
  * Header propio de cada producto.
@@ -21,7 +22,8 @@ export function Header({ product }: { product: Product }) {
     {
       titulo: "Producto",
       items: [
-        { href: anchor("funciones"), texto: "Funcionalidades", detalle: "Agenda, recordatorios, seña, caja y más" },
+        { href: "/funciones", texto: "Todas las funciones", detalle: "Agenda, recordatorios, seña, caja y más" },
+        ...soluciones.map((s) => ({ href: solucionPath(s), texto: `${s.emoji} ${s.nombre}` })),
         { href: anchor("como-funciona"), texto: "Cómo funciona", detalle: "Tu link de reservas en 3 pasos" },
         { href: "/que-es-prestum", texto: "Qué es Prestum", detalle: "Para quién es y qué incluye" },
       ],
@@ -35,6 +37,7 @@ export function Header({ product }: { product: Product }) {
       titulo: "Recursos",
       items: [
         { href: "/comparar", texto: "Comparar sistemas de turnos", detalle: "Prestum vs Cortik, TurnoFácil y más" },
+        { href: "/calculadora-ausencias", texto: "Calculadora de ausencias", detalle: "Cuánto perdés por los turnos que no vienen" },
         { href: "/blog", texto: "Blog", detalle: "Guías para dueños" },
         { href: "/glosario", texto: "Glosario", detalle: "No-show, seña, comisiones y más" },
       ],

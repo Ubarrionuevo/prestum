@@ -1,3 +1,4 @@
+import { solucionPath, soluciones } from "@/config/soluciones";
 import Link from "next/link";
 import type { Product } from "@/config/types";
 import { site } from "@/config/site";
@@ -16,7 +17,7 @@ export function Footer({ product }: { product: Product }) {
 
   return (
     <footer className="border-t border-slate-200 bg-slate-50 pb-20 md:pb-0">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_2fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.6fr_1fr]">
         <div>
           <Logo brandName={product.brandName} href={home} />
           <p className="mt-3 max-w-xs text-sm text-slate-600">{product.seoDescription}</p>
@@ -29,6 +30,20 @@ export function Footer({ product }: { product: Product }) {
             <li><Link href={a("preguntas")} className={link}>Preguntas frecuentes</Link></li>
             <li><Link href="/registro" className={link}>Empezar gratis</Link></li>
             <li><Link href="/ingresar" className={link}>Ingresar</Link></li>
+          </ul>
+        </nav>
+        <nav aria-label="Soluciones">
+          <p className={col}>SOLUCIONES</p>
+          <ul className="mt-4 grid gap-2 text-sm">
+            {soluciones.map((x) => (
+              <li key={x.slug}>
+                <Link href={solucionPath(x)} className={link}>
+                  {x.nombre}
+                </Link>
+              </li>
+            ))}
+            <li><Link href="/calculadora-ausencias" className={link}>Calculadora de ausencias</Link></li>
+            <li><Link href="/funciones" className={link}>Todas las funciones</Link></li>
           </ul>
         </nav>
         <nav aria-label={`${product.name} por rubro`}>

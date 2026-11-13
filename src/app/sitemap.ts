@@ -1,3 +1,4 @@
+import { solucionPath, soluciones } from "@/config/soluciones";
 import type { MetadataRoute } from "next";
 import { activeProducts, esRubroFoco, nichePath, productHomePath } from "@/config/products";
 import { glosario } from "@/config/seo-content";
@@ -27,6 +28,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Rubros foco arriba; los secundarios (páginas de "también sirve para…") con menos prioridad.
     for (const niche of product.niches) entries.push(url(nichePath(product, niche), esRubroFoco(niche) ? 0.9 : 0.5));
   }
+  entries.push(url("/funciones", 0.8), url("/calculadora-ausencias", 0.7));
+  for (const s of soluciones) entries.push(url(solucionPath(s), 0.8));
   entries.push(url("/que-es-prestum", 0.9), url("/precios", 0.8), url("/registro", 0.7), url("/glosario", 0.8));
   for (const t of glosario) entries.push(url(`/glosario/${t.slug}`, 0.8));
   entries.push(url("/blog", 0.8));
