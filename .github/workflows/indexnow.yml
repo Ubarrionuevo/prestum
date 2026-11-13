@@ -1,0 +1,34 @@
+# Después de cada deploy de PRODUCCIÓN en Vercel, avisa a Bing (IndexNow) las páginas que cambiaron.
+# "Cambiaron" = <lastmod> de los últimos 3 días en los sitemaps (fechas en src/config/fechas.ts).
+# También se puede correr a mano: GitHub → Actions → IndexNow → Run workflow.
+name: IndexNow
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      todas:
+        description: "Avisar TODAS las URLs de los sitemaps (no solo las que cambiaron)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Esperar a que el sitio sirva la versión nueva
+        run: sleep 60
+      - name: Avisar a IndexNow
+        run: node scripts/indexnow.mjs ${{ github.event.inputs.todas == 'true' && '--todas' || '' }}

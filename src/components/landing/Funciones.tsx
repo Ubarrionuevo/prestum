@@ -154,7 +154,7 @@ export function Funciones({
             {extra.items.map((b) => (
               <div key={b.title} className="rounded-2xl bg-slate-50 p-5">
                 <p className="flex items-center gap-2 font-semibold text-slate-900">
-                  <span className="text-brand-600">✓</span> {b.title}
+                  <span className="text-brand-700">✓</span> {b.title}
                 </p>
                 <p className="mt-2 text-sm text-slate-600">{b.text}</p>
               </div>

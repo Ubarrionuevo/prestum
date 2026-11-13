@@ -70,14 +70,15 @@ export function Header({ product }: { product: Product }) {
               <ListaItems grupo={recursos} />
             </Desplegable>
           </li>
-          <li>
-            <Link href="/ingresar" className="whitespace-nowrap px-1.5 py-1 font-medium text-slate-700 hover:text-brand-700 sm:px-2">
+          {/* En el celular "Ingresar" va dentro del menú ☰, para que el botón diga completo "Empezar gratis". */}
+          <li className="hidden md:block">
+            <Link href="/ingresar" className="whitespace-nowrap px-2 py-1 font-medium text-slate-700 hover:text-brand-700">
               Ingresar
             </Link>
           </li>
           <li>
             <Link href="/registro" className="whitespace-nowrap rounded-lg bg-brand-700 px-3 py-2 font-semibold text-white hover:bg-brand-900 sm:px-3.5">
-              Empezar<span className="hidden sm:inline"> gratis</span>
+              Empezar gratis
             </Link>
           </li>
           <li className="md:hidden">

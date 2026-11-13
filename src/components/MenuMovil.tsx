@@ -71,6 +71,9 @@ export function MenuMovil({ grupos, precios }: { grupos: GrupoMenu[]; precios: s
           <Link href="/registro" onClick={() => setAbierto(false)} className="mt-4 block rounded-xl bg-brand-700 px-4 py-3 text-center font-semibold text-white">
             Empezar gratis
           </Link>
+          <Link href="/ingresar" onClick={() => setAbierto(false)} className="mt-2 block rounded-xl border border-slate-300 px-4 py-3 text-center font-semibold text-slate-800">
+            Ingresar a mi panel
+          </Link>
         </div>
       )}
     </>

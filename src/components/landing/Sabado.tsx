@@ -36,7 +36,7 @@ export function Sabado({ n }: { n: number }) {
                 role="tab"
                 aria-selected={con === v}
                 onClick={() => setCon(v as boolean)}
-                className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${con === v ? "bg-white text-slate-900 shadow" : "text-slate-500"}`}
+                className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${con === v ? "bg-white text-slate-900 shadow" : "text-slate-600"}`}
               >
                 {label as string}
               </button>
@@ -72,7 +72,7 @@ export function Sabado({ n }: { n: number }) {
                     <div className="min-w-0 flex-1">
                       <p className="flex justify-between text-sm font-semibold text-slate-900">
                         {c.de}
-                        <span className="text-[11px] font-normal text-[#25D366]">10:{String(7 + i * 7).padStart(2, "0")}</span>
+                        <span className="text-[11px] font-normal text-emerald-700">10:{String(7 + i * 7).padStart(2, "0")}</span>
                       </p>
                       <p className="truncate text-xs text-slate-500">{c.msg}</p>
                     </div>

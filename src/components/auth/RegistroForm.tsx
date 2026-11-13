@@ -117,8 +117,8 @@ export function RegistroForm() {
           <input className={inputCls} value={nombre} onChange={(e) => setNombre(e.target.value.slice(0, 60))} placeholder="Ej: Barbería Don Ramón" autoComplete="organization" required />
           <span className="text-xs font-normal text-slate-500">
             Tu link: <span className="font-mono text-brand-700">prestum.com.ar/{slug || "tu-negocio"}</span>
-            {libre === true && <span className="ml-1 text-emerald-600">✓ disponible</span>}
-            {libre === false && <span className="ml-1 text-amber-600">· ocupado, le agregamos un número</span>}
+            {libre === true && <span className="ml-1 text-emerald-700">✓ disponible</span>}
+            {libre === false && <span className="ml-1 text-amber-700">· ocupado, le agregamos un número</span>}
           </span>
         </label>
 

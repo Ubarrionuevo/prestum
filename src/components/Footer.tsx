@@ -12,7 +12,7 @@ import { Logo } from "./Logo";
 export function Footer({ product }: { product: Product }) {
   const home = productHomePath(product);
   const a = (id: string) => (home === "/" ? `/#${id}` : `${home}#${id}`);
-  const col = "text-xs font-bold tracking-widest text-slate-400";
+  const col = "text-xs font-bold tracking-widest text-slate-500";
   const link = "text-slate-600 hover:text-brand-700";
 
   return (
@@ -51,7 +51,7 @@ export function Footer({ product }: { product: Product }) {
           <ul className="mt-4 grid gap-2 text-sm">
             {(rubrosFoco(product).length ? rubrosFoco(product) : product.niches).map((n) => (
               <li key={n.slug}>
-                <Link href={nichePath(product, n)} className={link}>
+                <Link href={nichePath(product, n)} className={`${link} inline-block py-1`}>
                   Sistema de turnos para {n.name.toLowerCase()}
                 </Link>
               </li>
@@ -60,10 +60,10 @@ export function Footer({ product }: { product: Product }) {
           {rubrosFoco(product).length > 0 && rubrosSecundarios(product).length > 0 && (
             <>
               <p className={`${col} mt-6`}>TAMBIÉN PARA</p>
-              <ul className="mt-3 flex flex-wrap gap-x-3 gap-y-1.5 text-xs">
+              <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs">
                 {rubrosSecundarios(product).map((n) => (
                   <li key={n.slug}>
-                    <Link href={nichePath(product, n)} className={link}>
+                    <Link href={nichePath(product, n)} className={`${link} inline-block py-1`}>
                       {n.name}
                     </Link>
                   </li>

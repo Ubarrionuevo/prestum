@@ -40,7 +40,7 @@ export function Section({ id, children, className = "" }: { id: string; children
 export function Phone({ children, label }: { children: React.ReactNode; label?: string }) {
   return (
     <div className="mx-auto w-full max-w-[340px]">
-      {label && <p className="mb-2 text-center text-[11px] font-bold tracking-widest text-slate-400">{label}</p>}
+      {label && <p className="mb-2 text-center text-[11px] font-bold tracking-widest text-slate-500">{label}</p>}
       <div className="rounded-[2.2rem] border-[10px] border-slate-900 bg-white shadow-2xl shadow-brand-900/20">
         <div className="mx-auto mt-1.5 h-1.5 w-16 rounded-full bg-slate-200" />
         <div className="max-h-[560px] overflow-hidden rounded-b-[1.6rem]">{children}</div>
@@ -67,10 +67,10 @@ export function BookingPreview({
         </div>
         <div className="min-w-0">
           <p className="truncate font-bold text-slate-900">{nombre}</p>
-          <p className="text-xs text-emerald-600">● Abierto hoy · 9 a 19 h</p>
+          <p className="text-xs text-emerald-700">● Abierto hoy · 9 a 19 h</p>
         </div>
       </div>
-      <p className="mt-4 text-[10px] font-bold tracking-widest text-slate-400">ELEGÍ EL SERVICIO</p>
+      <p className="mt-4 text-[10px] font-bold tracking-widest text-slate-500">ELEGÍ EL SERVICIO</p>
       <ul className="mt-2 grid gap-2">
         {servicios.map((s, i) => (
           <li
@@ -79,14 +79,14 @@ export function BookingPreview({
           >
             <span>
               <span className="font-semibold text-slate-900">{s.nombre}</span>
-              {s.top && <span className="ml-1 text-[10px] font-semibold text-amber-600">★ Más pedido</span>}
+              {s.top && <span className="ml-1 text-[10px] font-semibold text-amber-700">★ Más pedido</span>}
               <span className="block text-xs text-slate-500">{s.duracion} min</span>
             </span>
             <span className="font-bold text-brand-700">{formatPrecio(s.precio)}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-4 text-[10px] font-bold tracking-widest text-slate-400">HORARIOS DE HOY</p>
+      <p className="mt-4 text-[10px] font-bold tracking-widest text-slate-500">HORARIOS DE HOY</p>
       <div className="mt-2 grid grid-cols-4 gap-1.5">
         {horarios.map((h, i) => (
           <span

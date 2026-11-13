@@ -8,7 +8,7 @@ export function Logo({ brandName, href = "/", light = false }: { brandName: stri
       <img src="/icon.svg" alt="" width={30} height={30} />
       <span className={light ? "text-white" : "text-brand-900"}>
         {first}
-        {rest.length > 0 && <span className={light ? "font-semibold text-brand-100" : "font-semibold text-brand-600"}> {rest.join(" ")}</span>}
+        {rest.length > 0 && <span className={light ? "font-semibold text-brand-100" : "font-semibold text-brand-700"}> {rest.join(" ")}</span>}
       </span>
     </Link>
   );
