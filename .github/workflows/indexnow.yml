@@ -1,10 +1,14 @@
-# Después de cada deploy de PRODUCCIÓN en Vercel, avisa a Bing (IndexNow) las páginas que cambiaron.
+# Después de cada deploy de producción, avisa a Bing (IndexNow) las páginas que cambiaron.
 # "Cambiaron" = <lastmod> de los últimos 3 días en los sitemaps (fechas en src/config/fechas.ts).
+#
+# Vercel no crea "deployments" en GitHub para este repo, así que la tarea arranca con cada push
+# a main y espera a que https://www.prestum.com.ar/version.txt muestre ese mismo commit.
 # También se puede correr a mano: GitHub → Actions → IndexNow → Run workflow.
 name: IndexNow
 
 on:
-  deployment_status:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       todas:
@@ -15,20 +19,27 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
 jobs:
   indexnow:
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.deployment_status.state == 'success' &&
-       github.event.deployment.environment == 'Production')
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Esperar a que el sitio sirva la versión nueva
-        run: sleep 60
+      - name: Esperar a que producción tenga este commit
+        if: github.event_name == 'push'
+        run: |
+          for i in $(seq 1 60); do
+            v=$(curl -s -H "Cache-Control: no-cache" "https://www.prestum.com.ar/version.txt?t=$(date +%s)" || true)
+            if [ "$v" = "${{ github.sha }}" ]; then echo "Deploy listo ($v)"; exit 0; fi
+            echo "Esperando deploy… (producción: ${v:0:7})"; sleep 15
+          done
+          echo "El deploy no apareció en 15 minutos; no se avisa a IndexNow."; exit 1
       - name: Avisar a IndexNow
         run: node scripts/indexnow.mjs ${{ github.event.inputs.todas == 'true' && '--todas' || '' }}
