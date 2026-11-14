@@ -37,16 +37,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { product, niche, city } = d;
   const rubro = niche.name.toLowerCase();
   return buildMetadata({
-    title: `Sistema de turnos y gestión para ${rubro} en ${city.corto}`,
+    title: `Sistema de turnos para ${rubro} en ${city.corto}`,
     brand: product.brandName,
-    description: `Software de gestión y turnos para dueños de ${rubro} en ${city.corto}, ${city.provincia}: reservas 24/7 a tu WhatsApp, recordatorios, seña, caja y comisiones. ${OFERTA_CORTA}, sin tarjeta.`,
+    description: `Turnero online para dueños de ${rubro} en ${city.corto}, ${city.provincia}. Tus clientes reservan solos 24/7 y el turno te llega a WhatsApp. ${OFERTA_CORTA}, sin tarjeta.`,
     path: cityNichePath(product, niche, city),
     keywords: [
       `turnero ${rubro} ${city.corto}`,
       `turnos online ${rubro} ${city.corto}`,
       `agenda ${niche.business} ${city.corto}`,
       `sistema de turnos ${city.corto}`,
-      `software de gestión ${niche.business} ${city.corto}`,
       ...niche.keywords.slice(0, 2),
     ],
   });
@@ -136,7 +135,7 @@ export default async function CiudadRubroPage({ params }: Props) {
       <Benefits title={`Pensado para tu ${niche.business}`} items={niche.benefits} />
       <section className="mx-auto max-w-6xl px-4 pb-4 text-center">
         <Link href="/funciones" className="font-semibold text-brand-700 hover:underline">
-          Ver todas las funciones para dueños: recordatorios, seña, caja y comisiones, lista de espera →
+          Ver todo lo que hace el turnero: recordatorios, seña, caja y comisiones, lista de espera →
         </Link>
       </section>
       <HowItWorks />
