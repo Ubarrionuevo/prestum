@@ -69,7 +69,7 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
   const rubro = n.name.toLowerCase();
   const zonas = c.zonas.length > 1 ? lista(c.zonas) : null;
 
-  const h1 = `Sistema de turnos para ${rubro} en ${lugarConProvincia(c)}`;
+  const h1 = `Sistema de turnos y gestión para ${rubro} en ${lugarConProvincia(c)}`;
   const lema = tituloWhatsApp(n.business);
 
   const bajada = `Tus clientes de ${c.nombre} eligen ${n.examples.slice(0, 2).map((e) => e.toLowerCase()).join(" o ")}, el día y el horario desde tu link. La reserva te llega armada a WhatsApp. ${OFERTA_CORTA}, sin tarjeta.`;
@@ -88,6 +88,9 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
       `Como ${c.corto} tiene temporada turística, la demanda cambia en el año: podés ampliar días y horarios en temporada alta y achicarlos después, en un minuto y sin avisarle a nadie.`,
     );
   local.push(
+    `Y no es solo la agenda: como dueño tenés una agenda por profesional, recordatorios por WhatsApp para bajar las ausencias, seña opcional, lista de espera, y la caja del día con las comisiones de cada profesional calculadas solas.`,
+  );
+  local.push(
     pick(seed + "c", [
       `Compartís el link en tu Instagram, en Google Maps o en tu estado de WhatsApp, y los turnos entran solos aunque estés atendiendo.`,
       `Lo ponés en la bio de Instagram y en tu ficha de Google Maps: cada reserva te llega con nombre, servicio, día, hora y medio de pago.`,
@@ -98,7 +101,7 @@ export function textosCiudadRubro(p: Product, n: Niche, c: Ciudad, precioDesde: 
   const faqs: Faq[] = [
     {
       q: `¿${p.brandName} funciona para ${rubro} en ${c.corto}?`,
-      a: `Sí. Funciona en ${c.nombre} y en toda la provincia de ${c.provincia}: solo necesitás tu link y WhatsApp. No hay que instalar nada.`,
+      a: `Sí. ${p.brandName} es un software de gestión y turnero online de desarrollo argentino para barberías, peluquerías y centros de estética, y funciona en ${c.nombre} y en toda la provincia de ${c.provincia}: solo necesitás tu link y WhatsApp. No hay que instalar nada.`,
     },
     {
       q: `¿Cuánto cuesta un turnero para ${rubro} en ${c.corto}?`,

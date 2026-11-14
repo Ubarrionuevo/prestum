@@ -45,6 +45,19 @@ export const ciudades: Ciudad[] = [
   { slug: "san-salvador-de-jujuy", nombre: "San Salvador de Jujuy", corto: "Jujuy", provincia: "Jujuy", region: "NOA", zonas: ["el Centro", "Los Perales", "Alto Comedero", "Palpalá"], siesta: true },
   { slug: "la-rioja", nombre: "La Rioja", corto: "La Rioja", provincia: "La Rioja", region: "NOA", zonas: ["el Centro"], siesta: true },
   { slug: "rio-cuarto", nombre: "Río Cuarto", corto: "Río Cuarto", provincia: "Córdoba", region: "Centro", zonas: ["el Centro", "Banda Norte"] },
+  // Provincias que faltaban
+  { slug: "san-luis", nombre: "San Luis", corto: "San Luis", provincia: "San Luis", region: "Cuyo", zonas: ["el Centro", "Juana Koslay", "La Punta"], siesta: true },
+  { slug: "santa-rosa", nombre: "Santa Rosa", corto: "Santa Rosa", provincia: "La Pampa", region: "Centro", zonas: ["el Centro", "Villa Santillán", "Toay"], siesta: true },
+  { slug: "formosa", nombre: "Formosa", corto: "Formosa", provincia: "Formosa", region: "NEA", zonas: ["el Centro", "San Miguel"], siesta: true },
+  { slug: "bariloche", nombre: "San Carlos de Bariloche", corto: "Bariloche", provincia: "Río Negro", region: "Patagonia", zonas: ["el Centro", "el Alto", "Melipal"], temporada: true },
+  { slug: "comodoro-rivadavia", nombre: "Comodoro Rivadavia", corto: "Comodoro Rivadavia", provincia: "Chubut", region: "Patagonia", zonas: ["el Centro", "Kilómetro 3", "Rada Tilly"] },
+  { slug: "rio-gallegos", nombre: "Río Gallegos", corto: "Río Gallegos", provincia: "Santa Cruz", region: "Patagonia", zonas: ["el Centro"] },
+  { slug: "ushuaia", nombre: "Ushuaia", corto: "Ushuaia", provincia: "Tierra del Fuego", region: "Patagonia", zonas: ["el Centro"], temporada: true },
+  // Conurbano bonaerense
+  { slug: "quilmes", nombre: "Quilmes", corto: "Quilmes", provincia: "Buenos Aires", region: "AMBA", zonas: ["el Centro", "Bernal", "Ezpeleta"] },
+  { slug: "lomas-de-zamora", nombre: "Lomas de Zamora", corto: "Lomas de Zamora", provincia: "Buenos Aires", region: "AMBA", zonas: ["el Centro", "Banfield", "Temperley"] },
+  { slug: "moron", nombre: "Morón", corto: "Morón", provincia: "Buenos Aires", region: "AMBA", zonas: ["el Centro", "Haedo", "Castelar", "El Palomar"] },
+  { slug: "san-isidro", nombre: "San Isidro", corto: "San Isidro", provincia: "Buenos Aires", region: "AMBA", zonas: ["el Centro", "Martínez", "Acassuso", "Beccar"] },
 ];
 
 /**
