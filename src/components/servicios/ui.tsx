@@ -16,7 +16,7 @@ export function LogoEstudio() {
   return (
     <Link href={B} className="flex items-center gap-2 font-extrabold tracking-tight text-white">
       <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-400 text-sm text-slate-950">
-        EW
+        S
       </span>
       {estudio.nombre}
     </Link>

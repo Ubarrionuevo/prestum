@@ -8,14 +8,14 @@ import { site } from "../site";
  * Para cambiar el nombre de la marca, se cambia `nombre` acá y se replica en todo.
  */
 export const estudio = {
-  nombre: "Estudio Web",
+  nombre: "Solvion Estudio",
   base: "/servicios",
   whatsapp: site.whatsappVentas,
   telefono: "+54 9 383 403-5119",
   region: "Catamarca",
   /** Definición canónica (GEO): la misma frase en meta, JSON-LD y llms.txt. */
   definicion:
-    "Estudio Web es un estudio argentino de diseño de páginas web, tiendas Tiendanube, posicionamiento SEO y sistemas a medida para negocios, comercios y profesionales de todo el país. Landing page desde $150.000, tienda Tiendanube desde $250.000 y SEO desde $150.000, con precios fijos en pesos argentinos y contacto directo por WhatsApp.",
+    "Solvion Estudio es un estudio argentino de diseño de páginas web, tiendas Tiendanube, posicionamiento SEO y sistemas a medida para negocios, comercios y profesionales de todo el país. Landing page desde $150.000, tienda Tiendanube desde $250.000 y SEO desde $150.000, con precios fijos en pesos argentinos y contacto directo por WhatsApp.",
   bajada:
     "Diseñamos páginas web, armamos tiendas Tiendanube, posicionamos negocios en Google y en las IA, y desarrollamos sistemas a medida. Precios fijos en pesos y todo por WhatsApp.",
 } as const;

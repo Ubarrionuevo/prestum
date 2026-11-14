@@ -11,7 +11,7 @@ export default function Image() {
     (
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", padding: 72, background: "#020617", color: "white", fontFamily: "sans-serif" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 36, fontWeight: 800 }}>
-          <div style={{ width: 56, height: 56, borderRadius: 14, background: "#fbbf24", color: "#020617", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24 }}>EW</div>
+          <div style={{ width: 56, height: 56, borderRadius: 14, background: "#fbbf24", color: "#020617", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32 }}>S</div>
           {estudio.nombre}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
