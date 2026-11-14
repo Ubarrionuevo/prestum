@@ -14,7 +14,7 @@
  */
 const SITE = "https://www.prestum.com.ar";
 const KEY = "7e64e8931b8b6735bbd8fa9e495b9a66";
-const SITEMAPS = [`${SITE}/sitemap.xml`, `${SITE}/sitemap-pseo.xml`];
+const SITEMAPS = [`${SITE}/sitemap.xml`, `${SITE}/sitemap-pseo.xml`, `${SITE}/sitemap-servicios.xml`];
 
 const args = process.argv.slice(2);
 const todas = args.includes("--todas");
