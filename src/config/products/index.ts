@@ -40,8 +40,12 @@ export const esRubroFoco = (n: Pick<Niche, "slug">) => RUBROS_FOCO.includes(n.sl
 /** Rubros foco del producto, en el orden de RUBROS_FOCO. */
 export const rubrosFoco = (p: Product) =>
   RUBROS_FOCO.map((s) => p.niches.find((n) => n.slug === s)).filter((n): n is Niche => n !== undefined);
-/** Rubros secundarios: siguen teniendo su página, pero solo como "también sirve para…". */
-export const rubrosSecundarios = (p: Product) => p.niches.filter((n) => !esRubroFoco(n));
+/**
+ * Rubros con página pública: solo los foco. Los demás rubros de turnero.ts siguen existiendo
+ * para el registro y el panel (negocios ya creados), pero no tienen landing: sus URLs viejas
+ * responden 410 (ver src/proxy.ts).
+ */
+export const rubrosPublicos = (p: Product) => (rubrosFoco(p).length ? rubrosFoco(p) : p.niches);
 
 export function getNiche(productSlug: string, nicheSlug: string): { product: Product; niche: Niche } | undefined {
   const product = getProduct(productSlug);
@@ -58,5 +62,5 @@ export function secondaryProductRoutes() {
 
 /** Todas las combinaciones producto/nicho publicables. */
 export function allNicheRoutes() {
-  return activeProducts().flatMap((p) => p.niches.map((n) => ({ producto: p.slug, nicho: n.slug })));
+  return activeProducts().flatMap((p) => rubrosPublicos(p).map((n) => ({ producto: p.slug, nicho: n.slug })));
 }

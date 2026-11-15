@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Product } from "@/config/types";
-import { nichePath, productHomePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
+import { nichePath, productHomePath, rubrosPublicos } from "@/config/products";
 import { Logo } from "./Logo";
 import { MenuMovil, type GrupoMenu } from "./MenuMovil";
 import { solucionPath, soluciones } from "@/config/soluciones";
@@ -14,9 +14,7 @@ import { solucionPath, soluciones } from "@/config/soluciones";
 export function Header({ product }: { product: Product }) {
   const home = productHomePath(product);
   const anchor = (id: string) => (home === "/" ? `/#${id}` : `${home}#${id}`);
-  const foco = rubrosFoco(product);
-  const principales = foco.length ? foco : product.niches;
-  const secundarios = foco.length ? rubrosSecundarios(product) : [];
+  const principales = rubrosPublicos(product);
 
   const grupos: GrupoMenu[] = [
     {
@@ -26,12 +24,12 @@ export function Header({ product }: { product: Product }) {
         ...soluciones.map((s) => ({ href: solucionPath(s), texto: `${s.emoji} ${s.nombre}` })),
         { href: anchor("como-funciona"), texto: "Cómo funciona", detalle: "Tu link de reservas en 3 pasos" },
         { href: "/que-es-prestum", texto: "Qué es Prestum", detalle: "Para quién es y qué incluye" },
+        { href: "/app-de-turnos", texto: "App de turnos", detalle: "Sin descargar nada, desde un link" },
       ],
     },
     {
       titulo: "Rubros",
       items: principales.map((n) => ({ href: nichePath(product, n), texto: `${n.emoji} ${n.name}` })),
-      extra: secundarios.map((n) => ({ href: nichePath(product, n), texto: n.name })),
     },
     {
       titulo: "Recursos",

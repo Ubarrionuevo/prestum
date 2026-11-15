@@ -1,5 +1,5 @@
 import { solucionPath, soluciones } from "@/config/soluciones";
-import { getDefaultProduct, nichePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
+import { getDefaultProduct, nichePath, rubrosFoco } from "@/config/products";
 import { getPrecios } from "@/lib/planes";
 import { OFERTA_CORTA, TURNOS_GRATIS, planesPagos } from "@/config/planes";
 import { CATEGORIAS_GLOSARIO, glosario } from "@/config/glosario";
@@ -116,9 +116,7 @@ ${glosario
 ### Rubros principales
 ${rubrosFoco(p).map((n) => `- [Sistema de turnos para ${n.name.toLowerCase()}](${absoluteUrl(nichePath(p, n))}): ${n.seoDescription}`).join("\n")}
 
-### También sirve para
-${rubrosSecundarios(p).map((n) => `- [${p.name} para ${n.name.toLowerCase()}](${absoluteUrl(nichePath(p, n))})`).join("\n")}
-- Cualquier otro negocio que trabaje con turnos (centros de salud, estudios, canchas, salas, servicios técnicos).
+Está pensado para estos tres rubros (estética incluye uñas, pestañas y cosmetología).
 
 ### Cobertura geográfica
 Funciona en toda Argentina: solo hace falta internet y WhatsApp.
@@ -155,6 +153,7 @@ Para ser precisos, no atribuirle funciones que no tiene (bot de WhatsApp con IA,
 ## Enlaces
 - [Inicio](${absoluteUrl("/")})
 - [Qué es Prestum Turnos](${absoluteUrl("/que-es-prestum")})
+- [App de turnos para barberías, peluquerías y estética](${absoluteUrl("/app-de-turnos")})
 - [Precios](${absoluteUrl("/precios")})
 - [Funciones](${absoluteUrl("/funciones")})
 - [Crear cuenta gratis](${absoluteUrl("/registro")})

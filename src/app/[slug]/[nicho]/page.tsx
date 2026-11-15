@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allNicheRoutes, esRubroFoco, getNiche, nichePath, productHomePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
+import { allNicheRoutes, getNiche, nichePath, productHomePath, rubrosPublicos } from "@/config/products";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/sections";
@@ -42,8 +42,7 @@ export default async function NichePage({ params }: Props) {
   const { product, niche } = found;
 
   const path = nichePath(product, niche);
-  const foco = esRubroFoco(niche);
-  const otros = (foco ? rubrosSecundarios(product) : [...rubrosFoco(product), ...rubrosSecundarios(product)]).filter((n) => n.slug !== niche.slug);
+  const otros = rubrosPublicos(product).filter((n) => n.slug !== niche.slug);
   const { planes } = await getPrecios();
   const crumbs = [
     { name: product.brandName, path: productHomePath(product) },
@@ -83,18 +82,9 @@ export default async function NichePage({ params }: Props) {
           </ul>
         </section>
       )}
-      {/* Cross-selling entre rubros: los foco ofrecen los secundarios y viceversa. */}
+      {/* Links entre los rubros foco. */}
       <section className="mx-auto max-w-6xl px-4 pb-12">
-        {foco ? (
-          <h2 className="text-lg font-semibold text-slate-900">{product.brandName} también funciona para</h2>
-        ) : (
-          <>
-            <h2 className="text-lg font-semibold text-slate-900">Hecho para barberías, peluquerías y estética</h2>
-            <p className="mt-1 max-w-2xl text-sm text-slate-600">
-              {product.brandName} nació para los negocios de belleza y cuidado personal, y funciona igual de bien para tu {niche.business}.
-            </p>
-          </>
-        )}
+        <h2 className="text-lg font-semibold text-slate-900">{product.brandName} también es para</h2>
         <ul className="mt-4 flex flex-wrap gap-2 text-sm">
           {otros.map((n) => (
             <li key={n.slug}>

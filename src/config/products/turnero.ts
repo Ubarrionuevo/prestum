@@ -93,10 +93,13 @@ export const turnero: Product = {
       name: "Barberías",
       business: "barbería",
       emoji: "💈",
-      seoTitle: "Sistema de turnos y gestión para barberías",
+      seoTitle: "Turnos para barbería: sistema de turnos online",
       seoDescription:
-        "Software de gestión y turnos para barberías: tus clientes reservan corte o barba desde Instagram, cada barbero tiene su agenda y controlás caja y comisiones.",
+        "Turnos para tu barbería, online: tus clientes reservan corte o barba desde Instagram, cada barbero tiene su agenda y controlás caja y comisiones.",
       keywords: [
+        "turnos barbería",
+        "turnos para barbería",
+        "barbería turnos online",
         "sistema de turnos para barberías",
         "app de turnos para barbería",
         "agenda para barberos",
@@ -132,6 +135,10 @@ export const turnero: Product = {
       examples: ["Corte clásico", "Corte + barba", "Perfilado de barba", "Color"],
       faqs: [
         {
+          q: "¿Cómo doy turnos en mi barbería sin contestar mensajes?",
+          a: "Ponés tu link de reservas en la bio de Instagram y en WhatsApp. El cliente elige servicio, barbero, día y hora, y el turno te llega solo: vos no escribís nada.",
+        },
+        {
           q: "¿Puedo tener una agenda por barbero?",
           a: "Sí. Cada barbero tiene sus propios días y horarios, y el cliente elige con quién atenderse o toma el primer turno libre.",
         },
@@ -150,10 +157,13 @@ export const turnero: Product = {
       name: "Peluquerías",
       business: "peluquería",
       emoji: "✂️",
-      seoTitle: "Sistema de turnos y gestión para peluquerías",
+      seoTitle: "Turnos para peluquería: sistema de turnos online",
       seoDescription:
-        "Software de gestión y turnos para peluquerías: tus clientas reservan corte, color o alisado con la duración justa, y manejás agenda, caja y comisiones.",
+        "Turnos para tu peluquería, online: tus clientas reservan corte, color o alisado con la duración justa, y manejás agenda, caja y comisiones.",
       keywords: [
+        "turnos peluquería",
+        "turnos para peluquería",
+        "peluquería turnos online",
         "sistema de turnos para peluquerías",
         "agenda para peluquería",
         "app de turnos para peluquería",
@@ -187,6 +197,10 @@ export const turnero: Product = {
       ],
       examples: ["Corte y brushing", "Color", "Mechas o balayage", "Alisado"],
       faqs: [
+        {
+          q: "¿Cómo doy turnos en mi peluquería sin estar con el celular?",
+          a: "Compartís tu link de reservas en Instagram y WhatsApp. La clienta elige el servicio, la profesional y el horario, y el turno queda agendado sin que tengas que responder.",
+        },
         {
           q: "¿Cada peluquera puede tener su propia agenda?",
           a: "Sí. Cada profesional tiene sus días y horarios, y la clienta elige con quién atenderse o toma el primer turno libre.",

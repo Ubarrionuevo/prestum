@@ -78,10 +78,10 @@ export const soluciones: Solucion[] = [
     funcion: "recordatorios",
     nombre: "Recordatorios por WhatsApp",
     emoji: "🔔",
-    titulo: "Recordatorios de turnos por WhatsApp para barberías, peluquerías y estética",
+    titulo: "Recordatorio de turnos por WhatsApp para barberías, peluquerías y estética",
     descripcion: "Mandá el recordatorio del turno desde tu propio WhatsApp con un toque, con tu texto. Menos olvidos y menos ausencias, sin bots ni la API de WhatsApp.",
     eyebrow: "Recordatorios con un toque",
-    h1: "Recordá cada turno por WhatsApp con un toque",
+    h1: "Recordatorio de turnos por WhatsApp, con un toque",
     bajada:
       "En cada turno tocás “Recordar” y se abre tu WhatsApp con el mensaje armado: nombre, día, hora y servicio. Sale desde tu número, el que tus clientes ya conocen.",
     problema: {
@@ -109,7 +109,7 @@ export const soluciones: Solucion[] = [
     ],
     blog: "reducir-ausentismo-turnos",
     glosario: ["recordatorio-de-turno", "no-show", "confirmacion-de-turno"],
-    keywords: ["recordatorio de turnos por whatsapp", "recordatorio turnos barbería", "recordar turnos clientes", "sistema de turnos con recordatorio", "evitar ausencias turnos"],
+    keywords: ["recordatorio de turnos", "recordatorio de turnos por whatsapp", "recordatorio turnos barbería", "recordar turnos clientes", "sistema de turnos con recordatorio", "evitar ausencias turnos"],
   },
   {
     slug: "caja-y-comisiones",

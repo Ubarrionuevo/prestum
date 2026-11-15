@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getDefaultProduct, nichePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
+import { getDefaultProduct, nichePath, rubrosFoco } from "@/config/products";
 import { absoluteUrl, site } from "@/config/site";
 import { TURNOS_GRATIS } from "@/config/planes";
 import { formatPrecio } from "@/config/negocios";
@@ -33,7 +33,6 @@ export default async function QueEsPrestumPage() {
   const { planes } = await getPrecios();
   const pagos = planes.filter((p) => p.precio_mensual > 0).sort((a, b) => a.precio_mensual - b.precio_mensual);
   const foco = rubrosFoco(product);
-  const otros = rubrosSecundarios(product);
   const crumbs = [
     { name: product.brandName, path: "/" },
     { name: "Qué es Prestum", path },
@@ -47,10 +46,7 @@ export default async function QueEsPrestumPage() {
     },
     {
       q: "¿Para qué negocios está pensado?",
-      a: `Está diseñado específicamente para barberías, peluquerías y centros de estética (incluye uñas, pestañas y cosmetología). También lo usan ${otros
-        .slice(0, 4)
-        .map((n) => n.name.toLowerCase())
-        .join(", ")} y otros negocios que trabajan con turnos.`,
+      a: `Está diseñado específicamente para barberías, peluquerías y centros de estética (incluye uñas, pestañas y cosmetología). Todo, desde los servicios hasta la agenda por profesional, está pensado para cómo trabajan esos negocios.`,
     },
     {
       q: "¿Prestum es argentino?",
@@ -104,20 +100,6 @@ export default async function QueEsPrestumPage() {
               </li>
             ))}
           </ul>
-          {otros.length > 0 && (
-            <p className="mt-4 text-sm text-slate-600">
-              También funciona para{" "}
-              {otros.map((n, i) => (
-                <span key={n.slug}>
-                  <Link href={nichePath(product, n)} className="text-brand-700 hover:underline">
-                    {n.name.toLowerCase()}
-                  </Link>
-                  {i < otros.length - 2 ? ", " : i === otros.length - 2 ? " y " : ""}
-                </span>
-              ))}
-              .
-            </p>
-          )}
         </section>
 
         <section className="mt-10">

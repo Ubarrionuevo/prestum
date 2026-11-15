@@ -11,10 +11,10 @@
  */
 export const ACTUALIZADO = {
   home: "2026-11-12",
-  rubrosFoco: "2026-11-12",
-  rubrosSecundarios: "2026-11-11",
+  rubrosFoco: "2026-11-15",
   ciudades: "2026-11-13",
-  funciones: "2026-11-13",
+  funciones: "2026-11-15",
+  appDeTurnos: "2026-11-15",
   calculadora: "2026-11-13",
   queEsPrestum: "2026-11-12",
   precios: "2026-11-11",

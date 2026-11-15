@@ -2,7 +2,7 @@ import { solucionPath, soluciones } from "@/config/soluciones";
 import Link from "next/link";
 import type { Product } from "@/config/types";
 import { site } from "@/config/site";
-import { nichePath, productHomePath, rubrosFoco, rubrosSecundarios } from "@/config/products";
+import { nichePath, productHomePath, rubrosPublicos } from "@/config/products";
 import { Logo } from "./Logo";
 
 /**
@@ -49,7 +49,7 @@ export function Footer({ product }: { product: Product }) {
         <nav aria-label={`${product.name} por rubro`}>
           <p className={col}>RUBROS</p>
           <ul className="mt-4 grid gap-2 text-sm">
-            {(rubrosFoco(product).length ? rubrosFoco(product) : product.niches).map((n) => (
+            {rubrosPublicos(product).map((n) => (
               <li key={n.slug}>
                 <Link href={nichePath(product, n)} className={`${link} inline-block py-1`}>
                   Sistema de turnos para {n.name.toLowerCase()}
@@ -57,25 +57,12 @@ export function Footer({ product }: { product: Product }) {
               </li>
             ))}
           </ul>
-          {rubrosFoco(product).length > 0 && rubrosSecundarios(product).length > 0 && (
-            <>
-              <p className={`${col} mt-6`}>TAMBIÉN PARA</p>
-              <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs">
-                {rubrosSecundarios(product).map((n) => (
-                  <li key={n.slug}>
-                    <Link href={nichePath(product, n)} className={`${link} inline-block py-1`}>
-                      {n.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
         </nav>
         <nav aria-label="Recursos y contacto">
           <p className={col}>RECURSOS</p>
           <ul className="mt-4 grid gap-2 text-sm">
             <li><Link href="/que-es-prestum" className={link}>Qué es Prestum</Link></li>
+            <li><Link href="/app-de-turnos" className={link}>App de turnos</Link></li>
             <li><Link href="/precios" className={link}>Precios</Link></li>
             <li><Link href="/glosario" className={link}>Glosario</Link></li>
             <li><Link href="/comparar" className={link}>Comparar apps de turnos</Link></li>

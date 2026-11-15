@@ -4,7 +4,6 @@
  * así no se divide la autoridad ni se genera contenido duplicado.
  *   /turnero/barberia             → /turnero/barberias
  *   /turnero/barberia/caba        → /turnero/barberias/buenos-aires
- *   /turnero/dentistas/caba       → /turnero/odontologos   (rubro secundario: sin páginas por ciudad)
  * El destino tiene que existir en products/turnero.ts o en seo-content.ts.
  */
 
@@ -13,8 +12,8 @@ export const PSEO_PRODUCTO = "turnero";
 
 /**
  * RUBROS FOCO: el sitio apunta a los DUEÑOS de estos negocios (menú, home, registro, páginas por ciudad).
- * El resto de los rubros de turnero.ts siguen existiendo como páginas secundarias ("también sirve para…"),
- * sin páginas por ciudad. El orden es el que se muestra en el sitio.
+ * El resto de los rubros de turnero.ts siguen existiendo solo para el registro y el panel: no tienen
+ * página pública (sus URLs responden 410). El orden es el que se muestra en el sitio.
  */
 export const RUBROS_FOCO = ["barberias", "peluquerias", "esteticistas"];
 
@@ -62,27 +61,29 @@ export const CIUDAD_ALIASES: Record<string, string> = {
   "santiago": "santiago-del-estero",
 };
 
+/**
+ * URLs ELIMINADAS (responden 410 "Gone" desde src/proxy.ts, así Google las borra rápido):
+ *   /turnero/<rubro no foco>[/<ciudad>]  → rubros que ya no tienen página (canina, lavaderos, odontólogos…)
+ *   /turnos-online[/<ciudad>]            → páginas genéricas por ciudad que se quitaron
+ */
+export const PREFIJOS_ELIMINADOS = ["/turnos-online"];
+
+/** ¿El segmento de rubro de /turnero/<rubro> lleva a un rubro foco (directo o por alias)? */
+export const esRubroPublico = (seg: string) => RUBROS_FOCO.includes(RUBRO_ALIASES[seg] ?? seg);
+
 /** Redirecciones para next.config.ts (el orden importa: gana la primera que coincide). */
 export function aliasRedirects() {
   const p = PSEO_PRODUCTO;
   const out: Array<{ source: string; destination: string; permanent: true }> = [];
+  // Solo alias de rubros foco: los demás rubros ya no tienen página (410 en src/proxy.ts).
   for (const [alias, rubro] of Object.entries(RUBRO_ALIASES)) {
-    const foco = RUBROS_FOCO.includes(rubro);
+    if (!RUBROS_FOCO.includes(rubro)) continue;
     out.push({ source: `/${p}/${alias}`, destination: `/${p}/${rubro}`, permanent: true });
-    out.push({ source: `/${p}/${alias}/:ciudad`, destination: foco ? `/${p}/${rubro}/:ciudad` : `/${p}/${rubro}`, permanent: true });
+    out.push({ source: `/${p}/${alias}/:ciudad`, destination: `/${p}/${rubro}/:ciudad`, permanent: true });
   }
-  // Rubros secundarios ya no tienen páginas por ciudad: /turnero/<rubro>/<ciudad> → /turnero/<rubro>.
-  out.push({
-    source: `/${p}/:rubro((?!(?:${RUBROS_FOCO.join("|")})/)[^/]+)/:ciudad`,
-    destination: `/${p}/:rubro`,
-    permanent: true,
-  });
   for (const [alias, ciudad] of Object.entries(CIUDAD_ALIASES)) {
     out.push({ source: `/${p}/:rubro/${alias}`, destination: `/${p}/:rubro/${ciudad}`, permanent: true });
   }
-  // Las páginas genéricas por ciudad (/turnos-online/<ciudad>) se quitaron: van a la home.
-  out.push({ source: "/turnos-online", destination: "/", permanent: true });
-  out.push({ source: "/turnos-online/:ciudad", destination: "/", permanent: true });
   // Términos del glosario que ya no aplican a la oferta (varias sucursales, roles).
   out.push({ source: "/glosario/multi-sucursal", destination: "/glosario/agenda-por-profesional", permanent: true });
   out.push({ source: "/glosario/roles-y-permisos", destination: "/glosario/agenda-por-profesional", permanent: true });
