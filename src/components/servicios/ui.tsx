@@ -4,7 +4,7 @@ import type { Faq } from "@/config/types";
 import { ciudades } from "@/config/seo-content";
 import { estudio, precioTexto, servicioPath, servicios, waLink } from "@/config/servicios/estudio";
 import { rubrosServ } from "@/config/servicios/rubros";
-import { casos, comparativasServ } from "@/config/servicios/extras";
+import { casos, comparativasServ, type Caso } from "@/config/servicios/extras";
 
 /**
  * Componentes de la sección de servicios. Identidad visual propia (oscuro + ámbar),
@@ -12,9 +12,12 @@ import { casos, comparativasServ } from "@/config/servicios/extras";
  */
 const B = estudio.base;
 
+/** Nombres cortos para el menú (que no se corten en dos líneas). */
+const CORTO: Record<string, string> = { "diseno-web": "Diseño web", tiendanube: "Tiendanube", "posicionamiento-seo": "SEO", "sistemas-a-medida": "Sistemas" };
+
 export function LogoEstudio() {
   return (
-    <Link href={B} className="flex items-center gap-2 font-extrabold tracking-tight text-white">
+    <Link href={B} className="flex shrink-0 items-center gap-2 whitespace-nowrap font-extrabold tracking-tight text-white">
       <span aria-hidden className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-400 text-sm text-slate-950">
         S
       </span>
@@ -25,7 +28,7 @@ export function LogoEstudio() {
 
 export function HeaderEstudio() {
   const links = [
-    ...servicios.map((s) => ({ href: servicioPath(s), texto: s.nombre })),
+    ...servicios.map((s) => ({ href: servicioPath(s), texto: CORTO[s.slug] ?? s.nombre })),
     { href: `${B}/precios`, texto: "Precios" },
     { href: `${B}/casos`, texto: "Casos" },
   ];
@@ -36,7 +39,7 @@ export function HeaderEstudio() {
         <ul className="hidden items-center gap-1 text-sm lg:flex">
           {links.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="px-2 py-1 text-slate-300 hover:text-amber-300">
+              <Link href={l.href} className="whitespace-nowrap px-2 py-1 text-slate-300 hover:text-amber-300">
                 {l.texto}
               </Link>
             </li>
@@ -157,7 +160,7 @@ export function WaFlotante({ mensaje }: { mensaje: string }) {
     <a
       href={waLink(mensaje)}
       aria-label="Escribinos por WhatsApp"
-      className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-lg hover:bg-emerald-700"
+      className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full bg-emerald-700 px-4 py-3 text-sm font-semibold text-white shadow-lg hover:bg-emerald-800"
     >
       <span aria-hidden>💬</span> WhatsApp
     </a>
@@ -318,5 +321,39 @@ export function Pildoras({ items }: { items: Array<{ href: string; texto: string
         </li>
       ))}
     </ul>
+  );
+}
+
+/** Captura real de un trabajo, con marco de celular. */
+export function Captura({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt}
+      width={600}
+      height={1120}
+      loading="lazy"
+      decoding="async"
+      className={`h-auto w-full rounded-[1.75rem] border-[6px] border-slate-900 bg-white shadow-xl ${className}`}
+    />
+  );
+}
+
+/** Tarjeta de un caso real con su captura. */
+export function TarjetaCaso({ caso, texto, cta = "Ver el caso →" }: { caso: Caso; texto?: string; cta?: string }) {
+  return (
+    <Link
+      href={`${B}/casos/${caso.slug}`}
+      className="grid grid-cols-[minmax(0,1fr)_110px] items-start gap-5 rounded-2xl border border-slate-200 bg-white p-6 hover:border-amber-400 sm:grid-cols-[minmax(0,1fr)_150px]"
+    >
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">{caso.rubro}</p>
+        <p className="mt-2 text-xl font-bold text-slate-900">{caso.nombre}</p>
+        <p className="mt-2 text-slate-600">{texto ?? caso.resumen}</p>
+        <p className="mt-4 text-sm font-semibold text-slate-900">{cta}</p>
+      </div>
+      <Captura src={caso.imagen} alt={`Web de ${caso.nombre} en el celular`} />
+    </Link>
   );
 }

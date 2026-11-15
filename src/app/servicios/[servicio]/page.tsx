@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { breadcrumbLd, buildMetadata, faqLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { estudio, getServicio, precioTexto, servicioPath, servicios } from "@/config/servicios/estudio";
 import { casos, comparativasServ } from "@/config/servicios/extras";
 import { ciudadesDe, destinoPath, rubrosDe, servicioLd } from "@/lib/servicios";
-import { Diagnostico, Faqs, HeroEstudio, ListaCheck, Pildoras, Seccion } from "@/components/servicios/ui";
+import { Diagnostico, Faqs, HeroEstudio, ListaCheck, Pildoras, Seccion, TarjetaCaso } from "@/components/servicios/ui";
 
 type Props = { params: Promise<{ servicio: string }> };
 
@@ -74,10 +73,7 @@ export default async function ServicioPage({ params }: Props) {
         <Seccion titulo="Trabajos reales">
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {casosS.map((c) => (
-              <Link key={c.slug} href={`${estudio.base}/casos/${c.slug}`} className="rounded-2xl border border-slate-200 p-6 hover:border-amber-400">
-                <p className="text-xl font-bold text-slate-900">{c.nombre}</p>
-                <p className="mt-2 text-slate-600">{c.resumen}</p>
-              </Link>
+              <TarjetaCaso key={c.slug} caso={c} />
             ))}
           </div>
         </Seccion>

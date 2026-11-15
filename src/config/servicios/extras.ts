@@ -13,6 +13,8 @@ export interface Caso {
   /** Ciudad de seo-content.ts, si es un negocio local. */
   ciudad?: string;
   servicios: ServicioSlug[];
+  /** Captura real del sitio en celular (public/servicios-casos/<slug>.webp, 600×1120). */
+  imagen: string;
   resumen: string;
   desafio: string;
   hicimos: string[];
@@ -27,6 +29,7 @@ export const casos: Caso[] = [
     rubroSlug: "regalerias-y-desayunos",
     ciudad: "catamarca",
     servicios: ["diseno-web", "posicionamiento-seo"],
+    imagen: "/servicios-casos/laprincesacta.webp",
     resumen: "Desayunos sorpresa y ramos de golosinas a domicilio en Catamarca.",
     desafio:
       "Muchos de sus clientes viven lejos de Catamarca y quieren mandarle un regalo a su familia. Necesitaban confiar en el negocio sin conocerlo y poder pedir fácil desde otra provincia o desde el exterior.",
@@ -45,6 +48,7 @@ export const casos: Caso[] = [
     url: "https://de0aclientes.com.ar",
     rubro: "Medio digital y newsletter",
     servicios: ["diseno-web", "posicionamiento-seo"],
+    imagen: "/servicios-casos/de0aclientes.webp",
     resumen: "Medio digital con artículos y un newsletter diario gratuito para conseguir clientes, en español e inglés.",
     desafio:
       "Necesitaba un sitio de contenido que cargue rápido, se lea bien en el celular y convierta lectores en suscriptores.",

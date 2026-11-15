@@ -1,0 +1,12 @@
+{
+  "name": "Solvion Estudio",
+  "short_name": "Solvion",
+  "description": "Diseño de páginas web, Tiendanube, SEO y sistemas a medida en Argentina.",
+  "start_url": "/servicios",
+  "scope": "/servicios",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "lang": "es-AR",
+  "icons": [{ "src": "/estudio-icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

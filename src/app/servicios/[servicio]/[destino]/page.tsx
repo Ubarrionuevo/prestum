@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { breadcrumbLd, buildMetadata, faqLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { estudio, precioTexto, servicioPath } from "@/config/servicios/estudio";
 import { lugarConProvincia } from "@/config/seo-content";
 import { cercanas, destinoPath, getDestino, serviciosRoutes, servicioLd, textosCiudad, textosRubro, type Destino } from "@/lib/servicios";
-import { Diagnostico, Faqs, HeroEstudio, ListaCheck, Pildoras, Seccion } from "@/components/servicios/ui";
+import { Diagnostico, Faqs, HeroEstudio, ListaCheck, Pildoras, Seccion, TarjetaCaso } from "@/components/servicios/ui";
 import type { Caso } from "@/config/servicios/extras";
 
 type Props = { params: Promise<{ servicio: string; destino: string }> };
@@ -54,12 +53,9 @@ const INCLUYE: Record<string, string> = {
 function CasoCard({ caso, titulo }: { caso: Caso; titulo: string }) {
   return (
     <Seccion titulo={titulo} gris>
-      <Link href={`${estudio.base}/casos/${caso.slug}`} className="mt-6 block rounded-2xl border border-slate-200 bg-white p-6 hover:border-amber-400">
-        <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">{caso.rubro}</p>
-        <p className="mt-2 text-xl font-bold text-slate-900">{caso.nombre}</p>
-        <p className="mt-2 text-slate-600">{caso.desafio}</p>
-        <p className="mt-4 text-sm font-semibold text-slate-900">Ver qué hicimos →</p>
-      </Link>
+      <div className="mt-6 max-w-3xl">
+        <TarjetaCaso caso={caso} texto={caso.desafio} cta="Ver qué hicimos →" />
+      </div>
     </Seccion>
   );
 }

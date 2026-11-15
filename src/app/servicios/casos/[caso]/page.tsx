@@ -9,7 +9,7 @@ import { casos, getCaso } from "@/config/servicios/extras";
 import { getRubroServ } from "@/config/servicios/rubros";
 import { getCiudad } from "@/config/seo-content";
 import { destinoPath, estudioId } from "@/lib/servicios";
-import { HeroEstudio, ListaCheck, Pildoras, Seccion } from "@/components/servicios/ui";
+import { Captura, HeroEstudio, ListaCheck, Pildoras, Seccion } from "@/components/servicios/ui";
 
 type Props = { params: Promise<{ caso: string }> };
 
@@ -70,8 +70,14 @@ export default async function CasoPage({ params }: Props) {
         bajada={c.resumen}
         mensaje={`Hola! Vi el caso ${c.nombre} y quiero algo parecido para mi negocio.`}
       />
-      <Seccion titulo="Qué necesitaba">
-        <p className="mt-4 max-w-3xl text-lg text-slate-700">{c.desafio}</p>
+      <Seccion>
+        <div className="grid items-start gap-10 md:grid-cols-[minmax(0,1fr)_280px]">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">Qué necesitaba</h2>
+            <p className="mt-4 max-w-3xl text-lg text-slate-700">{c.desafio}</p>
+          </div>
+          <Captura src={c.imagen} alt={`Web de ${c.nombre} en el celular`} className="mx-auto max-w-[280px]" />
+        </div>
       </Seccion>
       <Seccion titulo="Qué hicimos" gris>
         <ListaCheck items={c.hicimos} />

@@ -7,7 +7,7 @@ import { rubrosServ } from "@/config/servicios/rubros";
 import { casos, comparativasServ } from "@/config/servicios/extras";
 import { ciudades } from "@/config/seo-content";
 import { estudioLd } from "@/lib/servicios";
-import { Diagnostico, Faqs, HeroEstudio, Pildoras, Seccion, TarjetasServicios } from "@/components/servicios/ui";
+import { Diagnostico, Faqs, TarjetaCaso, HeroEstudio, Pildoras, Seccion, TarjetasServicios } from "@/components/servicios/ui";
 
 const B = estudio.base;
 
@@ -46,12 +46,7 @@ export default function ServiciosHome() {
       <Seccion titulo="Trabajos reales" gris>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {casos.map((c) => (
-            <Link key={c.slug} href={`${B}/casos/${c.slug}`} className="rounded-2xl border border-slate-200 bg-white p-6 hover:border-amber-400">
-              <p className="text-xs font-semibold uppercase tracking-wide text-amber-700">{c.rubro}</p>
-              <p className="mt-2 text-xl font-bold text-slate-900">{c.nombre}</p>
-              <p className="mt-2 text-slate-600">{c.resumen}</p>
-              <p className="mt-4 text-sm font-semibold text-slate-900">Ver el caso →</p>
-            </Link>
+            <TarjetaCaso key={c.slug} caso={c} />
           ))}
         </div>
       </Seccion>

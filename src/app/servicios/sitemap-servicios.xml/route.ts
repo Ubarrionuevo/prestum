@@ -5,6 +5,8 @@ import { casos, comparativasServ } from "@/config/servicios/extras";
 import { serviciosRoutes } from "@/lib/servicios";
 
 // SITEMAP DE SERVICIOS (marca propia, separado de Prestum Turnos).
+// Vive DENTRO de /servicios/ porque Search Console tiene una propiedad aparte para
+// https://www.prestum.com.ar/servicios/ y esa propiedad solo acepta sitemaps bajo ese prefijo.
 // Fecha REAL del último cambio de contenido (config/fechas.ts), no la del deploy.
 export const dynamic = "force-static";
 
