@@ -3,6 +3,7 @@ import { ACTUALIZADO } from "@/config/fechas";
 import { estudio, servicioPath, servicios } from "@/config/servicios/estudio";
 import { casos, comparativasServ } from "@/config/servicios/extras";
 import { serviciosRoutes } from "@/lib/servicios";
+import { guiaPath, guias } from "@/config/servicios/guias";
 
 // SITEMAP DE SERVICIOS (marca propia, separado de Prestum Turnos).
 // Vive DENTRO de /servicios/ porque Search Console tiene una propiedad aparte para
@@ -23,9 +24,14 @@ export function GET() {
     ...comparativasServ.map((c) => [`${B}/vs/${c.slug}`, 0.6] as [string, number]),
     ...serviciosRoutes().map((r) => [`${B}/${r.servicio}/${r.destino}`, 0.6] as [string, number]),
   ];
+  const conGuias = [
+    ...urls.map(([p, pr]) => [p, pr, fecha] as const),
+    [`${B}/conseguir-clientes`, 0.7, ACTUALIZADO.guias] as const,
+    ...guias.map((g) => [guiaPath(g), 0.7, ACTUALIZADO.guias] as const),
+  ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(([p, pr]) => `  <url><loc>${absoluteUrl(p)}</loc><lastmod>${fecha}</lastmod><priority>${pr}</priority></url>`).join("\n")}
+${conGuias.map(([p, pr, f]) => `  <url><loc>${absoluteUrl(p)}</loc><lastmod>${f}</lastmod><priority>${pr}</priority></url>`).join("\n")}
 </urlset>
 `;
   return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8" } });

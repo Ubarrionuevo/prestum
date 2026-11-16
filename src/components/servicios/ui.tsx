@@ -5,6 +5,7 @@ import { ciudades } from "@/config/seo-content";
 import { estudio, precioTexto, servicioPath, servicios, waLink } from "@/config/servicios/estudio";
 import { rubrosServ } from "@/config/servicios/rubros";
 import { casos, comparativasServ, type Caso } from "@/config/servicios/extras";
+import { guias } from "@/config/servicios/guias";
 
 /**
  * Componentes de la sección de servicios. Identidad visual propia (oscuro + ámbar),
@@ -138,6 +139,11 @@ export function FooterEstudio() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href={`${B}/conseguir-clientes`} className="inline-block py-0.5 hover:text-amber-300">
+                Cómo conseguir clientes ({guias.length} guías)
+              </Link>
+            </li>
             {casos.map((c) => (
               <li key={c.slug}>
                 <Link href={`${B}/casos/${c.slug}`} className="inline-block py-0.5 hover:text-amber-300">
