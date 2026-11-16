@@ -1,10 +1,10 @@
 import type { Niche, Product } from "../types";
 
 /**
- * SISTEMA DE GESTIÓN — en preparación.
- * Mientras `status` sea "proximamente" NO se generan páginas ni entra al sitemap
- * (evitamos publicar páginas vacías, que perjudican el SEO).
- * Cuando esté listo: completar el contenido de cada nicho y pasar a "activo".
+ * SISTEMA DE GESTIÓN — solo reserva el slug /sistema-de-gestion.
+ * La web de Prestum Gestión vive en src/app/sistema-de-gestion (contenido en config/gestion.ts),
+ * con layout propio. Este producto queda en "proximamente" para que las rutas genéricas
+ * de productos ([slug], [slug]/[nicho]) no generen páginas duplicadas.
  */
 function draft(slug: string, name: string, business: string, emoji: string): Niche {
   return {
