@@ -1,10 +1,10 @@
 import type { Niche, Product } from "../types";
 
 /**
- * SISTEMA DE GESTIÓN — solo reserva el slug /sistema-de-gestion.
- * La web de Prestum Gestión vive en src/app/sistema-de-gestion (contenido en config/gestion.ts),
- * con layout propio. Este producto queda en "proximamente" para que las rutas genéricas
- * de productos ([slug], [slug]/[nicho]) no generen páginas duplicadas.
+ * SISTEMA DE GESTIÓN — solo reserva el slug /sistema-de-gestion (ningún negocio puede usarlo).
+ * Prestum Gestión es un proyecto aparte en https://gestion.prestum.com.ar (repo prestum-gestion);
+ * /sistema-de-gestion redirige 308 allá (next.config.ts). Queda en "proximamente" para que las
+ * rutas genéricas de productos no generen páginas.
  */
 function draft(slug: string, name: string, business: string, emoji: string): Niche {
   return {

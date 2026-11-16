@@ -5,9 +5,7 @@ import { compararPath, competidores } from "@/config/comparativas";
 import { articulos } from "@/config/blog";
 import { solucionPath, soluciones } from "@/config/soluciones";
 import { fechaDe, type SeccionFecha } from "@/config/fechas";
-import { absoluteUrl } from "@/config/site";
-import { funcionGestionPath, funcionesGestion, gestion, rubroGestionPath, rubrosGestion } from "@/config/gestion";
-import { getServerSupabase, hoyAR } from "@/lib/supabase";
+import { absoluteUrl } from "@/config/site";import { getServerSupabase, hoyAR } from "@/lib/supabase";
 
 // SITEMAP PRINCIPAL (alta prioridad): home, rubros, funciones, precios, glosario, blog, comparativas,
 // legales y negocios pagos. Las páginas por ciudad van aparte en /sitemap-pseo.xml.
@@ -42,10 +40,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   for (const a of articulos) entries.push(url(`/blog/${a.slug}`, 0.8, a.actualizado ?? a.publicado));
   entries.push(url("/comparar", 0.8, "comparar"));
   for (const c of competidores) entries.push(url(compararPath(c), 0.8, "comparar"));
-  // Prestum Gestión (secciones propias en /sistema-de-gestion; ver config/gestion.ts).
-  entries.push(url(gestion.base, 0.9, "gestion", "weekly"));
-  for (const r of rubrosGestion) entries.push(url(rubroGestionPath(r), 0.9, "gestion"));
-  for (const f of funcionesGestion) entries.push(url(funcionGestionPath(f), 0.8, "gestion"));
   entries.push(url("/legal/terminos", 0.1, "terminos"), url("/legal/privacidad", 0.1, "privacidad"));
 
   // Negocios con plan pago (los de prueba no se indexan). Sin lastmod: no sabemos cuándo cambió su página.

@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
       { source: "/turneros", destination: "/", permanent: true },
       // Links viejos de reserva → nuevo formato prestum.com.ar/<negocio>
       { source: "/reservar/:slug", destination: "/:slug", permanent: true },
+      // Prestum Gestión es un proyecto aparte en su subdominio (repo prestum-gestion).
+      { source: "/sistema-de-gestion", destination: "https://gestion.prestum.com.ar/", permanent: true },
+      { source: "/sistema-de-gestion/:path*", destination: "https://gestion.prestum.com.ar/:path*", permanent: true },
       // URLs cortas de rubros y ciudades → slug canónico (ver src/config/aliases.ts)
       ...aliasRedirects(),
     ];

@@ -26,7 +26,6 @@ export const ACTUALIZADO = {
   servicios: "2026-11-14",
   guias: "2026-11-16",
   consultas: "2026-11-16",
-  gestion: "2026-11-16",
 } as const;
 
 export type SeccionFecha = keyof typeof ACTUALIZADO;
