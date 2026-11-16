@@ -7,7 +7,7 @@ import { rubrosServ } from "@/config/servicios/rubros";
 import { casos, comparativasServ } from "@/config/servicios/extras";
 import { ciudades } from "@/config/seo-content";
 import { estudioLd } from "@/lib/servicios";
-import { guiaPath, guias } from "@/config/servicios/guias";
+import { guiaPath, guiasGenerales } from "@/config/servicios/guias";
 import { Diagnostico, Faqs, TarjetaCaso, HeroEstudio, Pildoras, Seccion, TarjetasServicios } from "@/components/servicios/ui";
 
 const B = estudio.base;
@@ -85,7 +85,7 @@ export default function ServiciosHome() {
       </Seccion>
 
       <Seccion titulo="Cómo conseguir clientes: guías gratis">
-        <Pildoras items={guias.map((g) => ({ href: guiaPath(g), texto: `${g.emoji} ${g.h1}` }))} />
+        <Pildoras items={[...guiasGenerales.map((g) => ({ href: guiaPath(g), texto: `${g.emoji} ${g.h1}` })), { href: `${B}/conseguir-clientes`, texto: "Ver las guías por rubro →" }]} />
       </Seccion>
 
       <Faqs faqs={faqs} />

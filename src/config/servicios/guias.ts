@@ -1,4 +1,7 @@
 import type { Faq } from "../types";
+import { rubrosServ, type RubroServ } from "./rubros";
+import { extrasRubro, type ExtraRubro } from "./guias-rubros";
+import { getServicio, precioTexto } from "./estudio";
 
 /**
  * GUÍAS "CÓMO CONSEGUIR CLIENTES" → /servicios/conseguir-clientes/<slug>
@@ -30,7 +33,8 @@ export interface Guia {
   faqs: Faq[];
 }
 
-export const guias: Guia[] = [
+/** Guías generales y por canal, escritas a mano. */
+export const guiasGenerales: Guia[] = [
   {
     slug: "para-mi-negocio",
     busqueda: "cómo conseguir clientes para mi negocio",
@@ -304,6 +308,53 @@ export const guias: Guia[] = [
     ],
   },
 ];
+
+const comillas = (xs: string[]) => xs.map((x) => `"${x}"`).join(", ");
+const minuscula = (x: string) => x.charAt(0).toLowerCase() + x.slice(1);
+
+/** Arma la guía de un rubro con su contenido propio (guias-rubros.ts) + los datos del rubro (rubros.ts). */
+function guiaDeRubro(r: RubroServ, x: ExtraRubro): Guia {
+  const precioWeb = precioTexto(getServicio("diseno-web")!);
+  const titulo = `Cómo conseguir clientes ${x.frase}`;
+  const links = [
+    { href: `/diseno-web/${r.slug}`, texto: `Página web para ${r.nombre.toLowerCase()}` },
+    { href: `/posicionamiento-seo/${r.slug}`, texto: `SEO para ${r.nombre.toLowerCase()}` },
+    ...(r.tienda ? [{ href: `/tiendanube/${r.slug}`, texto: `Tienda online para ${r.nombre.toLowerCase()}` }] : []),
+    ...(r.sistema ? [{ href: `/sistemas-a-medida/${r.slug}`, texto: `Sistema de ${r.sistema.que}` }] : []),
+  ];
+  return {
+    slug: r.slug,
+    busqueda: `cómo conseguir clientes ${x.frase}`,
+    corto: r.nombre,
+    emoji: r.emoji,
+    titulo: `${titulo}: guía práctica`,
+    descripcion: `${titulo}: dónde te buscan, qué tiene que tener tu web, cómo aparecer en Google y Maps, y los errores que hacen perder clientes. Pasos concretos.`,
+    h1: titulo,
+    bajada: `Guía práctica para que te encuentren en Google, Maps e Instagram y te escriban por WhatsApp: ${x.tacticas.length + 2} pasos pensados para ${r.nombre.toLowerCase()}.`,
+    intro: [
+      `Para conseguir clientes ${x.frase} hay que estar donde te buscan y hacer que contactarte sea inmediato. Así elige tu cliente: ${minuscula(r.cliente)}`,
+      `${r.seo} Algunas búsquedas típicas del rubro: ${comillas(r.busquedas)}.`,
+    ],
+    pasos: [
+      ...x.tacticas,
+      { t: "Que tu web tenga lo que el cliente necesita ver", d: `Antes de escribirte, quiere encontrar: ${r.necesita.map(minuscula).join("; ")}.` },
+      { t: "Aparecé en Google y en Maps en tu zona", d: `Ficha de Google completa, con fotos, horarios y reseñas, y una web con páginas para lo que se busca en tu rubro, como ${comillas(r.busquedas.slice(0, 2))}.` },
+    ],
+    errores: [...x.errores, "Depender solo de Instagram: casi no aparece en Google y no te encuentra quien todavía no te conoce."],
+    solvion: `En Solvion armamos la web de tu ${r.negocio} con lo que tu cliente busca y contacto directo por WhatsApp, y trabajamos el SEO local para que te encuentren cuando buscan ${comillas(r.busquedas.slice(0, 2))}.${r.tienda ? " Si vendés productos, también armamos tu tienda en Tiendanube." : ""}${r.sistema ? ` Y si lo necesitás, un sistema de ${r.sistema.que} a medida.` : ""}`,
+    links,
+    faqs: [
+      x.faq,
+      r.faq,
+      { q: `¿Cuánto cuesta una página web para ${r.una} ${r.negocio}?`, a: `En Solvion, el diseño de una landing page arranca ${precioWeb}, en pesos y con precio cerrado antes de empezar. El precio final depende de las secciones y funciones que necesites.` },
+    ],
+  };
+}
+
+/** Guías por rubro (todos los rubros con contenido propio en guias-rubros.ts). */
+export const guiasRubro: Guia[] = rubrosServ.filter((r) => extrasRubro[r.slug]).map((r) => guiaDeRubro(r, extrasRubro[r.slug]));
+
+export const guias: Guia[] = [...guiasGenerales, ...guiasRubro];
 
 export const getGuia = (slug: string) => guias.find((g) => g.slug === slug);
 export const guiaPath = (g: Pick<Guia, "slug">) => `/servicios/conseguir-clientes/${g.slug}`;

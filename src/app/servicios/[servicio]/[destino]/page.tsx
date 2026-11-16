@@ -7,6 +7,8 @@ import { lugarConProvincia } from "@/config/seo-content";
 import { cercanas, destinoPath, getDestino, serviciosRoutes, servicioLd, textosCiudad, textosRubro, type Destino } from "@/lib/servicios";
 import { Diagnostico, Faqs, HeroEstudio, ListaCheck, Pildoras, Seccion, TarjetaCaso } from "@/components/servicios/ui";
 import type { Caso } from "@/config/servicios/extras";
+import { getGuia, guiaPath } from "@/config/servicios/guias";
+import Link from "next/link";
 
 type Props = { params: Promise<{ servicio: string; destino: string }> };
 
@@ -134,6 +136,13 @@ function ContenidoRubro({ d, t }: { d: Extract<Destino, { tipo: "rubro" }>; t: R
       {t.otros.length > 0 && (
         <Seccion titulo={`Más servicios para ${r.nombre.toLowerCase()}`}>
           <Pildoras items={t.otros.map((o) => ({ href: destinoPath(o, r), texto: `${o.emoji} ${o.titulo} para ${r.nombre.toLowerCase()}` }))} />
+        </Seccion>
+      )}
+      {getGuia(r.slug) && (
+        <Seccion>
+          <Link href={guiaPath(getGuia(r.slug)!)} className="font-semibold text-amber-700 hover:underline">
+            📘 Guía: {getGuia(r.slug)!.h1} →
+          </Link>
         </Seccion>
       )}
     </>
