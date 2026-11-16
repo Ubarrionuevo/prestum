@@ -77,7 +77,7 @@ export const servicios: Servicio[] = [
       { q: "¿La web queda a mi nombre?", a: "Sí. El dominio se registra a tu nombre y la web es tuya." },
       { q: "¿Puedo sumar más secciones después?", a: "Sí. Se puede ampliar con más páginas, un blog, una tienda o un sistema cuando lo necesites." },
     ],
-    keywords: ["diseño de páginas web", "diseño web argentina", "landing page", "página web para negocios", "cuánto cuesta una página web"],
+    keywords: ["diseño de páginas web", "diseño web argentina", "landing page", "página web para negocios", "precio página web"],
   },
   {
     slug: "tiendanube",

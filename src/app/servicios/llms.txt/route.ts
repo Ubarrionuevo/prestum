@@ -5,6 +5,7 @@ import { casos, comparativasServ } from "@/config/servicios/extras";
 import { ciudades } from "@/config/seo-content";
 import { aplica, destinoPath } from "@/lib/servicios";
 import { guiaPath, guias } from "@/config/servicios/guias";
+import { consultaPath, consultas } from "@/config/servicios/consultas";
 
 // Resumen para IA (ChatGPT, Gemini, Claude) de los servicios. Marca propia: no menciona otros productos.
 export const dynamic = "force-static";
@@ -39,6 +40,9 @@ Diseño web, SEO y Tiendanube tienen una página por ciudad con el formato ${abs
 
 ## Comparativas
 ${comparativasServ.map((c) => `- [${c.h1}](${absoluteUrl(`${B}/vs/${c.slug}`)})`).join("\n")}
+
+## Guías: antes de contratar
+${consultas.map((g) => `- [${g.h1}](${absoluteUrl(consultaPath(g))}): ${g.descripcion}`).join("\n")}
 
 ## Guías: cómo conseguir clientes
 ${guias.map((g) => `- [${g.h1}](${absoluteUrl(guiaPath(g))}): ${g.descripcion}`).join("\n")}

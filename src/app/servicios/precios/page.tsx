@@ -20,7 +20,7 @@ export const metadata: Metadata = buildMetadata({
   brand: estudio.nombre,
   description: "Cuánto cuesta una página web en Argentina: landing desde $150.000, Tiendanube desde $250.000, SEO desde $150.000 y sistemas a medida con presupuesto sin cargo. En pesos.",
   path,
-  keywords: ["cuánto cuesta una página web", "precio página web argentina", "precio tiendanube armado", "precio seo"],
+  keywords: ["precio página web argentina", "precios diseño web", "precio tiendanube armado", "precio seo"],
 });
 
 export default function PreciosServicios() {
@@ -34,7 +34,7 @@ export default function PreciosServicios() {
       <HeroEstudio
         migas={crumbs}
         etiqueta="Precios en pesos argentinos"
-        titulo="Cuánto cuesta una página web, una Tiendanube o el SEO"
+        titulo="Precios de páginas web, Tiendanube y SEO"
         bajada="Precios claros, en pesos y con el precio cerrado antes de empezar. Sin sorpresas."
         mensaje="Hola! Quiero consultar precios."
       />
@@ -67,6 +67,12 @@ export default function PreciosServicios() {
             </div>
           ))}
         </div>
+        <p className="mt-6 text-slate-600">
+          ¿Comparando presupuestos?{" "}
+          <Link href={`${estudio.base}/guias/cuanto-cuesta-una-pagina-web`} className="font-semibold text-amber-700 hover:underline">
+            Qué define el precio de una página web y qué pedir que incluya →
+          </Link>
+        </p>
       </Seccion>
       <Faqs faqs={faqs} />
     </>

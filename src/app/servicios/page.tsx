@@ -8,6 +8,7 @@ import { casos, comparativasServ } from "@/config/servicios/extras";
 import { ciudades } from "@/config/seo-content";
 import { estudioLd } from "@/lib/servicios";
 import { guiaPath, guiasGenerales } from "@/config/servicios/guias";
+import { consultaPath, consultas } from "@/config/servicios/consultas";
 import { Diagnostico, Faqs, TarjetaCaso, HeroEstudio, Pildoras, Seccion, TarjetasServicios } from "@/components/servicios/ui";
 
 const B = estudio.base;
@@ -84,7 +85,11 @@ export default function ServiciosHome() {
         <Pildoras items={comparativasServ.map((c) => ({ href: `${B}/vs/${c.slug}`, texto: c.h1 }))} />
       </Seccion>
 
-      <Seccion titulo="Cómo conseguir clientes: guías gratis">
+      <Seccion titulo="Antes de contratar una web">
+        <Pildoras items={consultas.map((g) => ({ href: consultaPath(g), texto: `${g.emoji} ${g.h1}` }))} />
+      </Seccion>
+
+      <Seccion titulo="Cómo conseguir clientes: guías gratis" gris>
         <Pildoras items={[...guiasGenerales.map((g) => ({ href: guiaPath(g), texto: `${g.emoji} ${g.h1}` })), { href: `${B}/conseguir-clientes`, texto: "Ver las guías por rubro →" }]} />
       </Seccion>
 

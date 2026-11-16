@@ -7,7 +7,16 @@ import { casos, comparativasServ } from "@/config/servicios/extras";
 import { ciudadesDe, destinoPath, rubrosDe, servicioLd } from "@/lib/servicios";
 import { Diagnostico, Faqs, HeroEstudio, ListaCheck, Pildoras, Seccion, TarjetaCaso } from "@/components/servicios/ui";
 
+import { consultaPath, consultas } from "@/config/servicios/consultas";
+
 type Props = { params: Promise<{ servicio: string }> };
+
+/** Qué guías "antes de contratar" se enlazan desde cada servicio. */
+const GUIAS_POR_SERVICIO: Record<string, string[]> = {
+  "diseno-web": ["cuanto-cuesta-una-pagina-web", "como-hacer-una-pagina-web-para-mi-negocio"],
+  "posicionamiento-seo": ["como-aparecer-en-google-maps"],
+  tiendanube: ["cuanto-cuesta-una-pagina-web"],
+};
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -39,6 +48,7 @@ export default async function ServicioPage({ params }: Props) {
   const comps = comparativasServ.filter((c) => c.servicio === s.slug);
   const casosS = casos.filter((c) => c.servicios.includes(s.slug));
   const otros = servicios.filter((x) => x.slug !== s.slug);
+  const guiasS = consultas.filter((g) => GUIAS_POR_SERVICIO[s.slug]?.includes(g.slug));
 
   return (
     <>
@@ -94,6 +104,12 @@ export default async function ServicioPage({ params }: Props) {
       {comps.length > 0 && (
         <Seccion titulo="Comparativas">
           <Pildoras items={comps.map((c) => ({ href: `${estudio.base}/vs/${c.slug}`, texto: c.h1 }))} />
+        </Seccion>
+      )}
+
+      {guiasS.length > 0 && (
+        <Seccion titulo="Guías antes de contratar" gris={comps.length > 0}>
+          <Pildoras items={guiasS.map((g) => ({ href: consultaPath(g), texto: `${g.emoji} ${g.h1}` }))} />
         </Seccion>
       )}
 

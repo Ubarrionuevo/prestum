@@ -6,6 +6,7 @@ import { estudio, precioTexto, servicioPath, servicios, waLink } from "@/config/
 import { rubrosServ } from "@/config/servicios/rubros";
 import { casos, comparativasServ, type Caso } from "@/config/servicios/extras";
 import { guias } from "@/config/servicios/guias";
+import { consultaPath, consultas } from "@/config/servicios/consultas";
 
 /**
  * Componentes de la sección de servicios. Identidad visual propia (oscuro + ámbar),
@@ -144,6 +145,13 @@ export function FooterEstudio() {
                 Cómo conseguir clientes ({guias.length} guías)
               </Link>
             </li>
+            {consultas.map((c) => (
+              <li key={c.slug}>
+                <Link href={consultaPath(c)} className="inline-block py-0.5 hover:text-amber-300">
+                  {c.corto}
+                </Link>
+              </li>
+            ))}
             {casos.map((c) => (
               <li key={c.slug}>
                 <Link href={`${B}/casos/${c.slug}`} className="inline-block py-0.5 hover:text-amber-300">

@@ -4,6 +4,7 @@ import { estudio, servicioPath, servicios } from "@/config/servicios/estudio";
 import { casos, comparativasServ } from "@/config/servicios/extras";
 import { serviciosRoutes } from "@/lib/servicios";
 import { guiaPath, guias } from "@/config/servicios/guias";
+import { consultaPath, consultas } from "@/config/servicios/consultas";
 
 // SITEMAP DE SERVICIOS (marca propia, separado de Prestum Turnos).
 // Fecha REAL del último cambio de contenido (config/fechas.ts), no la del deploy.
@@ -26,6 +27,7 @@ export function GET() {
     ...urls.map(([p, pr]) => [p, pr, fecha] as const),
     [`${B}/conseguir-clientes`, 0.7, ACTUALIZADO.guias] as const,
     ...guias.map((g) => [guiaPath(g), 0.7, ACTUALIZADO.guias] as const),
+    ...consultas.map((g) => [consultaPath(g), 0.7, ACTUALIZADO.consultas] as const),
   ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
