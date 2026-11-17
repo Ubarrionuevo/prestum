@@ -18,8 +18,11 @@ export const dynamicParams = false;
 export const generateStaticParams = () => competidores.map((c) => ({ comparativa: `prestum-vs-${c.slug}` }));
 
 const product = getDefaultProduct();
-const anio = REVISADO.slice(0, 4);
-const fechaLarga = new Date(`${REVISADO}T12:00:00`).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
+// Cada competidor puede tener su propia fecha de revisión (los que se sumaron después).
+const revisadoDe = (c: { revisado?: string }) => c.revisado ?? REVISADO;
+const anioDe = (c: { revisado?: string }) => revisadoDe(c).slice(0, 4);
+const fechaLargaDe = (c: { revisado?: string }) =>
+  new Date(`${revisadoDe(c)}T12:00:00`).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" });
 
 async function cargar(params: Props["params"]) {
   const slug = slugDeRuta((await params).comparativa);
@@ -31,6 +34,8 @@ async function cargar(params: Props["params"]) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const d = await cargar(params);
+  const anio = d ? anioDe(d.c) : "";
+  const fechaLarga = d ? fechaLargaDe(d.c) : "";
   if (!d) return {};
   return buildMetadata({
     title: `${product.brandName} vs ${d.c.nombre} (${anio}): cuál conviene`,
@@ -43,6 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ComparativaPage({ params }: Props) {
   const d = await cargar(params);
+  const anio = d ? anioDe(d.c) : "";
+  const fechaLarga = d ? fechaLargaDe(d.c) : "";
   if (!d) notFound();
   const { c, planes, precios } = d;
   const path = compararPath(c);
@@ -62,7 +69,7 @@ export default async function ComparativaPage({ params }: Props) {
     "@id": absoluteUrl(`${path}#pagina`),
     name: `${product.brandName} vs ${c.nombre}`,
     url: absoluteUrl(path),
-    dateModified: REVISADO,
+    dateModified: revisadoDe(c),
     inLanguage: site.lang,
     about: [{ "@type": "SoftwareApplication", name: product.brandName }, { "@type": "SoftwareApplication", name: c.nombre, url: c.fuente }],
   };

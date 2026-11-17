@@ -476,6 +476,59 @@ export const articulos: Articulo[] = [
     ],
     glosario: ["link-de-reservas", "agenda-por-profesional", "horario-cortado"],
   },
+  {
+    slug: "mejores-apps-de-turnos-argentina",
+    titulo: "Las mejores apps de turnos para barberías, peluquerías y estética en Argentina",
+    descripcion: "Comparamos 10 apps de turnos que se usan en Argentina: plan gratis, precio en pesos, WhatsApp y comisiones. Con datos de sus webs oficiales y cuál conviene según tu caso.",
+    portada: "10 apps de turnos, comparadas",
+    emoji: "🏆",
+    categoria: "Agenda y turnos",
+    publicado: "2026-11-17",
+    minutos: 5,
+    resumen:
+      "Si trabajás solo y querés empezar sin pagar, mirá el plan gratis y cuántos turnos incluye. Si tenés equipo, compará cuánto cuesta tener a todos los profesionales con caja y comisiones. Y fijate si la seña tiene comisión y si los recordatorios por WhatsApp tienen cupo. Prestum Turnos es nuestro producto: lo incluimos con el mismo criterio que al resto.",
+    bloques: [
+      {
+        h2: "Qué mirar antes de elegir",
+        lista: [
+          "Plan gratis: cuántos turnos por mes y cuántos profesionales incluye.",
+          "Precio con equipo: lo que pagás cuando suman a todos los profesionales.",
+          "WhatsApp: si los recordatorios salen solos o con un toque, y si tienen cupo mensual.",
+          "Seña: si la app cobra comisión sobre lo que te pagan.",
+        ],
+      },
+      {
+        h2: "Las 10 apps, en una línea",
+        p: ["Datos de las webs oficiales de cada una, revisados en noviembre de 2026. Los precios cambian: confirmalos antes de contratar."],
+        lista: [
+          "Prestum Turnos: gratis hasta 45 turnos por mes; profesionales ilimitados, caja y comisiones en Premium; seña sin comisión y recordatorios por WhatsApp desde tu número, con un toque.",
+          "AgendaPro: plataforma grande con app móvil y marketplace; desde $7.900/mes para 1 profesional, con recordatorios por WhatsApp con cupo.",
+          "Turnito: plan gratis de 100 reservas por mes; cobra comisión sobre los cobros online (5% en el gratis).",
+          "Cortik: hecho para barberías; gratis hasta 40 turnos por mes y plan para varios barberos a $25.000/mes.",
+          "TurnoFácil: bot con IA que atiende tu WhatsApp; desde $29.900/mes, con 30 días de prueba.",
+          "Trimito: solo peluquerías y barberías; gratis para 1 profesional con recordatorios automáticos, y caja y comisiones en su plan de $49.999/mes.",
+          "ReservaSimple: muchos rubros y países; gratis hasta 30 turnos por mes, Premium a $18.999/mes.",
+          "YaTurno: estética y salud; gratis hasta 30 turnos por mes y planes para varias sucursales.",
+          "Gendu: gratis sin límite de turnos para 1 agenda (recordatorios por email); precio según cantidad de agendas.",
+          "Turnify: gratis hasta 30 turnos por mes; Pro a $24.900/mes y recordatorios por email.",
+        ],
+      },
+      {
+        h2: "Cuál conviene según tu caso",
+        lista: [
+          "Trabajás solo y empezás: un plan gratis con turnos suficientes (Prestum, Cortik, Trimito o Gendu).",
+          "Tenés equipo y querés caja y comisiones sin pagar de más: compará el plan con profesionales ilimitados (Prestum Premium, Trimito Completo, YaTurno Equipo).",
+          "Querés que todo salga solo por WhatsApp, incluso con un bot: TurnoFácil, Trimito o YaTurno.",
+          "Tenés varias sucursales o necesitás app nativa: AgendaPro o YaTurno.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "¿Cuál es la app de turnos gratis con más turnos?", a: "Trimito y Gendu no limitan los turnos en su plan gratis (1 profesional), Turnito da 100 reservas por mes y Prestum Turnos, 45. Fijate además qué incluye cada plan gratis: WhatsApp, seña y comisiones cambian mucho." },
+      { q: "¿Dónde veo la comparación detallada?", a: "En la sección Comparar de Prestum Turnos hay una página por app, con tabla, fuentes y cuándo conviene cada una." },
+    ],
+    glosario: ["turno-online", "link-de-reservas", "recordatorio-de-turno"],
+  },
 ];
 
 export const getArticulo = (slug: string) => articulos.find((a) => a.slug === slug);
