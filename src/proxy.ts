@@ -3,7 +3,8 @@ import { PREFIJOS_ELIMINADOS, PSEO_PRODUCTO, esRubroPublico } from "@/config/ali
 
 /**
  * PÁGINAS ELIMINADAS → 410 "Gone".
- * Rubros que ya no apuntamos (canina, lavaderos, odontólogos…) y las viejas /turnos-online.
+ * Rubros que ya no apuntamos (canina, odontólogos…) y las viejas /turnos-online.
+ * (Lavaderos no: redirige al directorio aparte desde next.config.ts.)
  * Con 410 Google las saca del índice más rápido que con un 404 o una redirección, y dejan
  * de ensuciar las métricas de Search Console. Solo corre en estas rutas (ver matcher).
  */

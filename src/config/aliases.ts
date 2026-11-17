@@ -63,7 +63,7 @@ export const CIUDAD_ALIASES: Record<string, string> = {
 
 /**
  * URLs ELIMINADAS (responden 410 "Gone" desde src/proxy.ts, así Google las borra rápido):
- *   /turnero/<rubro no foco>[/<ciudad>]  → rubros que ya no tienen página (canina, lavaderos, odontólogos…)
+ *   /turnero/<rubro no foco>[/<ciudad>]  → rubros que ya no tienen página (canina, odontólogos…; lavaderos redirige, ver next.config.ts)
  *   /turnos-online[/<ciudad>]            → páginas genéricas por ciudad que se quitaron
  */
 export const PREFIJOS_ELIMINADOS = ["/turnos-online"];
