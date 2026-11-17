@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allNicheRoutes, getNiche, nichePath, productHomePath, rubrosPublicos } from "@/config/products";
+import { allNicheRoutes, getNiche, nichePath, productHomePath, rubrosPublicos, subrubrosDe } from "@/config/products";
 import { breadcrumbLd, buildMetadata, faqLd, graphLd } from "@/lib/seo";
 import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/sections";
@@ -42,7 +42,8 @@ export default async function NichePage({ params }: Props) {
   const { product, niche } = found;
 
   const path = nichePath(product, niche);
-  const otros = rubrosPublicos(product).filter((n) => n.slug !== niche.slug);
+  // Enlazado interno: los rubros foco y todos los subrubros (barberos, manicuras…), menos esta página.
+  const otros = [...rubrosPublicos(product), ...subrubrosDe(product)].filter((n) => n.slug !== niche.slug);
   const { planes } = await getPrecios();
   const crumbs = [
     { name: product.brandName, path: productHomePath(product) },
@@ -82,7 +83,7 @@ export default async function NichePage({ params }: Props) {
           </ul>
         </section>
       )}
-      {/* Links entre los rubros foco. */}
+      {/* Links entre los rubros foco y los subrubros. */}
       <section className="mx-auto max-w-6xl px-4 pb-12">
         <h2 className="text-lg font-semibold text-slate-900">{product.brandName} también es para</h2>
         <ul className="mt-4 flex flex-wrap gap-2 text-sm">

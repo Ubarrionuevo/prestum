@@ -2,7 +2,7 @@ import { solucionPath, soluciones } from "@/config/soluciones";
 import Link from "next/link";
 import type { Product } from "@/config/types";
 import { site } from "@/config/site";
-import { nichePath, productHomePath, rubrosPublicos } from "@/config/products";
+import { nichePath, productHomePath, rubrosPublicos, subrubrosDe } from "@/config/products";
 import { Logo } from "./Logo";
 
 /**
@@ -53,6 +53,14 @@ export function Footer({ product }: { product: Product }) {
               <li key={n.slug}>
                 <Link href={nichePath(product, n)} className={`${link} inline-block py-1`}>
                   Sistema de turnos para {n.name.toLowerCase()}
+                </Link>
+              </li>
+            ))}
+            {/* Subrubros (barberos, manicuras…): más cortos, para no alargar la columna. */}
+            {subrubrosDe(product).map((n) => (
+              <li key={n.slug}>
+                <Link href={nichePath(product, n)} className={`${link} inline-block py-1`}>
+                  Turnos para {n.name.toLowerCase()}
                 </Link>
               </li>
             ))}

@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { demos, getDemo } from "@/config/products/turnero-landing";
 import { turnero } from "@/config/products/turnero";
-import { RUBRO_ALIASES, RUBROS_FOCO } from "@/config/aliases";
+import { RUBROS_FOCO, rubroDeRegistro } from "@/config/aliases";
 import { RESERVED_SLUGS, SLUG_RE } from "@/config/reserved";
 import { slugify } from "@/components/landing/LandingState";
 import { errorAmigable, getSupabase, supabaseConfigured } from "@/lib/supabase";
@@ -34,7 +34,7 @@ export function RegistroForm() {
   const [nombre, setNombre] = useState(params.get("nombre") ?? "");
   const [rubro, setRubro] = useState(() => {
     const p = params.get("rubro") ?? "";
-    const r = RUBRO_ALIASES[p] ?? p; // ej: "manicuria" → "esteticistas"
+    const r = rubroDeRegistro(p); // ej: "manicuria" → "manicuras" → "esteticistas"
     return demos[r] && turnero.niches.some((n) => n.slug === r) ? r : "barberias";
   });
   const [email, setEmail] = useState("");

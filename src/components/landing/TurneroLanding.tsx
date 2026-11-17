@@ -1,5 +1,5 @@
 import type { Niche, Product } from "@/config/types";
-import { nichePath, rubrosFoco } from "@/config/products";
+import { nichePath, rubroBase, rubrosFoco } from "@/config/products";
 import { getPrecios } from "@/lib/planes";
 import { LandingState } from "./LandingState";
 import { Hero } from "./Hero";
@@ -32,7 +32,8 @@ export async function TurneroLanding({ product, niche }: { product: Product; nic
   const rubros = rubrosFoco(product).map((n) => ({ href: nichePath(product, n), label: `${n.emoji} ${n.name}` }));
 
   return (
-    <LandingState initialRubro={niche?.slug}>
+    // Un subrubro (barberos, manicuras…) usa la demo, los planes y el registro de su rubro base.
+    <LandingState initialRubro={niche ? rubroBase(niche) : undefined}>
       <Hero
         // En la página de cada rubro el h1 usa lo que busca el dueño ("sistema de turnos para …")
         // y el mensaje "Automatizá…" queda justo debajo. La home no cambia.
@@ -46,7 +47,7 @@ export async function TurneroLanding({ product, niche }: { product: Product; nic
       <Sabado n={3} />
       <Funciones n={4} rubros={rubros} extra={niche ? { title: `Pensado para ${niche.name.toLowerCase()}`, items: niche.benefits } : undefined} />
       <Calculadora n={5} planBase={base.precio_mensual} planBaseNombre={base.nombre} />
-      <Precios n={6} rubro={niche?.slug} />
+      <Precios n={6} rubro={niche ? rubroBase(niche) : undefined} />
       <Faq n={7} faqs={faqs} />
       <MobileCta />
     </LandingState>

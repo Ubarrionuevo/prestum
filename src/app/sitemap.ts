@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { activeProducts, nichePath, productHomePath, rubrosPublicos } from "@/config/products";
+import { activeProducts, nichePath, productHomePath, rubrosPublicos, subrubrosDe } from "@/config/products";
 import { glosario } from "@/config/seo-content";
 import { compararPath, competidores } from "@/config/comparativas";
 import { articulos } from "@/config/blog";
@@ -26,9 +26,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const home = productHomePath(product);
     entries.push(url(home, home === "/" ? 1 : 0.9, "home", "weekly"));
     for (const niche of rubrosPublicos(product)) entries.push(url(nichePath(product, niche), 0.9, "rubrosFoco"));
+    for (const niche of subrubrosDe(product)) entries.push(url(nichePath(product, niche), 0.8, "subrubros"));
   }
   entries.push(url("/que-es-prestum", 0.9, "queEsPrestum"));
   entries.push(url("/app-de-turnos", 0.9, "appDeTurnos"));
+  entries.push(url("/sistema-de-turnos-gratis", 0.9, "turnosGratis"));
   entries.push(url("/funciones", 0.8, "funciones"));
   for (const s of soluciones) entries.push(url(solucionPath(s), 0.8, "funciones"));
   entries.push(url("/calculadora-ausencias", 0.7, "calculadora"));

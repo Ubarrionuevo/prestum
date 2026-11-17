@@ -25,6 +25,7 @@ export function Header({ product }: { product: Product }) {
         { href: anchor("como-funciona"), texto: "Cómo funciona", detalle: "Tu link de reservas en 3 pasos" },
         { href: "/que-es-prestum", texto: "Qué es Prestum", detalle: "Para quién es y qué incluye" },
         { href: "/app-de-turnos", texto: "App de turnos", detalle: "Sin descargar nada, desde un link" },
+        { href: "/sistema-de-turnos-gratis", texto: "Sistema de turnos gratis", detalle: "Qué incluye el plan Gratis" },
       ],
     },
     {

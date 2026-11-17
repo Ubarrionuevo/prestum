@@ -1,5 +1,6 @@
 import type { Product } from "../types";
 import { TURNOS_GRATIS } from "@/config/planes";
+import { subrubrosTurnero } from "./turnero-subrubros";
 
 /**
  * TURNERO ONLINE
@@ -605,4 +606,6 @@ export const turnero: Product = {
       ],
     },
   ],
+  // Páginas SEO de subrubros (barberos, manicuras, cejas y pestañas…): ver turnero-subrubros.ts.
+  subrubros: subrubrosTurnero,
 };

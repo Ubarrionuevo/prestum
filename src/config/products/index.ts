@@ -47,9 +47,14 @@ export const rubrosFoco = (p: Product) =>
  */
 export const rubrosPublicos = (p: Product) => (rubrosFoco(p).length ? rubrosFoco(p) : p.niches);
 
+/** Subrubros con página propia (barberos, manicuras…): usan la demo, los planes y el registro de su `base`. */
+export const subrubrosDe = (p: Product) => p.subrubros ?? [];
+/** Rubro foco al que pertenece una página (el propio, o el `base` de un subrubro). */
+export const rubroBase = (n: Pick<Niche, "slug" | "base">) => n.base ?? n.slug;
+
 export function getNiche(productSlug: string, nicheSlug: string): { product: Product; niche: Niche } | undefined {
   const product = getProduct(productSlug);
-  const niche = product?.niches.find((n) => n.slug === nicheSlug);
+  const niche = product?.niches.find((n) => n.slug === nicheSlug) ?? product?.subrubros?.find((n) => n.slug === nicheSlug);
   return product && niche ? { product, niche } : undefined;
 }
 
@@ -62,5 +67,5 @@ export function secondaryProductRoutes() {
 
 /** Todas las combinaciones producto/nicho publicables. */
 export function allNicheRoutes() {
-  return activeProducts().flatMap((p) => rubrosPublicos(p).map((n) => ({ producto: p.slug, nicho: n.slug })));
+  return activeProducts().flatMap((p) => [...rubrosPublicos(p), ...subrubrosDe(p)].map((n) => ({ producto: p.slug, nicho: n.slug })));
 }

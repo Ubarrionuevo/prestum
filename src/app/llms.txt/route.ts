@@ -1,5 +1,5 @@
 import { solucionPath, soluciones } from "@/config/soluciones";
-import { getDefaultProduct, nichePath, rubrosFoco } from "@/config/products";
+import { getDefaultProduct, nichePath, rubrosFoco, subrubrosDe } from "@/config/products";
 import { getPrecios } from "@/lib/planes";
 import { OFERTA_CORTA, TURNOS_GRATIS, planesPagos } from "@/config/planes";
 import { CATEGORIAS_GLOSARIO, glosario } from "@/config/glosario";
@@ -116,7 +116,11 @@ ${glosario
 ### Rubros principales
 ${rubrosFoco(p).map((n) => `- [Sistema de turnos para ${n.name.toLowerCase()}](${absoluteUrl(nichePath(p, n))}): ${n.seoDescription}`).join("\n")}
 
-Está pensado para estos tres rubros (estética incluye uñas, pestañas y cosmetología).
+### Especialidades y profesionales independientes
+${subrubrosDe(p).map((n) => `- [${n.seoTitle}](${absoluteUrl(nichePath(p, n))}): ${n.seoDescription}`).join("\n")}
+
+Está pensado para estos tres rubros y sus especialidades (barberos y peluqueros que trabajan solos, uñas, cejas y pestañas, cosmetología, depilación y masajes).
+Plan gratis: ${absoluteUrl("/sistema-de-turnos-gratis")}
 
 ### Cobertura geográfica
 Funciona en toda Argentina: solo hace falta internet y WhatsApp.

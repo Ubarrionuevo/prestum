@@ -17,22 +17,43 @@ export const PSEO_PRODUCTO = "turnero";
  */
 export const RUBROS_FOCO = ["barberias", "peluquerias", "esteticistas"];
 
+/**
+ * SUBRUBROS con página propia (/turnero/<slug>) → rubro foco del que toman demo, planes y registro.
+ * El contenido está en products/turnero-subrubros.ts (mantener sincronizado). No tienen páginas por ciudad:
+ * /turnero/<subrubro>/<ciudad> redirige a la ciudad del rubro base.
+ */
+export const SUBRUBROS: Record<string, string> = {
+  barberos: "barberias",
+  peluqueros: "peluquerias",
+  cosmetologas: "esteticistas",
+  manicuras: "esteticistas",
+  "cejas-y-pestanas": "esteticistas",
+  depilacion: "esteticistas",
+  masajistas: "esteticistas",
+};
+
 export const RUBRO_ALIASES: Record<string, string> = {
   barberia: "barberias",
-  barberos: "barberias",
+  barbero: "barberos",
   peluqueria: "peluquerias",
-  peluqueros: "peluquerias",
+  peluquero: "peluqueros",
+  peluqueras: "peluqueros",
   "salones-de-belleza": "peluquerias",
   "salon-de-belleza": "peluquerias",
   estetica: "esteticistas",
   "centros-de-estetica": "esteticistas",
   "centro-de-estetica": "esteticistas",
-  cosmetologas: "esteticistas",
-  // Uñas / manicuría quedó dentro de Estética.
-  manicuria: "esteticistas",
-  manicura: "esteticistas",
-  manicuras: "esteticistas",
-  unas: "esteticistas",
+  cosmetologa: "cosmetologas",
+  cosmetologia: "cosmetologas",
+  // Uñas / manicuría tiene página propia (subrubro de Estética).
+  manicuria: "manicuras",
+  manicura: "manicuras",
+  unas: "manicuras",
+  pestanas: "cejas-y-pestanas",
+  cejas: "cejas-y-pestanas",
+  lashistas: "cejas-y-pestanas",
+  masajes: "masajistas",
+  spa: "masajistas",
   dentistas: "odontologos",
   odontologia: "odontologos",
   "consultorios-dentales": "odontologos",
@@ -69,17 +90,32 @@ export const CIUDAD_ALIASES: Record<string, string> = {
 export const PREFIJOS_ELIMINADOS = ["/turnos-online"];
 
 /** ¿El segmento de rubro de /turnero/<rubro> lleva a un rubro foco (directo o por alias)? */
-export const esRubroPublico = (seg: string) => RUBROS_FOCO.includes(RUBRO_ALIASES[seg] ?? seg);
+export const esRubroPublico = (seg: string) => {
+  const r = RUBRO_ALIASES[seg] ?? seg;
+  return RUBROS_FOCO.includes(r) || r in SUBRUBROS;
+};
+
+/** Rubro del registro para un slug de URL: alias → subrubro → rubro foco (ej: "unas" → "manicuras" → "esteticistas"). */
+export const rubroDeRegistro = (seg: string) => {
+  const r = RUBRO_ALIASES[seg] ?? seg;
+  return SUBRUBROS[r] ?? r;
+};
 
 /** Redirecciones para next.config.ts (el orden importa: gana la primera que coincide). */
 export function aliasRedirects() {
   const p = PSEO_PRODUCTO;
   const out: Array<{ source: string; destination: string; permanent: true }> = [];
-  // Solo alias de rubros foco: los demás rubros ya no tienen página (410 en src/proxy.ts).
+  // Solo alias de rubros con página (foco y subrubros): los demás ya no tienen página (410 en src/proxy.ts).
   for (const [alias, rubro] of Object.entries(RUBRO_ALIASES)) {
-    if (!RUBROS_FOCO.includes(rubro)) continue;
+    if (!RUBROS_FOCO.includes(rubro) && !(rubro in SUBRUBROS)) continue;
+    // Un subrubro no tiene ciudades: el alias con ciudad va directo a la ciudad del rubro base.
+    const conCiudad = SUBRUBROS[rubro] ?? rubro;
     out.push({ source: `/${p}/${alias}`, destination: `/${p}/${rubro}`, permanent: true });
-    out.push({ source: `/${p}/${alias}/:ciudad`, destination: `/${p}/${rubro}/:ciudad`, permanent: true });
+    out.push({ source: `/${p}/${alias}/:ciudad`, destination: `/${p}/${conCiudad}/:ciudad`, permanent: true });
+  }
+  // Subrubros sin páginas por ciudad → la ciudad del rubro base (ej: /turnero/barberos/cordoba → /turnero/barberias/cordoba).
+  for (const [sub, base] of Object.entries(SUBRUBROS)) {
+    out.push({ source: `/${p}/${sub}/:ciudad`, destination: `/${p}/${base}/:ciudad`, permanent: true });
   }
   for (const [alias, ciudad] of Object.entries(CIUDAD_ALIASES)) {
     out.push({ source: `/${p}/:rubro/${alias}`, destination: `/${p}/:rubro/${ciudad}`, permanent: true });

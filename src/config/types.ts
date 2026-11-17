@@ -31,6 +31,11 @@ export interface Niche {
   /** Ejemplos para mostrar en la landing (texto libre). */
   examples: string[];
   faqs: Faq[];
+  /**
+   * Solo en SUBRUBROS (páginas SEO como /turnero/barberos o /turnero/manicuras): rubro foco del que
+   * toman la demo, los planes y el registro. No son rubros nuevos del registro ni de la base.
+   */
+  base?: string;
 }
 
 /** Un producto/app que vive dentro de prestum.com.ar. */
@@ -53,4 +58,6 @@ export interface Product {
   benefits: Benefit[];
   faqs: Faq[];
   niches: Niche[];
+  /** Páginas SEO de subrubros (con `base`): tienen landing propia pero no son rubros del registro. */
+  subrubros?: Niche[];
 }
