@@ -13,7 +13,7 @@ import { Reserva, type ReservaNegocio } from "@/components/turnero/Reserva";
 
 /**
  * prestum.com.ar/<slug>
- *   1) ¿Es un producto? (ej: /sistema-de-gestion) → home del producto.
+ *   1) ¿Es un producto? → home del producto.
  *   2) ¿Es el negocio demo de la config? → reserva de prueba.
  *   3) Si no, es un negocio registrado → su página de reservas (desde Supabase).
  *

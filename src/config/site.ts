@@ -11,7 +11,7 @@ export const site = {
   tagline: "Software de gestión y turnos para barberías, peluquerías y estética",
   /**
    * Producto que se muestra en la home (www.prestum.com.ar/).
-   * Los demás productos tienen su propia home en /<slug> (ej: /sistema-de-gestion).
+   * Si se suman otros productos acá, tienen su propia home en /<slug>.
    */
   defaultProduct: "turnero",
   description:

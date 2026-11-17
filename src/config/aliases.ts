@@ -84,10 +84,12 @@ export const CIUDAD_ALIASES: Record<string, string> = {
 
 /**
  * URLs ELIMINADAS (responden 410 "Gone" desde src/proxy.ts, así Google las borra rápido):
- *   /turnero/<rubro no foco>[/<ciudad>]  → rubros que ya no tienen página (canina, odontólogos…; lavaderos redirige, ver next.config.ts)
+ *   /turnero/<rubro no foco>[/<ciudad>]  → rubros que ya no tienen página (canina, odontólogos, lavaderos…)
  *   /turnos-online[/<ciudad>]            → páginas genéricas por ciudad que se quitaron
+ *   /servicios[/…]                       → Solvion Estudio (diseño web, Tiendanube, SEO), eliminado el 2026-11-17
+ *   /sistema-de-gestion[/…]              → Prestum Gestión, eliminado el 2026-11-17
  */
-export const PREFIJOS_ELIMINADOS = ["/turnos-online"];
+export const PREFIJOS_ELIMINADOS = ["/turnos-online", "/servicios", "/sistema-de-gestion", "/sitemap-servicios.xml"];
 
 /** ¿El segmento de rubro de /turnero/<rubro> lleva a un rubro foco (directo o por alias)? */
 export const esRubroPublico = (seg: string) => {

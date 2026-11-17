@@ -3,8 +3,8 @@ import { PREFIJOS_ELIMINADOS, PSEO_PRODUCTO, esRubroPublico } from "@/config/ali
 
 /**
  * PÁGINAS ELIMINADAS → 410 "Gone".
- * Rubros que ya no apuntamos (canina, odontólogos…) y las viejas /turnos-online.
- * (Lavaderos no: redirige al directorio aparte desde next.config.ts.)
+ * Rubros que ya no apuntamos (canina, odontólogos, lavaderos…), las viejas /turnos-online,
+ * y los proyectos eliminados: /servicios (Solvion) y /sistema-de-gestion (Prestum Gestión).
  * Con 410 Google las saca del índice más rápido que con un 404 o una redirección, y dejan
  * de ensuciar las métricas de Search Console. Solo corre en estas rutas (ver matcher).
  */
@@ -21,5 +21,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/turnero/:path+", "/turnos-online", "/turnos-online/:path*"],
+  matcher: ["/turnero/:path+", "/turnos-online", "/turnos-online/:path*", "/servicios", "/servicios/:path*", "/sistema-de-gestion", "/sistema-de-gestion/:path*", "/sitemap-servicios.xml"],
 };

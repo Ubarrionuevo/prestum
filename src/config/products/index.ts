@@ -2,19 +2,18 @@ import type { Niche, Product } from "../types";
 import { site } from "../site";
 import { RUBROS_FOCO } from "../aliases";
 import { turnero } from "./turnero";
-import { sistemaDeGestion } from "./sistema-de-gestion";
 
 /**
  * REGISTRO DE PRODUCTOS
  * Cada producto se presenta como un software independiente con marca propia
- * (ej: "Prestum Turnos", "Prestum Gestión"): su propia home, header, footer y rubros.
+ * (ej: "Prestum Turnos"): su propia home, header, footer y rubros.
  * Ningún producto muestra a los otros.
  *
  *   /                      home del producto principal (site.defaultProduct)
  *   /<producto>            home de cada otro producto
  *   /<producto>/<nicho>    landing por rubro
  */
-export const products: Product[] = [turnero, sistemaDeGestion];
+export const products: Product[] = [turnero];
 
 export const activeProducts = () => products.filter((p) => p.status === "activo");
 
