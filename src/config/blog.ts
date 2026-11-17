@@ -281,6 +281,201 @@ export const articulos: Articulo[] = [
     ],
     glosario: ["link-de-reservas", "whatsapp-business", "confirmacion-de-turno"],
   },
+  {
+    slug: "sena-en-barberia",
+    titulo: "Seña en barbería: cuándo pedirla y cómo escribir tu política",
+    descripcion: "En una barbería la seña no va en todos los cortes. Cuándo sí conviene, cómo escribir la política en una frase y mensajes listos para copiar.",
+    portada: "Seña en barbería, sin espantar a nadie",
+    emoji: "💈",
+    categoria: "Plata y equipo",
+    publicado: "2026-11-16",
+    minutos: 3,
+    resumen:
+      "En barbería, pedí seña solo donde un hueco duele: sábados, horarios después de las 18, combos largos y clientes que ya faltaron. Escribí la política en una frase y mostrala antes de que reserven.",
+    bloques: [
+      {
+        h2: "Cuándo sí pedirla",
+        lista: [
+          "Sábados y vísperas de feriado.",
+          "Horarios después de las 18.",
+          "Combos largos: corte, barba y color, platinado.",
+          "Clientes que ya faltaron sin avisar.",
+        ],
+        p: ["Para el corte de todos los días, alcanza con confirmar y recordar el turno."],
+      },
+      {
+        h2: "La política, en una frase",
+        p: ["Cuánto es, cómo se paga, hasta cuándo se puede cancelar y qué pasa con la plata. Ponela en la bio de Instagram y en el mensaje de bienvenida de WhatsApp."],
+        copiar: [
+          "Sábados y combos con seña. Se descuenta del total y, si avisás 24 h antes, te la guardamos para otro turno.",
+          "¡Te anoto el sábado a las 11! 💈 Los sábados pedimos una seña que se descuenta del total. Mandala al alias tu.barberia en la próxima hora y te confirmo.",
+        ],
+      },
+      {
+        h2: "Lo que hace perder clientes",
+        lista: [
+          "Pedir la seña después de confirmar el turno.",
+          "Cambiar el monto según el día.",
+          "Quedarse con la seña cuando el cliente avisó a tiempo.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "¿Hay que pedir seña por un corte común?", a: "En general no. Conviene en sábados, horarios pico, combos largos y con clientes que ya faltaron." },
+      { q: "¿Puedo pedir seña solo en algunos servicios con Prestum Turnos?", a: "Sí. Es opcional, está desde el plan Básico y la activás solo donde te conviene." },
+    ],
+    glosario: ["sena", "no-show", "horarios-pico"],
+  },
+  {
+    slug: "cuanto-cobrar-un-corte-de-pelo",
+    titulo: "Cuánto cobrar un corte de pelo: cómo calcular tu precio",
+    descripcion: "Cómo calcular el precio de un corte en tu barbería o peluquería con tus gastos, tus horas y la duración del servicio, y cómo avisar un aumento.",
+    portada: "Tu precio, calculado y no copiado",
+    emoji: "✂️",
+    categoria: "Plata y equipo",
+    publicado: "2026-11-16",
+    minutos: 3,
+    resumen:
+      "Sumá tus gastos fijos del mes, dividilos por las horas que atendés, agregale lo que querés ganar por hora y llevalo a lo que dura el corte. Ese es tu piso; después compará con tu zona y redondeá.",
+    bloques: [
+      {
+        h2: "La cuenta en 4 pasos",
+        lista: [
+          "1. Gastos fijos del mes: alquiler, servicios, monotributo, sistemas.",
+          "2. Dividilos por las horas que atendés de verdad (con gente en el sillón).",
+          "3. Sumale lo que querés ganar por hora y los insumos.",
+          "4. Multiplicá por la duración: un corte de 40 minutos es 0,67 de ese valor por hora.",
+        ],
+      },
+      {
+        h2: "Ejemplo",
+        p: ["Números de ejemplo, reemplazalos por los tuyos: $900.000 de gastos ÷ 120 horas = $7.500 por hora. Más $12.000 que querés ganar = $19.500 por hora. Un corte de 40 minutos: al menos $13.000."],
+      },
+      {
+        h2: "Cómo avisar un aumento",
+        p: ["Con una o dos semanas de anticipación, con fecha y respetando los turnos ya reservados."],
+        copiar: ["📢 Desde el lunes 1 actualizamos precios: corte $XX, corte y barba $XX. Los turnos ya reservados quedan al precio anterior 💈"],
+      },
+    ],
+    faqs: [
+      { q: "¿Cada cuánto actualizo el precio?", a: "Cada vez que suben tus gastos fijos. Revisarlo seguido evita un salto grande de golpe." },
+      { q: "¿Puedo mostrar precio y duración en el link de reservas?", a: "Sí. En Prestum Turnos cada servicio muestra su precio y su duración antes de elegir horario." },
+    ],
+    glosario: ["ticket-promedio", "ocupacion", "caja-diaria"],
+  },
+  {
+    slug: "comision-o-alquiler-de-sillon",
+    titulo: "Comisión o alquiler de sillón: qué conviene en tu barbería o peluquería",
+    descripcion: "Comisión o alquiler de sillón para barberos y peluqueros: la cuenta para saber cuál conviene, cuándo usar cada uno y qué dejar por escrito.",
+    portada: "Comisión o sillón: hacé la cuenta",
+    emoji: "🤝",
+    categoria: "Plata y equipo",
+    publicado: "2026-11-16",
+    minutos: 3,
+    resumen:
+      "La comisión conviene cuando el local trae los clientes y pone los insumos; el alquiler, cuando el profesional trae su clientela y maneja sus horarios. La cuenta: alquiler ÷ porcentaje del local te dice desde qué facturación conviene cada uno.",
+    bloques: [
+      {
+        h2: "La cuenta",
+        p: [
+          "Números de ejemplo: alquiler de $400.000 y comisión del 50% para el local. $400.000 ÷ 0,5 = $800.000.",
+          "Si el profesional factura más de $800.000, al local le rinde la comisión; si factura menos, el alquiler.",
+        ],
+      },
+      {
+        h2: "Cuándo usar cada uno",
+        lista: [
+          "Comisión: los clientes llegan por el local y vos ponés productos y tinturas.",
+          "Alquiler: el profesional trae su clientela y maneja horarios y precios.",
+          "Mixto (fijo bajo + porcentaje menor): para alguien que recién se suma al equipo.",
+        ],
+      },
+      {
+        h2: "Qué dejar por escrito",
+        lista: [
+          "Porcentaje o monto fijo, y cada cuánto se liquida.",
+          "Si la comisión es sobre lo cobrado o sobre el precio de lista.",
+          "Quién pone los insumos.",
+          "Qué pasa con los clientes si el profesional se va.",
+        ],
+      },
+    ],
+    faqs: [
+      { q: "¿Se puede pasar de comisión a alquiler?", a: "Sí. Hacé la cuenta con los últimos meses de facturación antes de cambiar." },
+      { q: "¿Prestum separa lo que factura cada profesional?", a: "Sí. Cada turno queda con quien atendió, y en el plan Premium la caja calcula la comisión de cada uno." },
+    ],
+    glosario: ["comisiones-por-profesional", "agenda-por-profesional", "caja-diaria"],
+  },
+  {
+    slug: "clientes-que-faltan-al-turno",
+    titulo: "Qué hacer con los clientes que faltan al turno (sin perderlos)",
+    descripcion: "El cliente no vino y no avisó: qué mensaje mandarle, cuándo pedirle seña la próxima vez y una regla simple para los que faltan seguido.",
+    portada: "No vino y no avisó: ¿y ahora?",
+    emoji: "🪑",
+    categoria: "Clientes",
+    publicado: "2026-11-16",
+    minutos: 3,
+    resumen:
+      "Primera falta: un mensaje amable y otro turno. Segunda: seña para la próxima reserva. Si se repite, solo con seña. Anotá cada falta y aplicá la regla igual para todos.",
+    bloques: [
+      {
+        h2: "El mismo día: un mensaje, no un reto",
+        copiar: ["¡Hola Martín! Te esperábamos a las 18 para el corte. ¿Está todo bien? Si querés te busco otro horario esta semana 💈"],
+      },
+      {
+        h2: "La regla",
+        lista: [
+          "1ª falta: otro turno, sin condiciones.",
+          "2ª falta: seña para la próxima reserva.",
+          "3ª falta: siempre con seña.",
+          "Si avisa con tiempo, no cuenta como falta.",
+        ],
+        copiar: ["¡Te anoto con gusto! Como las últimas veces no pudiste venir, esta vez te pido una seña que se descuenta. Si te surge algo, avisame y te la guardo 🙌"],
+      },
+      {
+        h2: "Llená el hueco",
+        p: ["Escribile a alguien de tu lista de espera o subí un estado: “Se liberó un turno hoy a las 18”."],
+      },
+    ],
+    faqs: [
+      { q: "¿Bloqueo al cliente que falta siempre?", a: "Antes probá con seña obligatoria: si no viene, la seña cubre el horario; si viene, recuperaste un cliente." },
+      { q: "¿Prestum ayuda con las faltas?", a: "Sí: recordatorio por WhatsApp y seña desde el plan Básico, y lista de espera en Premium." },
+    ],
+    glosario: ["no-show", "lista-de-espera", "sena"],
+  },
+  {
+    slug: "pasar-a-turnos-online-paso-a-paso",
+    titulo: "Pasar de WhatsApp a turnos online: qué preparar antes del primer día",
+    descripcion: "Lo que tenés que dejar listo antes de pasar tu barbería, peluquería o centro de estética a turnos online: servicios, horarios, equipo y turnos ya dados.",
+    portada: "Todo listo antes del primer turno online",
+    emoji: "✅",
+    categoria: "Agenda y turnos",
+    publicado: "2026-11-16",
+    minutos: 3,
+    resumen:
+      "Antes de compartir el link, cargá los servicios con su duración real, tus horarios, cada profesional con su agenda y los turnos que ya tenías dados por WhatsApp. Después reservá vos uno de prueba.",
+    bloques: [
+      {
+        h2: "La lista",
+        lista: [
+          "Servicios con el nombre que usa tu cliente, su precio y lo que realmente duran.",
+          "Horarios reales, con el corte del mediodía y los días libres bloqueados.",
+          "Cada profesional con sus servicios y sus horarios.",
+          "Hasta cuándo se puede cancelar, y seña solo si la vas a usar.",
+          "Los turnos que ya diste por WhatsApp o en el cuaderno.",
+        ],
+      },
+      {
+        h2: "La prueba final",
+        p: ["Reservá vos un turno desde el celular, como cliente. Si llega bien, poné el link en Instagram, WhatsApp Business y Google Maps."],
+      },
+    ],
+    faqs: [
+      { q: "¿Tengo que dejar de atender por WhatsApp?", a: "No. Seguís hablando con tus clientes; el link solo evita dictar horarios." },
+      { q: "¿Puedo probarlo antes de compartirlo?", a: "Sí. Con Prestum Turnos armás todo y reservás de prueba antes de publicar el link, gratis hasta 45 turnos por mes." },
+    ],
+    glosario: ["link-de-reservas", "agenda-por-profesional", "horario-cortado"],
+  },
 ];
 
 export const getArticulo = (slug: string) => articulos.find((a) => a.slug === slug);
