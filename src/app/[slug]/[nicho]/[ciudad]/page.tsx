@@ -12,6 +12,9 @@ import { getPrecios } from "@/lib/planes";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductShell } from "@/components/product/ProductShell";
 import { Benefits, Breadcrumbs, FaqSection, HowItWorks } from "@/components/sections";
+import { getDirectorio } from "@/lib/directorio";
+import { ListadoNegocios } from "@/components/directorio/ListadoNegocios";
+import { BarraPrestum } from "@/components/directorio/BarraPrestum";
 
 type Props = { params: Promise<{ slug: string; nicho: string; ciudad: string }> };
 
@@ -63,6 +66,8 @@ export default async function CiudadRubroPage({ params }: Props) {
     { name: city.corto, path },
   ];
   const otrosRubros = rubrosConCiudades(product).filter((n) => n.slug !== niche.slug);
+  // Listado de locales del rubro en la ciudad (OpenStreetMap). Solo algunas ciudades lo tienen.
+  const directorio = getDirectorio(niche.slug, city.slug);
 
   return (
     <ProductShell product={product}>
@@ -88,6 +93,8 @@ export default async function CiudadRubroPage({ params }: Props) {
       <LandingState initialRubro={niche.slug}>
         <Hero titulo={textos.h1} lema={textos.lema} etiqueta={`${niche.emoji} ${niche.name} · ${city.nombre}`} subtitle={textos.bajada} showRubros={false} compacto />
       </LandingState>
+
+      {directorio && <ListadoNegocios directorio={directorio} rubro={niche.name} negocio={niche.business} ciudad={city.corto} />}
 
       <section className="mx-auto max-w-3xl px-4 py-12">
         <h2 className="text-2xl font-bold text-slate-900 sm:text-3xl">
@@ -195,6 +202,7 @@ export default async function CiudadRubroPage({ params }: Props) {
           </div>
         </div>
       </section>
+      {directorio && <BarraPrestum negocio={niche.business} />}
     </ProductShell>
   );
 }

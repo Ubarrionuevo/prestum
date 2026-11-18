@@ -1,0 +1,346 @@
+{
+  "fuente": "OpenStreetMap",
+  "actualizado": "2026-11-18",
+  "negocios": [
+    {
+      "nombre": "Erina Estilista",
+      "direccion": "General Manuel Belgrano 785",
+      "telefono": "+5492615659717",
+      "horario": "Tu-Sa 10:00-18:00",
+      "instagram": "erinaestilista",
+      "lat": -32.915773,
+      "lon": -68.8426284
+    },
+    {
+      "nombre": "Facundo Sebastianelli Peluqueros",
+      "direccion": "Bernardino Rivadavia 615",
+      "telefono": "+54 9 261 212 6483",
+      "horario": "Tu-Sa 11:00-19:00",
+      "lat": -32.8902072,
+      "lon": -68.8476476
+    },
+    {
+      "nombre": "Sergio Lunghi",
+      "direccion": "Manuel Olascoaga 415",
+      "telefono": "54 0261 44292662",
+      "lat": -32.8966895,
+      "lon": -68.8553951
+    },
+    {
+      "nombre": "Ton Image Estilistas",
+      "direccion": "Pueyrredón 653",
+      "telefono": "+54 261 456 4485",
+      "lat": -32.8993135,
+      "lon": -68.860355
+    },
+    {
+      "nombre": "Alejandro Scocciapino",
+      "direccion": "Bariloche 2546",
+      "localidad": "Las Heras",
+      "horario": "Tu-Sa 09:00-12:30,16:30-20:30",
+      "lat": -32.8427571,
+      "lon": -68.8698359
+    },
+    {
+      "nombre": "Orlando Peluquería unisex",
+      "direccion": "Presbítero Juan de Dios Vallcanera 360",
+      "horario": "Tu-Sa 09:00-21:00",
+      "lat": -33.031019,
+      "lon": -68.8787531
+    },
+    {
+      "nombre": "ZOE Estética Peluquería Capacitación",
+      "direccion": "Avenida General San Martín Sur 2830",
+      "localidad": "Godoy Cruz",
+      "horario": "Mo-Sa 09:00-18:00",
+      "instagram": "https://www.instagram.com/zoeimagenes/",
+      "lat": -32.9564023,
+      "lon": -68.8575907
+    },
+    {
+      "nombre": "April Peluquería",
+      "direccion": "Córdoba 318",
+      "lat": -32.8835672,
+      "lon": -68.8336394
+    },
+    {
+      "nombre": "Catalana Unisex",
+      "direccion": "Balcarce 94",
+      "lat": -32.9186553,
+      "lon": -68.8366962
+    },
+    {
+      "nombre": "Codorniú",
+      "direccion": "Mariano Necochea 2106",
+      "lat": -32.9042653,
+      "lon": -68.8567072
+    },
+    {
+      "nombre": "Cut",
+      "direccion": "Rafael Obligado",
+      "lat": -32.9430054,
+      "lon": -68.8567876
+    },
+    {
+      "nombre": "Duques y Reinas",
+      "direccion": "Patricias Mendocinas",
+      "lat": -32.8840138,
+      "lon": -68.841739
+    },
+    {
+      "nombre": "El Atico",
+      "direccion": "Patricias Mendocinas",
+      "lat": -32.8842642,
+      "lon": -68.8418051
+    },
+    {
+      "nombre": "In Voga",
+      "direccion": "Joaquín Víctor González 56",
+      "lat": -32.9240437,
+      "lon": -68.8595938
+    },
+    {
+      "nombre": "JL Peluquero",
+      "direccion": "Aristóbulo del Valle",
+      "lat": -32.8799791,
+      "lon": -68.8134778
+    },
+    {
+      "nombre": "L'Homme",
+      "direccion": "Patricias Mendocinas 1443",
+      "lat": -32.8863128,
+      "lon": -68.8421801
+    },
+    {
+      "nombre": "La Capital",
+      "direccion": "Patricias Mendocinas",
+      "lat": -32.8841593,
+      "lon": -68.8417854
+    },
+    {
+      "nombre": "Luis Alberto",
+      "direccion": "Patricias Mendocinas",
+      "lat": -32.8840473,
+      "lon": -68.8415552
+    },
+    {
+      "nombre": "Pascual Porco",
+      "direccion": "Renato Della Santa 499",
+      "localidad": "Godoy Cruz",
+      "lat": -32.9203058,
+      "lon": -68.8608727
+    },
+    {
+      "nombre": "Paz",
+      "direccion": "Lorenzo Armani 1414",
+      "lat": -32.9146779,
+      "lon": -68.8602177
+    },
+    {
+      "nombre": "Pelukeros Urbanos",
+      "direccion": "Avenida Godoy Cruz",
+      "lat": -32.8833784,
+      "lon": -68.84134
+    },
+    {
+      "nombre": "Peluq",
+      "direccion": "Manuel Belgrano 529",
+      "lat": -32.8955964,
+      "lon": -68.8512548
+    },
+    {
+      "nombre": "Peluquería Damian",
+      "direccion": "Adolfo Calle",
+      "lat": -32.9029206,
+      "lon": -68.8056564
+    },
+    {
+      "nombre": "Peluquería Deee Lite",
+      "direccion": "Agustín Álvarez 38",
+      "lat": -32.8875648,
+      "lon": -68.8504978
+    },
+    {
+      "nombre": "Peluquería Isra",
+      "direccion": "Joaquín Víctor González",
+      "lat": -32.9251503,
+      "lon": -68.8593875
+    },
+    {
+      "nombre": "Peluquería Juan",
+      "direccion": "O'Higgins 1110",
+      "lat": -32.9122015,
+      "lon": -68.8525797
+    },
+    {
+      "nombre": "Peluquería Walter Tonelli",
+      "direccion": "Perito Moreno 784",
+      "lat": -32.9329681,
+      "lon": -68.8457892
+    },
+    {
+      "nombre": "Romero D",
+      "direccion": "Paso de los Andes",
+      "lat": -32.8806603,
+      "lon": -68.8578827
+    },
+    {
+      "nombre": "Ruben Eduardo",
+      "direccion": "Patricias Mendocinas",
+      "lat": -32.8842866,
+      "lon": -68.8416125
+    },
+    {
+      "nombre": "Shampoo",
+      "direccion": "Perú 998",
+      "lat": -32.8902526,
+      "lon": -68.8488556
+    },
+    {
+      "nombre": "Sublime",
+      "direccion": "Paso de los Andes 1625",
+      "localidad": "Godoy Cruz",
+      "lat": -32.9093496,
+      "lon": -68.8602766
+    },
+    {
+      "nombre": "Tati Kerme",
+      "direccion": "Manuel Olascoaga 1345",
+      "lat": -32.8854707,
+      "lon": -68.8530294
+    },
+    {
+      "nombre": "Valentin",
+      "direccion": "España",
+      "lat": -32.890975,
+      "lon": -68.8422285
+    },
+    {
+      "nombre": "Valeria Diaz",
+      "direccion": "Catamarca 225",
+      "lat": -32.8899422,
+      "lon": -68.8351765
+    },
+    {
+      "nombre": "Walter Gallo",
+      "direccion": "Patricias Mendocinas",
+      "lat": -32.8841852,
+      "lon": -68.8415847
+    },
+    {
+      "nombre": "Buenos Muchachos Estilistas",
+      "lat": -32.9257762,
+      "lon": -68.8483934
+    },
+    {
+      "nombre": "César",
+      "lat": -32.8893338,
+      "lon": -68.8190966
+    },
+    {
+      "nombre": "Cesar Estilistas",
+      "lat": -32.9254621,
+      "lon": -68.8477671
+    },
+    {
+      "nombre": "Dario",
+      "lat": -33.0364757,
+      "lon": -68.8784694
+    },
+    {
+      "nombre": "Deee Lite",
+      "lat": -32.8926784,
+      "lon": -68.8462573
+    },
+    {
+      "nombre": "Estilista Salvatore Gambino",
+      "lat": -32.8893817,
+      "lon": -68.8175009
+    },
+    {
+      "nombre": "Jorge y Alejandro",
+      "lat": -32.8952769,
+      "lon": -68.8552633
+    },
+    {
+      "nombre": "Juan",
+      "lat": -32.9137297,
+      "lon": -68.8591204
+    },
+    {
+      "nombre": "La Peluquería",
+      "lat": -32.9255772,
+      "lon": -68.8468038
+    },
+    {
+      "nombre": "Leonardo Reynoso Estilista",
+      "lat": -32.8684995,
+      "lon": -68.8457504
+    },
+    {
+      "nombre": "Luffi",
+      "lat": -32.9087211,
+      "lon": -68.8630401
+    },
+    {
+      "nombre": "Luxe Peluq",
+      "lat": -32.885046,
+      "lon": -68.8545574
+    },
+    {
+      "nombre": "Miras martín peluquero binser",
+      "lat": -32.9101598,
+      "lon": -68.8009272
+    },
+    {
+      "nombre": "Peluquería Ana",
+      "lat": -32.8693543,
+      "lon": -68.8393734
+    },
+    {
+      "nombre": "Peluquería HWVW",
+      "lat": -32.9162419,
+      "lon": -68.8592181
+    },
+    {
+      "nombre": "Peluquería Italia",
+      "lat": -32.8861318,
+      "lon": -68.83473
+    },
+    {
+      "nombre": "Peluquería Joel Gatica",
+      "lat": -32.8688069,
+      "lon": -68.8490334
+    },
+    {
+      "nombre": "Peluqueria Juliano Marcos",
+      "lat": -32.8706779,
+      "lon": -68.8379368
+    },
+    {
+      "nombre": "Peluqueria Rosina",
+      "lat": -32.8705044,
+      "lon": -68.8378081
+    },
+    {
+      "nombre": "Prochelle Peluquería",
+      "lat": -32.9555292,
+      "lon": -68.8569449
+    },
+    {
+      "nombre": "Roberto Murgo Coiffeur",
+      "lat": -32.912559,
+      "lon": -68.8767779
+    },
+    {
+      "nombre": "Urbana Peluqueros",
+      "lat": -32.9136949,
+      "lon": -68.816401
+    },
+    {
+      "nombre": "Victor Hugo Peluquería",
+      "lat": -32.9881202,
+      "lon": -68.8849558
+    }
+  ]
+}
